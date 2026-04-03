@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         displayUserOptions(username);
     }
 
-    // Xử lý đăng nhập
+    // Xử lý đăng nhậpf
     $('#loginForm').submit(function (event) {
         event.preventDefault();
         const storedUser = JSON.parse(localStorage.getItem('user'));

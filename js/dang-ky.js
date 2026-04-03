@@ -9,7 +9,7 @@ function getCurrentDate() {
     return weekday + ", " + day + " " + month + " " + year;
 }
 
-// Cập nhật ngày khi tải trang
+// Cập nhật ngày khi tải trangf
 window.onload = function () {
     var currentDate = getCurrentDate();
     document.getElementById("dateNow").textContent = currentDate;
