@@ -159,7 +159,8 @@ ul {
 /* Container bao bên ngoài với overflow: hidden để ngăn tràn */
 .sale-banner-container {
   overflow: hidden;
-  max-width: 100%; /* Đảm bảo chiều rộng theo ý muốn */
+  max-width: 100%;
+  /* Đảm bảo chiều rộng theo ý muốn */
   position: relative;
 }
 
@@ -167,32 +168,37 @@ ul {
 .sale-banner {
   background-color: #f9415b;
   position: relative;
-  overflow: visible; /* Cho phép các mũi tên nằm ngoài khung */
+  overflow: visible;
+  /* Cho phép các mũi tên nằm ngoài khung */
   max-width: 100%;
   width: 90%;
   height: 610px;
   margin-left: 85px;
   border-radius: 15px;
-  padding: 0; /* Bỏ padding nếu không cần thiết */
+  padding: 0;
+  /* Bỏ padding nếu không cần thiết */
 }
 
 /* Căn chỉnh vị trí mũi tên */
-.slick-prev, .slick-next {
+.slick-prev,
+.slick-next {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 2; /* Đảm bảo mũi tên nằm trên slider */
+  z-index: 2;
+  /* Đảm bảo mũi tên nằm trên slider */
   color: #fff;
 }
 
 .slick-prev {
-  left: -30px; /* Đẩy mũi tên ra ngoài khung bên trái */
+  left: -30px;
+  /* Đẩy mũi tên ra ngoài khung bên trái */
 }
 
 .slick-next {
-  right: -30px; /* Đẩy mũi tên ra ngoài khung bên phải */
+  right: -30px;
+  /* Đẩy mũi tên ra ngoài khung bên phải */
 }
-
 
 .sale-banner img {
   margin-left: 20px;
@@ -227,7 +233,9 @@ ul {
 }
 
 .phone-item {
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
   will-change: transform;
 }
 
@@ -319,7 +327,9 @@ ul {
   margin: 0 10px;
   padding: 10px 0px;
   border-radius: 15px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
   /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
 }
 
@@ -333,7 +343,9 @@ ul {
 }
 
 .phone-item2 {
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
   will-change: transform;
 }
 
@@ -495,7 +507,9 @@ ul {
   width: 300px;
   overflow: hidden;
   margin-left: 53px;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
   will-change: transform;
   /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
 }
@@ -557,6 +571,8 @@ ul {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
+  /* standard property for compatibility */
   /* Số dòng hiển thị tối đa */
   overflow: hidden;
   text-overflow: ellipsis;
@@ -700,4 +716,577 @@ hr {
 
 .footer-bottom p {
   font-weight: bold;
+}
+
+/* Home page redesign based on Figma node 159:416 */
+:root {
+  --nw-bg: #000000;
+  --nw-text: #f2f2f2;
+  --nw-muted: #cccccc;
+  --nw-accent: #ffdd00;
+  --nw-ruler: #f9f9f9;
+}
+
+.nw-body {
+  background: var(--nw-bg);
+  color: var(--nw-text);
+  font-family: "Inter", sans-serif;
+}
+
+.nw-navbar {
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  min-height: 78px;
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
+}
+
+.nw-logo {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: #ffffff !important;
+  text-transform: uppercase;
+}
+
+.nw-logo-accent {
+  color: var(--nw-accent);
+}
+
+.nw-menu-link {
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  transition: color 0.2s ease;
+}
+
+.nw-menu-link:hover {
+  color: var(--nw-accent) !important;
+}
+
+.nw-login-btn {
+  background: var(--nw-accent);
+  color: #000;
+  font-weight: 700;
+  border: none;
+}
+
+.nw-login-btn:hover {
+  background: #f4c900;
+  color: #000;
+}
+
+.nw-hero {
+  margin-top: -25px;
+  min-height: calc(100vh - 63px);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.nw-hero-upper {
+  min-height: 420px;
+  padding-top: 8px;
+  overflow: visible;
+}
+
+.nw-copy {
+  max-width: 620px;
+}
+
+.nw-kicker {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
+  letter-spacing: 0.04em;
+  font-weight: bold;
+}
+
+.nw-title {
+  margin-top: 4px;
+  font-family: "Oswald", sans-serif;
+  font-size: 49px;
+  /* line-height: 1.3 so Vietnamese stacked diacritics (Ứ, Ề…) aren't
+     clipped by the overflow:hidden on .nw-line-wrap */
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+/* 'Nội dung' accent line – scoped to avoid bleeding onto .nw-line-wrap spans */
+.nw-title .nw-title-sub {
+  display: block; /* makes it its own visual line */
+  color: var(--nw-muted);
+  font-weight: 700;
+  margin-top: 7px;
+}
+
+.nw-subtitle {
+  margin-top: 8px;
+  font-family: "Oswald", sans-serif;
+  font-size: 49px;
+  line-height: 1.3; /* room for diacritics inside overflow:hidden wrap */
+}
+
+.nw-highlight {
+  margin-top: -2px;
+  font-family: "Merriweather", serif;
+  font-style: italic;
+  font-size: 49px;
+  line-height: 1.3; /* Merriweather ascenders need extra room inside overflow:hidden */
+  color: #fff8bf;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   WIPE-UP LINE REVEAL
+   Each text line is: <span class="nw-line-wrap"><span class="nw-line-inner">...
+   .nw-line-wrap → overflow:hidden vertical mask
+   .nw-line-inner → the element GSAP slides from 110% → 0%
+   ────────────────────────────────────────────────────────────────── */
+
+/* Vertical clipping mask: must be display:block to create a proper box */
+.nw-line-wrap {
+  display: block;
+  overflow: hidden;
+  /* A small negative margin trims the extra padding that line-height: 1.3
+     adds around the text so lines don't have too much space between them */
+  margin-bottom: -0.15em;
+}
+
+/* The sliding element – GSAP sets y: '110%' initially then animates to 0 */
+.nw-line-inner {
+  display: block;
+  will-change: transform; /* compositor hint: promote to GPU layer */
+}
+
+.nw-video-col {
+  position: relative;
+  z-index: 2;
+  transform: translateY(60px) translateX(-50px);
+  perspective: 900px;
+  transform-origin: right center;
+}
+
+.nw-video-card {
+  width: min(100%, 620px);
+  border-radius: 12px;
+  overflow: hidden;
+  transform-origin: right center;
+}
+
+.nw-video-media {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  height: 430px;
+}
+
+.nw-video-media iframe,
+.nw-video-media video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+.nw-play-btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  color: #000;
+  font-size: 1.4rem;
+  line-height: 52px;
+  text-align: center;
+  padding-left: 4px;
+}
+
+.nw-year-badge {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  font-family: "Oswald", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(255, 196, 80, 0.85);
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
+}
+
+.nw-video-caption {
+  padding: 16px 8px 12px;
+  color: #1a1a1a;
+  font-size: 1.2rem;
+}
+
+.nw-info {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #222;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.nw-ruler {
+  background: var(--nw-ruler);
+  color: #000;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  min-height: 28px;
+  /* split-horizontal-out animation needs:
+     - overflow:hidden to clip spans during their outward x-slide
+     - transform-origin:center so scaleX expands from the middle */
+  overflow: hidden;
+  transform-origin: center center;
+  font-weight: bold;
+}
+
+.nw-ruler-inner {
+  margin-left: 100px;
+  gap: 20vw;
+  font-size: 1rem;
+  min-height: 28px;
+}
+
+.nw-display-wrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 50px;
+  padding: 50px 40px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.nw-display-title {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(3.8rem, 17vw, 14rem);
+  line-height: 0.9;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #f1f1f1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.nw-cm-prelude {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(
+      circle at 10% 12%,
+      rgba(255, 214, 90, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 88% 80%,
+      rgba(255, 255, 255, 0.08),
+      transparent 36%
+    ),
+    #060606;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.nw-cm-prelude-inner {
+  max-width: 860px;
+}
+
+.nw-cm-kicker {
+  font-family: "Oswald", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #bdbdbd;
+}
+
+.nw-cm-title {
+  font-family: "Merriweather", serif;
+  font-size: clamp(2rem, 5vw, 4.3rem);
+  line-height: 1.05;
+  color: #f4f4f4;
+}
+
+.nw-cm-transition {
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background: #111;
+}
+
+.nw-cm-next-layer {
+  position: absolute;
+  inset: 0;
+  background: #f6f6f6;
+  color: #111;
+  z-index: 3;
+  /* White circular reveal starts tiny at center and expands on scroll */
+  clip-path: circle(40px at 50% 50%);
+  will-change: clip-path;
+}
+
+.nw-cm-next-wrap {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 980px;
+}
+
+.nw-cm-headline {
+  font-family: "Merriweather", serif;
+  font-size: clamp(2.1rem, 5.3vw, 5rem);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+.nw-cm-copy {
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.4vw, 1.22rem);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.nw-cm-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: #111;
+}
+
+.nw-cm-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 82px;
+  height: 82px;
+  margin-left: -41px;
+  margin-top: -41px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.nw-cm-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(8px);
+}
+
+@media (max-width: 1199.98px) {
+  .nw-navbar {
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .nw-login-btn {
+    margin-top: 0.4rem;
+    padding: 0.6rem 1rem !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .nw-video-card {
+    margin-bottom: 1.2rem;
+  }
+
+  .nw-ruler-inner {
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .nw-ruler-inner span {
+    font-size: 0.92rem;
+  }
+
+  .nw-display-wrap {
+    padding-top: 28px;
+    padding-bottom: 24px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nw-logo {
+    font-size: 1.55rem;
+  }
+
+  .nw-copy {
+    max-width: 100%;
+  }
+
+  .nw-video-media {
+    height: 200px;
+  }
+
+  .nw-video-caption {
+    font-size: 0.95rem;
+  }
+
+  .nw-year-badge {
+    font-size: 2.2rem;
+  }
+
+  .nw-ruler-inner span {
+    font-size: 0.82rem;
+  }
+
+  .nw-cm-headline {
+    font-size: clamp(1.8rem, 8.5vw, 2.9rem);
+  }
+
+  .nw-cm-copy {
+    line-height: 1.62;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CINEMATIC INTRO OVERLAY — Phase 1 / 2 / 3
+   All transforms are GPU-composited (no layout properties changed).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Page-reveal: hide all content behind the overlay at load time ────── */
+[data-page-reveal] {
+  /* GSAP autoAlpha will toggle both opacity and visibility together */
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ── 2. Full-viewport black stage ─────────────────────────────────────────── */
+#nw-intro-overlay {
+  position: fixed;
+  inset: 0; /* shorthand for top/right/bottom/left: 0 */
+  z-index: 8888; /* above page content, below cursor (9999) */
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Removed from the paint tree by JS after Phase 3 */
+}
+
+/* ── 3. Text wrapper: stacking context for the two text layers ─────────────── */
+#nw-intro-text {
+  position: relative; /* lets the absolute top layer register perfectly */
+  display: inline-block; /* shrink-wraps to the text content */
+  transform-origin: center center; /* Phase 3 scale pivots from the centre */
+  will-change: transform; /* GPU layer hint */
+}
+
+/* ── 4. Shared Oswald typography (matches .nw-display-title on the page) ──── */
+.nw-it-base,
+.nw-it-wipe {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(3rem, 10vw, 11rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  /* line-height: 1.3 gives diacritics (Ứ, Ề, etc.) vertical breathing room
+     so they don't render above/below the element's border box and get
+     cut off by clip-path's default border-box clipping boundary */
+  line-height: 1.3;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+/* ── 5. Bottom layer — dark gray (#333) always visible base ──────────────── */
+.nw-it-base {
+  color: #333;
+  display: block;
+}
+
+/* ── 6. Top layer — white text, clipped fully to the right at start ──────── */
+.nw-it-wipe {
+  color: #fff;
+  /* Perfect pixel alignment on top of the base layer */
+  position: absolute;
+  inset: 0;
+  /*
+   * clip-path: inset(top right bottom left)
+   *
+   * FIX: Use NEGATIVE top/bottom values so the clipping region extends
+   * BEYOND the element's border box. Vietnamese diacritics like Ứ, Ề
+   * (which stack circumflex + tone marks) render above line-height and
+   * would otherwise peek through because border-box clip cuts too early.
+   *
+   * -0.5em top / -0.3em bottom = safe margin for stacked diacritics.
+   * right: 100% = fully hidden at start (wipe will animate this to 0%).
+   */
+  clip-path: inset(-0.5em 100% -0.3em 0);
+  will-change: clip-path; /* GPU-composited, zero layout cost */
+}
+
+/* ── 7. Anchor: real page title lives here, matches display-title styling ─── */
+#nw-dt-anchor {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 50px;
+  padding: 50px 40px;
+  /* overflow: visible so the h2 inside is not clipped */
+  overflow: visible;
+}
+
+/* Real title starts invisible; GSAP crossfades it in when overlay leaves */
+#nw-dt-title {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ── Custom circular cursor ────────────────────────────────────────────── */
+
+/* Hide the default OS cursor everywhere */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+#nw-cursor {
+  /* Size: ~8px circle */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #ffffff;
+
+  /* Invert against any background */
+  mix-blend-mode: difference;
+
+  /* Fixed so it rides on top of the viewport */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Centre the circle on the hot-spot (GSAP moves via translate) */
+  transform: translate(-50%, -50%);
+
+  /* Keep above everything else */
+  z-index: 99999;
+
+  /* No pointer events so it never blocks clicks */
+  pointer-events: none;
+
+  /* Scale transition handled by GSAP, but add will-change for GPU hint */
+  will-change: transform;
+
+  /* Keep transform fully controlled by JS to avoid per-frame transition jitter */
+  transition:
+    width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Expanded state – applied by JS on interactive elements */
+#nw-cursor.nw-cursor--hover {
+  width: 26px;
+  height: 26px;
 }
