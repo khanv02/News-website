@@ -864,14 +864,14 @@ hr {
   z-index: 2;
   transform: translateY(60px) translateX(-50px);
   perspective: 900px;
-  transform-origin: right center;
+  transform-origin: top right;
 }
 
 .nw-video-card {
   width: min(100%, 620px);
   border-radius: 12px;
   overflow: hidden;
-  transform-origin: right center;
+  transform-origin: top right;
 }
 
 .nw-video-media {

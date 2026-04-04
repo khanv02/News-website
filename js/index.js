@@ -7,6 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var wipeLayer = document.querySelector(".nw-it-wipe");
   var anchor = document.getElementById("nw-dt-anchor");
   var dtTitle = document.getElementById("nw-dt-title");   // tiêu đề thật của trang
+  var videoCol = document.querySelector(".nw-video-col");
+  var videoCardEl = document.querySelector(".nw-video-card");
+  var videoYearBadge = document.querySelector(".nw-year-badge");
+  var navbarEl = document.querySelector(".nw-header");
 
   if (!overlay || !introText || !wipeLayer || !anchor) return;
 
@@ -14,11 +18,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("[data-page-reveal]")
   );
   var anchorRevealEl = anchor.closest("[data-page-reveal]");
+  var heroRevealEl = document.querySelector(".nw-hero[data-page-reveal]");
   var revealTweenEls = revealEls.filter(function (el) {
-    return el !== anchorRevealEl;
+    // Loại anchor, navbar và hero khỏi nhóm reveal chung.
+    // Hero cần hiển thị sớm để animation video không bị parent che mất.
+    return el !== anchorRevealEl && el !== navbarEl && el !== heroRevealEl;
   });
   var revealScaleEls = revealTweenEls.filter(function (el) {
-    // Không scale phần tử cha của điểm neo để tiêu đề đích không bị ảnh hưởng.
+    // Không animate phần tử cha của điểm neo trong nhóm scale chung.
     return !el.contains(anchor);
   });
 
@@ -36,6 +43,23 @@ document.addEventListener("DOMContentLoaded", function () {
   // Span đầu đi lên vị trí chuẩn, span sau đi xuống vị trí chuẩn.
   gsap.set(".nw-ruler-inner span:first-child", { y: 16 });
   gsap.set(".nw-ruler-inner span:last-child", { y: -16 });
+
+  // Khối video dùng timeline riêng: ẩn trước để vào sau với nhịp khác.
+  if (heroRevealEl) {
+    gsap.set(heroRevealEl, { autoAlpha: 1 });
+  }
+  if (videoCol) {
+    gsap.set(videoCol, {
+      transformOrigin: "top right",
+      force3D: true,
+    });
+  }
+  if (videoCardEl) {
+    gsap.set(videoCardEl, {
+      transformOrigin: "top right",
+      force3D: true,
+    });
+  }
 
   // ════════════════════════════════════════════════════════════════════════════
   //  DÒNG THỜI GIAN CHÍNH (liền mạch, không có khung hình chết)
@@ -94,23 +118,49 @@ document.addEventListener("DOMContentLoaded", function () {
     // Lớp quét lộ ngắn hơn chuyển động chính để giữ cảm giác tiến về phía trước.
     var wipeDuration = 0.58;
 
+    // Nhịp 1 (trùng wipe): đi chậm hơn để chờ lớp quét lộ hoàn tất.
+    var slowPhaseDuration = Math.min(wipeDuration, moveDuration);
+
+    // Nhịp 2 (sau wipe): trở về tốc độ bình thường cho đến điểm đích.
+    var normalPhaseDuration = Math.max(moveDuration - slowPhaseDuration, 0.1);
+
+    // Tại cuối nhịp chậm, chỉ đi một phần quãng đường để cảm giác "giữ nhịp" rõ hơn.
+    var slowPhaseProgress = 0.42;
+    var midX = moveX * slowPhaseProgress;
+    var midY = moveY * slowPhaseProgress;
+    var midScale = 1 + (scaleTarget - 1) * slowPhaseProgress;
+
     // Tạo nhãn mốc thời gian để đồng bộ nhiều đoạn chuyển động bắt đầu cùng lúc.
     tl3.add("introMoveStart");
 
-    // Chuyển động chính: di chuyển + thu phóng chữ mở đầu về đúng vị trí/kích thước đích.
+    // Nhịp 1: scale/move chậm trong lúc wipe đang chạy.
+    tl3.to(
+      introText,
+      {
+        x: midX,
+        y: midY,
+        scale: midScale,
+        duration: slowPhaseDuration,
+        ease: "power1.in",
+        force3D: true,
+      },
+      "introMoveStart"
+    );
+
+    // Nhịp 2: sau khi wipe xong, về lại tốc độ bình thường và hoàn tất ở đích.
     tl3.to(
       introText,
       {
         x: moveX,
         y: moveY,
         scale: scaleTarget,
-        duration: moveDuration,
-        // ease: "expo.inOut",
+        duration: normalPhaseDuration,
+        ease: "power2.out",
 
         // Bật kết hợp 3D để phép biến đổi mượt hơn trên GPU.
         force3D: true,
       },
-      "introMoveStart"
+      "introMoveStart+=" + slowPhaseDuration
     );
 
     // Lớp quét lộ chạy đồng thời với chuyển động nhưng kết thúc sớm hơn để giữ nhịp tiến.
@@ -129,21 +179,57 @@ document.addEventListener("DOMContentLoaded", function () {
     tl3.add("introTextDone", "introMoveStart+=" + moveDuration);
 
     // ── Lộ trang: chỉ thu phóng vào (không mờ-trồi) ──────────────────────────
-    //    Bước A: bật hiển thị khối ngay, sau đó thu phóng từ 0.94 lên 1.
     tl3.set(revealTweenEls, { autoAlpha: 1 }, "introTextDone");
-    if (revealScaleEls.length) {
+
+    if (navbarEl) {
       tl3.fromTo(
-        revealScaleEls,
-        { scale: 0.94 },
+        navbarEl,
+        { y: -100, autoAlpha: 0 },
         {
-          scale: 1,
-          duration: 0.75,
-          // ease: "power3.out",
-          stagger: 0.09,
-          // clearProps: "transform",
+          y: 0,
+          autoAlpha: 1,
+          duration: 1,
+          ease: "power2.out",
         },
-        "introTextDone"
+        "introTextDone+=0.5"
       );
+    }
+
+    if (revealScaleEls.length) {
+      tl3.from(
+        revealScaleEls,
+        { y: -100, opacity: 0 },
+        "introTextDone+=0.2"
+      );
+    }
+
+    // ── Video block ──
+    var videoEndAt = 0.5;
+    var videoStartAt = "introTextDone-=" + videoEndAt;
+
+    if (videoCol) {
+      var videoTl = gsap.timeline();
+      var videoScaleTarget = videoCardEl || videoCol;
+
+      videoTl.fromTo(
+        videoScaleTarget,
+        {
+          autoAlpha: 1,
+          scale: 0,
+          transformOrigin: "top right",
+        },
+        {
+          autoAlpha: 1,
+          scale: 1,
+          transformOrigin: "top right",
+          duration: videoEndAt,
+          ease: "expo.out",
+          force3D: true,
+        },
+        0
+      );
+
+      tl3.add(videoTl, videoStartAt);
     }
 
     //    Bước B: quét lộ từ dưới lên, mỗi line-inner trượt từ 110% về 0 theo nhịp lệch.
@@ -156,9 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
         y: "0%",
         duration: 0.65,
         ease: "power4.out",
-        stagger: 0.10,
+        stagger: 0.1,
       },
-      "introTextDone+=1"
+      "introTextDone+=0.2"
     );
 
     // ── Thước tách dọc ───────────────────────────────────────────────────────
@@ -176,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ease: "power3.out",
         clearProps: "transform",  // dọn thuộc tính biến đổi nội tuyến để không ảnh hưởng bố cục về sau
       },
-      "introTextDone+=1"   // bắt đầu cùng thời điểm với phần lộ trang
+      "introTextDone+=0.5"   // bắt đầu cùng thời điểm với phần lộ trang
     );
 
     //    Bước ii: span đầu trượt từ y:16 về 0 (cảm giác bung lên).
@@ -209,17 +295,26 @@ document.addEventListener("DOMContentLoaded", function () {
       tl3.set(dtTitle, { autoAlpha: 1 }, "introTextDone");
     }
 
-    // Làm mờ lớp phủ ngay sau khi phần mở đầu xong để người dùng thấy nội dung quét lộ.
+    // Tránh làm introText biến mất: chỉ fade nền đen của overlay,
+    // không fade toàn bộ overlay (vì introText là con của overlay).
+    var overlayFadeAt = videoCol ? videoStartAt : "introTextDone";
+    var overlayFadeDuration = videoCol ? videoEndAt : 0.42;
+
     tl3.to(
       overlay,
       {
-        autoAlpha: 0,
-        duration: 0.42,
+        backgroundColor: "rgba(0,0,0,0)",
+        duration: overlayFadeDuration,
         ease: "power2.out",
-        onComplete: function () {
-          // Gỡ hẳn lớp phủ khỏi cây vẽ để không chặn tương tác phía dưới.
-          overlay.style.display = "none";
-        },
+      },
+      overlayFadeAt
+    );
+
+    // Gỡ hẳn overlay ngay tại mốc bàn giao để không chặn tương tác.
+    tl3.set(
+      overlay,
+      {
+        display: "none",
       },
       "introTextDone"
     );
