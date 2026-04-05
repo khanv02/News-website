@@ -1167,9 +1167,10 @@ hr {
   visibility: hidden;
 }
 
-/* ── Custom circular cursor ────────────────────────────────────────────── */
 
-/* Hide the default OS cursor everywhere */
+/* ───────────── Custom cursor ──────────────*/
+
+/* Ẩn con trỏ mặc định */
 *,
 *::before,
 *::after {
@@ -1177,13 +1178,10 @@ hr {
 }
 
 #nw-cursor {
-  /* Size: ~8px circle */
   width: 20px;
   height: 20px;
   border-radius: 50%;
   background: #ffffff;
-
-  /* Invert against any background */
   mix-blend-mode: difference;
 
   /* Fixed so it rides on top of the viewport */
@@ -1197,7 +1195,6 @@ hr {
   /* Keep above everything else */
   z-index: 99999;
 
-  /* No pointer events so it never blocks clicks */
   pointer-events: none;
 
   /* Scale transition handled by GSAP, but add will-change for GPU hint */
@@ -1209,7 +1206,6 @@ hr {
     height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Expanded state – applied by JS on interactive elements */
 #nw-cursor.nw-cursor--hover {
   width: 26px;
   height: 26px;
