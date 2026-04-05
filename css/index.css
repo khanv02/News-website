@@ -10,7 +10,10 @@ body {
   line-height: 1.6;
   color: #333;
 }
-
+::selection {
+  background-color: white;
+  color: black;
+}
 #top-header {
   background-color: #f2f4f7;
 }
@@ -721,10 +724,10 @@ hr {
 /* Home page redesign based on Figma node 159:416 */
 :root {
   --nw-bg: #000000;
-  --nw-text: #f2f2f2;
+  --nw-text: #ffffff;
   --nw-muted: #cccccc;
   --nw-accent: #ffdd00;
-  --nw-ruler: #f9f9f9;
+  --nw-ruler: #ffffff;
 }
 
 .nw-body {
@@ -796,6 +799,13 @@ hr {
   max-width: 620px;
 }
 
+.nw-kicker,
+.nw-title,
+.nw-subtitle,
+.nw-highlight {
+  padding-left: clamp(12px, 4vw, 60px);
+}
+
 .nw-kicker {
   font-family: "Oswald", sans-serif;
   font-size: clamp(2.2rem, 4.4vw, 4.2rem);
@@ -807,8 +817,6 @@ hr {
   margin-top: 4px;
   font-family: "Oswald", sans-serif;
   font-size: 49px;
-  /* line-height: 1.3 so Vietnamese stacked diacritics (Ứ, Ề…) aren't
-     clipped by the overflow:hidden on .nw-line-wrap */
   line-height: 1.3;
   letter-spacing: 0.01em;
 }
@@ -833,8 +841,8 @@ hr {
   font-family: "Merriweather", serif;
   font-style: italic;
   font-size: 49px;
-  line-height: 1.3; /* Merriweather ascenders need extra room inside overflow:hidden */
-  color: #fff8bf;
+  line-height: 1.3;
+  color: #fff700;
 }
 
 /* ──────────────────────────────────────────────────────────────────
@@ -891,23 +899,6 @@ hr {
   object-fit: cover;
 }
 
-.nw-play-btn {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: #000;
-  font-size: 1.4rem;
-  line-height: 52px;
-  text-align: center;
-  padding-left: 4px;
-}
-
 .nw-year-badge {
   position: absolute;
   right: 14px;
@@ -918,24 +909,6 @@ hr {
   letter-spacing: 0.02em;
   color: rgba(255, 196, 80, 0.85);
   text-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
-}
-
-.nw-video-caption {
-  padding: 16px 8px 12px;
-  color: #1a1a1a;
-  font-size: 1.2rem;
-}
-
-.nw-info {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #222;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.78rem;
-  font-weight: 600;
 }
 
 .nw-ruler {
@@ -959,65 +932,16 @@ hr {
   min-height: 28px;
 }
 
-.nw-display-wrap {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 50px;
-  padding: 50px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
 .nw-display-title {
   font-family: "Oswald", sans-serif;
   font-size: clamp(3.8rem, 17vw, 14rem);
   line-height: 1;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: #f1f1f1;
+  color: #ffffff;
   text-transform: uppercase;
   white-space: nowrap;
   text-align: center;
-}
-
-.nw-cm-prelude {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background:
-    radial-gradient(
-      circle at 10% 12%,
-      rgba(255, 214, 90, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 88% 80%,
-      rgba(255, 255, 255, 0.08),
-      transparent 36%
-    ),
-    #060606;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.nw-cm-prelude-inner {
-  max-width: 860px;
-}
-
-.nw-cm-kicker {
-  font-family: "Oswald", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #bdbdbd;
-}
-
-.nw-cm-title {
-  font-family: "Merriweather", serif;
-  font-size: clamp(2rem, 5vw, 4.3rem);
-  line-height: 1.05;
-  color: #f4f4f4;
 }
 
 .nw-cm-transition {
@@ -1113,7 +1037,7 @@ hr {
     font-size: 0.92rem;
   }
 
-  .nw-display-wrap {
+  #nw-dt-anchor {
     padding-top: 28px;
     padding-bottom: 24px;
   }
@@ -1130,10 +1054,6 @@ hr {
 
   .nw-video-media {
     height: 200px;
-  }
-
-  .nw-video-caption {
-    font-size: 0.95rem;
   }
 
   .nw-year-badge {
@@ -1200,10 +1120,6 @@ hr {
   margin: 0;
   padding: 0;
   user-select: none;
-}
-
-/* ── 5. Base text remains dark gray; white reveal is drawn by ::after ─────── */
-.nw-it-wipe {
   color: #333;
   display: block;
   position: relative;
@@ -1238,6 +1154,9 @@ hr {
   border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   margin-top: 50px;
   padding: 50px 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* overflow: visible so the h2 inside is not clipped */
   overflow: visible;
 }

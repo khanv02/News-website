@@ -76,11 +76,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── GIAI ĐOẠN 1 — Vào cảnh mềm (mờ dần + trôi xuống) ─────────────────────
   master.fromTo(
     introText,
+    //từ vị trí 1
     { y: -100, opacity: 0 },
+    //vị trí 2, có những hiệu ứng thay đổi
     {
       y: 0,
-      opacity: 1,
-      duration: 2,
+      opacity: 1, //chữ xuất hiện
+      duration: 2, //thời gian hoàn thành hiệu ứng này là 2 giây
     }
   );
 
@@ -240,9 +242,9 @@ document.addEventListener("DOMContentLoaded", function () {
       { y: "110%" },
       {
         y: "0%",
-        duration: 0.65,
-        ease: "power4.out",
-        stagger: 0.1,
+        duration: 0.65,    //khoảng thời gian thực hiện hiệu ứng: 0.65s
+        ease: "Power4.in", //Tên hiệu ứng
+        stagger: 0.1,   //Phân chia khoảng thời gian thực hiện hiệu ứng của từng dòng text
       },
       "introTextDone+=0.2"
     );
