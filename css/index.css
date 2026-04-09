@@ -928,21 +928,38 @@ hr {
 }
 
 .nw-cm-transition {
-  height: 100vh;
   position: relative;
-  overflow: hidden;
-  background: #111;
+  /*
+   * 250vh = 100vh (visible sticky area) + 150vh (scroll budget)
+   * Animation hoàn thành tại mark 130vh, sau đó 20vh "nghỉ" trước khi section thoát.
+   * KHÔNG cần overflow:hidden ở đây — được xử lý trong .nw-cm-sticky-inner.
+   */
+  height: 250vh;
 }
 
+/* Sticky inner: browser tự ghim tại top trong suốt 150vh scroll budget */
+.nw-cm-sticky-inner {
+  position: sticky;
+  top: 0;
+  height: 100vh;        /* chiều cao thực hiện của viewport */
+  overflow: hidden;     /* giữ SVG mask bên trong, không thoát ra ngoài */
+  background: #000;     /* nền đen khi chưa bắt đầu reveal */
+}
+
+/* Layer 0: nền trắng mặc định — bị che bởi SVG mask ban đầu */
+.nw-cm-default-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: #f6f6f6;
+}
+
+/* Layer 1: nội dung text — nằm trên nền trắng, dưới SVG mask */
 .nw-cm-next-layer {
   position: absolute;
   inset: 0;
-  background: #f6f6f6;
-  color: #111;
-  z-index: 3;
-  /* Mặt nạ tròn mở dần theo cuộn */
-  clip-path: circle(40px at 50% 50%);
-  will-change: clip-path;
+  color: #000;
+  z-index: 1;
 }
 
 .nw-cm-next-wrap {
@@ -967,25 +984,15 @@ hr {
   margin-bottom: 0;
 }
 
-.nw-cm-overlay {
+/* SVG Mask overlay: phủ toàn section, z-index cao nhất */
+.nw-cm-svg-mask {
   position: absolute;
   inset: 0;
-  z-index: 2;
-  background: #000000;
-}
-
-.nw-cm-ring {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 82px;
-  height: 82px;
-  margin-left: -41px;
-  margin-top: -41px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  z-index: 3;
+  width: 100%;
+  height: 100%;
+  z-index: 2;          /* nằm trên nội dung và nền trắng */
   pointer-events: none;
+  will-change: opacity;
 }
 
 .nw-cm-reveal {

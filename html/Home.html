@@ -4,16 +4,36 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Website</title>
+
+    <!-- SCROLL RESET, no-defer -->
+    <script>
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+
+      // Problem: scroll-behavior: smooth trên body CSS can thiệp vào GSAP ScrollTrigger.refresh().
+      // Khi ST refresh nội bộ cần scroll về 0 để đo positions, smooth behavior
+      // làm scroll animation bất đồng bộ → ST đọc vị trí sai.
+      // Override về "auto" để scroll luôn instant với GSAP.
+      document.documentElement.style.scrollBehavior = "auto";
+    </script>
+
     <link rel="stylesheet" href="../css/local-fonts.css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/index.css" />
-
+    
+    <!-- bootstrap -->
     <script src="../js/bootstrap.bundle.min.js" defer></script>
-    <script src="../js/gsap.min.js" defer></script>
-    <script src="../js/ScrollTrigger.min.js" defer></script>
-    <script src="../js/SplitText.min.js" defer></script>
-    <script src="../js/index.js" defer></script>
-    <script src="../js/section2.js" defer></script>
+    
+    <!-- GSAP -->
+    <script src="../js/gsap/gsap.min.js" defer></script>
+    <script src="../js/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="../js/gsap/SplitText.min.js" defer></script>
+    
+    <!-- SECTION -->
+    <script src="../js/heroSection.js" defer></script>
+    <script src="../js/components/section2.js" defer></script>
     <script src="../js/cursor.js" defer></script>
   </head>
 
@@ -72,6 +92,8 @@
     </header>
 
     <main class="nw-main">
+      
+      <!-- SECTION 1 -->
       <section class="nw-hero position-relative" data-page-reveal>
         <div class="container-fluid px-4 px-xl-5">
           <div class="row align-items-center gx-4 gx-xl-5 nw-hero-upper">
@@ -144,23 +166,58 @@
         </div>
       </section>
 
+      <!-- SECTION 2 -->
+      <!--
+        height: 250vh → cung cấp 150vh scroll space khi inner sticky.
+        Animation hoàn thành sau 130vh (130%), còn 20vh "nghỉ" trước khi thoát.
+        KHÔNG dùng GSAP pin:true → dùng CSS sticky thay thế để tránh spacer-div bugs.
+      -->
       <section class="nw-cm-transition" id="nw-cm-transition">
-        <div class="nw-cm-next-layer">
-          <div class="container-fluid px-4 px-xl-5 nw-cm-next-wrap">
-            <p class="nw-cm-reveal" data-cm-reveal>CHỦ ĐỀ TRỌNG TÂM</p>
-            <h3 class="nw-cm-headline nw-cm-reveal" data-cm-reveal>
-              Những lát cắt thiết kế tạo nên cảm xúc đọc tin liền mạch.
-            </h3>
-            <p class="nw-cm-copy nw-cm-reveal" data-cm-reveal>
-              Hiệu ứng chuyển cảnh này dùng mặt nạ hình tròn mở dần theo nhịp
-              cuộn, giúp nội dung kế tiếp xuất hiện tự nhiên, không bị khựng
-              khung.
-            </p>
-          </div>
-        </div>
 
-        <div class="nw-cm-overlay" aria-hidden="true"></div>
-        <div class="nw-cm-ring" aria-hidden="true"></div>
+        <!-- Sticky inner: ghim tại top trong suốt 150vh scroll của section -->
+        <div class="nw-cm-sticky-inner">
+
+          <!-- Layer z=0: nền trắng mặc định -->
+          <div class="nw-cm-default-bg" aria-hidden="true"></div>
+
+          <!-- Layer z=1: nội dung text -->
+          <div class="nw-cm-next-layer">
+            <div class="container-fluid px-4 px-xl-5 nw-cm-next-wrap">
+              <p class="nw-cm-reveal" data-cm-reveal>CHỦ ĐỀ TRỌNG TÂM</p>
+              <h3 class="nw-cm-headline nw-cm-reveal" data-cm-reveal>
+                Những lát cắt thiết kế tạo nên cảm xúc đọc tin liền mạch.
+              </h3>
+              <p class="nw-cm-copy nw-cm-reveal" data-cm-reveal>
+                Hiệu ứng chuyển cảnh này dùng mặt nạ hình tròn mở dần theo nhịp
+                cuộn, giúp nội dung kế tiếp xuất hiện tự nhiên, không bị khựng
+                khung.
+              </p>
+            </div>
+          </div>
+
+          <!-- Layer z=2: SVG Mask (rect đen + lỗ tròn subtract) -->
+          <svg
+            id="nw-cm-svg-mask"
+            class="nw-cm-svg-mask"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <mask id="nw-cm-circle-mask">
+                <rect id="nw-cm-bg-rect" x="0" y="0" width="100%" height="100%" fill="white" />
+                <circle id="nw-cm-hole" cx="50%" cy="50%" r="56" fill="black" />
+              </mask>
+            </defs>
+            <rect
+              x="0" y="0"
+              width="100%" height="100%"
+              fill="#000000"
+              mask="url(#nw-cm-circle-mask)"
+            />
+          </svg>
+
+        </div><!-- /.nw-cm-sticky-inner -->
       </section>
     </main>
 
