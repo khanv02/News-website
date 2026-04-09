@@ -19,7 +19,7 @@
 
     var _inited = false;
 
-    // ── Hàm khởi tạo chính ─────────────────────────────────────────────────────
+    // ────────── Hàm khởi tạo chính ──────────
     function initSection2() {
         if (_inited) return;
         _inited = true;
@@ -27,15 +27,20 @@
         if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
         gsap.registerPlugin(ScrollTrigger);
 
-        // ── Elements ──────────────────────────────────────────────────────────────
-        var section = document.getElementById("nw-cm-transition");   // outer 250vh
+        // ────────── Elements ──────────
+        var section = document.getElementById("nw-cm-transition");
         var svgMask = document.getElementById("nw-cm-svg-mask");
         var circleEl = document.getElementById("nw-cm-hole");
-        var revealEls = [].slice.call(document.querySelectorAll("[data-cm-reveal]"));
+        var cmVideo = section ? section.querySelector(".nw-cm-video") : null;
+        var feedListPrimary = section ? section.querySelector(".nw-feed-list-primary") : null;
+        var feedListSecondary = section ? section.querySelector(".nw-feed-list-secondary") : null;
+        var feedListTertiary = section ? section.querySelector(".nw-feed-list-tertiary") : null;
+        var revealEls = [].slice.call(document.querySelectorAll("[section2-data]"));
+        var feedCards = section ? [].slice.call(section.querySelectorAll(".nw-feed-card")) : [];
 
         if (!section || !svgMask || !circleEl) return;
 
-        // ── Viewport dimensions ───────────────────────────────────────────────────
+        // ────────── Viewport dimensions ──────────
         var INITIAL_R = 56;   // pixel — bán kính ban đầu
         var diagRadius = 100;  // sẽ được tính lại
 
@@ -57,14 +62,137 @@
             }
         }
 
-        // ── Set trạng thái khởi đầu ───────────────────────────────────────────────
+        function isMobileViewport() {
+            if (!window.matchMedia) return window.innerWidth <= 767;
+            return window.matchMedia("(max-width: 767.98px)").matches;
+        }
+
+        function getVideoScrubStart() {
+            return isMobileViewport() ? "top 50%" : "center 60%";
+        }
+
+        function getVideoScrubEnd() {
+            return isMobileViewport() ? "120% top" : "bottom top";
+        }
+
+        function setupFeedHover(cards) {
+            if (!cards.length) return [];
+
+            var canHover = true;
+            var reduceMotion = false;
+            var mediaItems = [];
+
+            if (window.matchMedia) {
+                canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+                reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+            }
+
+            cards.forEach(function (card) {
+                var media = card.querySelector(".nw-feed-media");
+                var mediaImg = media ? media.querySelector("img") : null;
+                if (!media) return;
+
+                mediaItems.push({
+                    card: card,
+                    media: media,
+                    mediaImg: mediaImg,
+                });
+
+                // Move media to body so fixed positioning stays consistent.
+                if (media.parentNode !== document.body) {
+                    document.body.appendChild(media);
+                }
+
+                if (!canHover || reduceMotion) {
+                    gsap.set(media, { autoAlpha: 0 });
+                    return;
+                }
+
+                gsap.set(media, {
+                    autoAlpha: 0,
+                    x: 0,
+                    y: 0,
+                    xPercent: -50,
+                    yPercent: -50,
+                    scale: 0.82,
+                    transformOrigin: "50% 50%",
+                });
+
+                if (mediaImg) {
+                    gsap.set(mediaImg, { scale: 1.07, transformOrigin: "50% 50%" });
+                }
+
+                card.addEventListener("mouseenter", function () {
+                    card.style.zIndex = "30";
+
+                    gsap.to(media, {
+                        autoAlpha: 1,
+                        scale: 1,
+                        duration: 0.38,
+                        ease: "power3.out",
+                        overwrite: true,
+                    });
+
+                    if (mediaImg) {
+                        gsap.to(mediaImg, {
+                            scale: 1,
+                            duration: 0.4,
+                            ease: "power2.out",
+                            overwrite: true,
+                        });
+                    }
+                });
+
+                card.addEventListener("mouseleave", function () {
+                    gsap.to(media, {
+                        autoAlpha: 0,
+                        x: 0,
+                        y: 0,
+                        scale: 0.82,
+                        duration: 0.24,
+                        ease: "power2.in",
+                        overwrite: true,
+                        onComplete: function () {
+                            card.style.zIndex = "";
+                        },
+                    });
+
+                    if (mediaImg) {
+                        gsap.to(mediaImg, {
+                            scale: 1.07,
+                            duration: 0.24,
+                            ease: "power2.in",
+                            overwrite: true,
+                        });
+                    }
+                });
+            });
+
+            return mediaItems;
+        }
+
+        // ────────── Set trạng thái khởi đầu ──────────
         calcDimensions();
+        var feedMediaItems = setupFeedHover(feedCards);
         circleEl.setAttribute("r", INITIAL_R.toString());
         gsap.set(svgMask, { opacity: 1 });
         gsap.set(revealEls, { opacity: 0, y: 40, filter: "blur(8px)" });
 
+        if (feedListSecondary) {
+            gsap.set(feedListSecondary, { autoAlpha: 0, y: 18, pointerEvents: "none" });
+        }
+        if (feedListTertiary) {
+            gsap.set(feedListTertiary, { autoAlpha: 0, y: 18, pointerEvents: "none" });
+        }
+
         // ── GSAP Timeline (progress 0 → 1 scrubbed bởi ScrollTrigger) ────────────
         var tl = gsap.timeline({ defaults: { ease: "none" } });
+        var sectionScrollEnd = "+=300%";
+        var sectionScrub = 2;
+        var listSwap1Start = 2;
+        var listSwap2Start = 4;
+        var listSwapDuration = 0.36;
+        var maskFadeStart = 1.34;
 
         // Phase 1 [0.0 → 0.7]: lỗ tròn mở rộng từ 56px → toàn màn hình
         tl.to(circleEl, {
@@ -85,22 +213,178 @@
             }, 0.35);
         }
 
+        if (feedListPrimary && feedListSecondary) {
+            tl.to(feedListPrimary, {
+                autoAlpha: 0,
+                y: -18,
+                ease: "power2.inOut",
+                duration: listSwapDuration,
+                onStart: function () {
+                    feedListPrimary.style.pointerEvents = "none";
+                    feedListSecondary.style.pointerEvents = "none";
+                    if (feedListTertiary) {
+                        feedListTertiary.style.pointerEvents = "none";
+                    }
+                },
+                onReverseComplete: function () {
+                    feedListPrimary.style.pointerEvents = "auto";
+                    feedListSecondary.style.pointerEvents = "none";
+                    if (feedListTertiary) {
+                        feedListTertiary.style.pointerEvents = "none";
+                    }
+                },
+            }, listSwap1Start);
+
+            tl.to(feedListSecondary, {
+                autoAlpha: 1,
+                y: 0,
+                ease: "power2.out",
+                duration: listSwapDuration,
+                onComplete: function () {
+                    feedListSecondary.style.pointerEvents = "auto";
+                },
+                onReverseComplete: function () {
+                    feedListSecondary.style.pointerEvents = "none";
+                },
+            }, listSwap1Start);
+        }
+
+        if (feedListSecondary && feedListTertiary) {
+            tl.to(feedListSecondary, {
+                autoAlpha: 0,
+                y: -18,
+                ease: "power2.inOut",
+                duration: listSwapDuration,
+                onStart: function () {
+                    feedListPrimary.style.pointerEvents = "none";
+                    feedListSecondary.style.pointerEvents = "none";
+                    feedListTertiary.style.pointerEvents = "none";
+                },
+                onReverseComplete: function () {
+                    feedListSecondary.style.pointerEvents = "auto";
+                    feedListTertiary.style.pointerEvents = "none";
+                },
+            }, listSwap2Start);
+
+            tl.to(feedListTertiary, {
+                autoAlpha: 1,
+                y: 0,
+                ease: "power2.out",
+                duration: listSwapDuration,
+                onComplete: function () {
+                    feedListTertiary.style.pointerEvents = "auto";
+                },
+                onReverseComplete: function () {
+                    feedListTertiary.style.pointerEvents = "none";
+                    feedListSecondary.style.pointerEvents = "auto";
+                },
+            }, listSwap2Start);
+        }
+
         // Phase 2 [0.7 → 1.0]: SVG overlay fade out hoàn toàn → nền trắng lộ ra
         tl.to(svgMask, {
             opacity: 0,
             ease: "power1.in",
-            duration: 0.3,
-        }, 0.7);
+            duration: 0.38,
+        }, maskFadeStart);
 
         // ── ScrollTrigger — CSS sticky
+        var mediaSyncedHidden = true;
+        var textRevealStart = 0.35;
+
         ScrollTrigger.create({
             animation: tl,
             trigger: section,
             start: "top top",
-            end: "+=70%",
-            scrub: 1.2,
+            end: sectionScrollEnd,
+            scrub: sectionScrub,
             invalidateOnRefresh: true,   // tính lại positions khi F5
+            onUpdate: function (self) {
+                if (!feedMediaItems.length) return;
+
+                // Khi cuộn ngược về trước phase text reveal, ảnh card ẩn cùng nhịp 0.35s.
+                if (self.progress <= textRevealStart) {
+                    if (mediaSyncedHidden) return;
+
+                    feedMediaItems.forEach(function (item) {
+                        gsap.to(item.media, {
+                            autoAlpha: 0,
+                            scale: 0.82,
+                            duration: 0.35,
+                            ease: "power2.out",
+                            overwrite: true,
+                        });
+
+                        if (item.mediaImg) {
+                            gsap.to(item.mediaImg, {
+                                scale: 1.07,
+                                duration: 0.35,
+                                ease: "power2.out",
+                                overwrite: true,
+                            });
+                        }
+
+                        item.card.style.zIndex = "";
+                    });
+
+                    mediaSyncedHidden = true;
+                    return;
+                }
+
+                mediaSyncedHidden = false;
+            },
         });
+
+        if (cmVideo) {
+            gsap.set(cmVideo, {
+                scale: 1.12,
+                yPercent: -4,
+                transformOrigin: "50% 50%",
+            });
+
+            var videoScrubTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: cmVideo,
+                    start: getVideoScrubStart,
+                    end: getVideoScrubEnd,
+                    scrub: true,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            function bindVideoScrubToDuration() {
+                if (!isFinite(cmVideo.duration) || cmVideo.duration <= 0) return;
+
+                cmVideo.pause();
+                videoScrubTl.clear();
+                videoScrubTl.fromTo(cmVideo, {
+                    currentTime: 0,
+                }, {
+                    currentTime: cmVideo.duration,
+                    ease: "none",
+                    duration: 1,
+                }, 0);
+            }
+
+            if (cmVideo.readyState >= 1) {
+                bindVideoScrubToDuration();
+            } else {
+                cmVideo.addEventListener("loadedmetadata", bindVideoScrubToDuration, { once: true });
+            }
+
+            ScrollTrigger.create({
+                trigger: section,
+                start: "top top",
+                end: sectionScrollEnd,
+                scrub: 2.6,
+                invalidateOnRefresh: true,
+                animation: gsap.to(cmVideo, {
+                    scale: 1,
+                    yPercent: 0,
+                    ease: "none",
+                }),
+            });
+        }
 
         // ── Resize ────────────────────────────────────────────────────────────────
         var resizeTimeout;

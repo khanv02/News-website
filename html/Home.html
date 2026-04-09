@@ -19,18 +19,20 @@
       document.documentElement.style.scrollBehavior = "auto";
     </script>
 
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/local-fonts.css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/index.css" />
-    
+    <link rel="stylesheet" href="../css/section2.css" />
+
     <!-- bootstrap -->
     <script src="../js/bootstrap.bundle.min.js" defer></script>
-    
+
     <!-- GSAP -->
     <script src="../js/gsap/gsap.min.js" defer></script>
     <script src="../js/gsap/ScrollTrigger.min.js" defer></script>
     <script src="../js/gsap/SplitText.min.js" defer></script>
-    
+
     <!-- SECTION -->
     <script src="../js/heroSection.js" defer></script>
     <script src="../js/components/section2.js" defer></script>
@@ -92,7 +94,6 @@
     </header>
 
     <main class="nw-main">
-      
       <!-- SECTION 1 -->
       <section class="nw-hero position-relative" data-page-reveal>
         <div class="container-fluid px-4 px-xl-5">
@@ -173,25 +174,210 @@
         KHÔNG dùng GSAP pin:true → dùng CSS sticky thay thế để tránh spacer-div bugs.
       -->
       <section class="nw-cm-transition" id="nw-cm-transition">
-
         <!-- Sticky inner: ghim tại top trong suốt 150vh scroll của section -->
         <div class="nw-cm-sticky-inner">
-
           <!-- Layer z=0: nền trắng mặc định -->
           <div class="nw-cm-default-bg" aria-hidden="true"></div>
 
-          <!-- Layer z=1: nội dung text -->
+          <!-- Layer z=1: nội dung text + video layout ngang -->
           <div class="nw-cm-next-layer">
-            <div class="container-fluid px-4 px-xl-5 nw-cm-next-wrap">
-              <p class="nw-cm-reveal" data-cm-reveal>CHỦ ĐỀ TRỌNG TÂM</p>
-              <h3 class="nw-cm-headline nw-cm-reveal" data-cm-reveal>
-                Những lát cắt thiết kế tạo nên cảm xúc đọc tin liền mạch.
-              </h3>
-              <p class="nw-cm-copy nw-cm-reveal" data-cm-reveal>
-                Hiệu ứng chuyển cảnh này dùng mặt nạ hình tròn mở dần theo nhịp
-                cuộn, giúp nội dung kế tiếp xuất hiện tự nhiên, không bị khựng
-                khung.
-              </p>
+            <div class="nw-cm-horizontal-layout">
+              <!-- Nội dung 1 -->
+              <div class="nw-cm-next-wrap px-4 px-xl-5">
+                <p class="nw-feed-kicker nw-cm-reveal" section2-data>
+                  TOP STORIES
+                </p>
+
+                <div class="nw-feed-lists-stack">
+                  <div class="nw-feed-list nw-feed-list-primary">
+                    <article class="nw-feed-card nw-cm-reveal" section2-data>
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/Trump.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Race98 - 03 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Trump says it would take 4 hours to destroy Iran's
+                          bridges and power plants
+                        </h3>
+                        <p class="nw-feed-desc">
+                          NEW YORK - A 6-year-old horse died after being injured
+                          in a race at Belmont Park ahead of next week.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card nw-cm-reveal" section2-data>
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/trump2.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Jony.LS - 03 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Iran, the US and Israel agree to a temporary ceasefire
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Last year, Savilia Blunk took a more conservative
+                          approach to her first season as an Elite Class
+                          athlete.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card nw-cm-reveal" section2-data>
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/injury.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">King.F - 03 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Ryan Garcia is fighting again, this time on social
+                          media
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Boxing star Ryan Garcia and his promoter reignited
+                          their war of words via Twitter before the upcoming
+                          matchup.
+                        </p>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div
+                    class="nw-feed-list nw-feed-list-secondary"
+                    aria-hidden="true"
+                  >
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/trump2.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Global Desk - 04 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Oil and shipping routes face pressure after regional
+                          escalation
+                        </h3>
+                        <p class="nw-feed-desc">
+                          New emergency meetings are being held as markets react
+                          to renewed uncertainty across key corridors.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/Trump.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Policy Watch - 04 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Washington and allies push coordinated response in
+                          48-hour window
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Officials prioritize de-escalation and infrastructure
+                          protection while negotiations continue behind closed
+                          doors.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/injury.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Live Updates - 04 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Ceasefire talks continue as both sides report
+                          overnight incidents
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Monitors on the ground say communication channels
+                          remain active, but conditions are still fragile.
+                        </p>
+                      </div>
+                    </article>
+                  </div>
+
+                  <div
+                    class="nw-feed-list nw-feed-list-tertiary"
+                    aria-hidden="true"
+                  >
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/Trump.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Analysis - 05 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Regional markets reopen with volatility as energy
+                          contracts spike
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Analysts expect short-term turbulence while supply
+                          chains adapt to new logistics constraints.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/injury.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">
+                          Security Brief - 05 June 2023
+                        </p>
+                        <h3 class="nw-feed-title">
+                          Infrastructure monitoring increases across ports and
+                          power networks
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Authorities deploy additional response teams and move
+                          to harden critical civilian systems.
+                        </p>
+                      </div>
+                    </article>
+
+                    <article class="nw-feed-card">
+                      <div class="nw-feed-media" aria-hidden="true">
+                        <img src="/images/trump2.png" alt="" loading="lazy" />
+                      </div>
+                      <div class="nw-feed-body">
+                        <p class="nw-feed-meta">Diplomacy - 05 June 2023</p>
+                        <h3 class="nw-feed-title">
+                          Back-channel talks resume with focus on a phased
+                          de-escalation roadmap
+                        </h3>
+                        <p class="nw-feed-desc">
+                          Delegations signal cautious progress, with technical
+                          teams meeting again later this week.
+                        </p>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+              <!-- Nội dung 2
+              <div class="nw-cm-next-wrap px-4 px-xl-5">
+                <p class="nw-cm-reveal" section2-data>CHỦ ĐỀ TRỌNG TÂM</p>
+                <h3 class="nw-cm-headline nw-cm-reveal" section2-data>
+                  Những lát cắt thiết kế tạo nên cảm xúc đọc tin liền mạch.
+                </h3>
+                <p class="nw-cm-copy nw-cm-reveal" section2-data>
+                  nội dung kế tiếp xuất hiện tự nhiên, không bị khựng khung.
+                </p>
+              </div> -->
+              <div class="nw-cm-video-pane" aria-hidden="true">
+                <video
+                  class="nw-cm-video"
+                  src="../images/videos/earth1.mp4"
+                  muted
+                  playsinline
+                  preload="auto"
+                ></video>
+              </div>
             </div>
           </div>
 
@@ -205,19 +391,28 @@
           >
             <defs>
               <mask id="nw-cm-circle-mask">
-                <rect id="nw-cm-bg-rect" x="0" y="0" width="100%" height="100%" fill="white" />
+                <rect
+                  id="nw-cm-bg-rect"
+                  x="0"
+                  y="0"
+                  width="100%"
+                  height="100%"
+                  fill="white"
+                />
                 <circle id="nw-cm-hole" cx="50%" cy="50%" r="56" fill="black" />
               </mask>
             </defs>
             <rect
-              x="0" y="0"
-              width="100%" height="100%"
+              x="0"
+              y="0"
+              width="100%"
+              height="100%"
               fill="#000000"
               mask="url(#nw-cm-circle-mask)"
             />
           </svg>
-
-        </div><!-- /.nw-cm-sticky-inner -->
+        </div>
+        <!-- /.nw-cm-sticky-inner -->
       </section>
     </main>
 

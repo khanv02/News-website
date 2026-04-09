@@ -836,7 +836,7 @@ hr {
   margin-top: -2px;
   font-family: "Merriweather", serif;
   font-style: italic;
-  font-size: 49px;
+  /* Section 2 styles moved to css/section2.css */
   line-height: 1.3;
   color: #fff700;
 }
@@ -926,142 +926,9 @@ hr {
   white-space: nowrap;
   text-align: center;
 }
+/* Section 2 styles moved to css/section2.css */
 
-.nw-cm-transition {
-  position: relative;
-  /*
-   * 250vh = 100vh (visible sticky area) + 150vh (scroll budget)
-   * Animation hoàn thành tại mark 130vh, sau đó 20vh "nghỉ" trước khi section thoát.
-   * KHÔNG cần overflow:hidden ở đây — được xử lý trong .nw-cm-sticky-inner.
-   */
-  height: 250vh;
-}
-
-/* Sticky inner: browser tự ghim tại top trong suốt 150vh scroll budget */
-.nw-cm-sticky-inner {
-  position: sticky;
-  top: 0;
-  height: 100vh;        /* chiều cao thực hiện của viewport */
-  overflow: hidden;     /* giữ SVG mask bên trong, không thoát ra ngoài */
-  background: #000;     /* nền đen khi chưa bắt đầu reveal */
-}
-
-/* Layer 0: nền trắng mặc định — bị che bởi SVG mask ban đầu */
-.nw-cm-default-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: #f6f6f6;
-}
-
-/* Layer 1: nội dung text — nằm trên nền trắng, dưới SVG mask */
-.nw-cm-next-layer {
-  position: absolute;
-  inset: 0;
-  color: #000;
-  z-index: 1;
-}
-
-.nw-cm-next-wrap {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  max-width: 980px;
-}
-
-.nw-cm-headline {
-  font-family: "Merriweather", serif;
-  font-size: clamp(2.1rem, 5.3vw, 5rem);
-  line-height: 1.05;
-  margin-bottom: 1rem;
-}
-
-.nw-cm-copy {
-  max-width: 62ch;
-  font-size: clamp(1rem, 1.4vw, 1.22rem);
-  line-height: 1.7;
-  margin-bottom: 0;
-}
-
-/* SVG Mask overlay: phủ toàn section, z-index cao nhất */
-.nw-cm-svg-mask {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;          /* nằm trên nội dung và nền trắng */
-  pointer-events: none;
-  will-change: opacity;
-}
-
-.nw-cm-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  filter: blur(8px);
-}
-
-@media (max-width: 1199.98px) {
-  .nw-navbar {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
-  }
-
-  .nw-login-btn {
-    margin-top: 0.4rem;
-    padding: 0.6rem 1rem !important;
-  }
-}
-
-@media (max-width: 991.98px) {
-  .nw-video-card {
-    margin-bottom: 1.2rem;
-  }
-
-  .nw-ruler-inner {
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  .nw-ruler-inner span {
-    font-size: 0.92rem;
-  }
-
-  #nw-dt-anchor {
-    padding-top: 28px;
-    padding-bottom: 24px;
-  }
-}
-
-@media (max-width: 575.98px) {
-  .nw-logo {
-    font-size: 1.55rem;
-  }
-
-  .nw-copy {
-    max-width: 100%;
-  }
-
-  .nw-video-media {
-    height: 200px;
-  }
-
-  .nw-year-badge {
-    font-size: 2.2rem;
-  }
-
-  .nw-ruler-inner span {
-    font-size: 0.82rem;
-  }
-
-  .nw-cm-headline {
-    font-size: clamp(1.8rem, 8.5vw, 2.9rem);
-  }
-
-  .nw-cm-copy {
-    line-height: 1.62;
-  }
-}
+/* Intro overlay */
 
 /* Intro overlay */
 [data-page-reveal] {

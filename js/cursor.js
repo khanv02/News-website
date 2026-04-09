@@ -64,7 +64,7 @@
   
   //Quy định những nơi được hover
   var phan_tu_duoc_chon_hover =
-    "a, button, [role='button'], input, textarea, select, label, .nw-video-card";
+    "a, button, [role='button'], input, textarea, select, label, .nw-video-card, .nw-feed-card";
 
   function addHoverListeners(el) {
     el.addEventListener("mouseenter", function () {
