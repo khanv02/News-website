@@ -1,4 +1,4 @@
-/* Custom styles */
+/* Base reset for pages loading index.css */
 * {
   margin: 0;
   padding: 0;
@@ -17,714 +17,11 @@ body {
   color: black;
 }
 
-#top-header {
-  background-color: #f2f4f7;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-}
-
-#top-contact a {
-  text-decoration: none;
-  color: #333;
-}
-
-#top-contact a:hover {
-  color: red;
-}
-
-#top-header .fab {
-  font-size: 20px;
-}
-
-.fa-facebook {
-  color: blue;
-}
-
-.fa-instagram {
-  color: red;
-}
-
-.fa-tiktok {
-  color: black;
-}
-
-.fa-youtube {
-  color: red;
-}
-
-.fa-cart-shopping {
-  color: orangered;
-}
-
-.nav-item {
-  margin-right: 10px;
-}
-
-#navbar-menu {
-  background-color: #d70018;
-}
-
-#select-product-category {
-  max-width: 160px;
-}
-
-/* Trang trí cho dropdown menu */
-.dropdown-menu {
-  background-color: #d45a69;
-}
-
-.dropdown-menu h6 {
-  color: rgb(49, 48, 48);
-}
-
-.dropdown-menu a {
-  color: #ffffff !important;
-  /* Màu chữ trong dropdown menu */
-}
-
-.dropdown-menu a:hover {
-  background-color: rgba(255, 192, 203, 0.755);
-}
-
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  background-color: black;
-  /* Màu nền đen */
-  border-radius: 50%;
-  /* Tạo hình tròn */
-  border: 1px solid white;
-  /* Viền trắng */
-  width: 30px;
-  height: 30px;
-}
-
-.carousel-control-next-icon {
-  margin-right: -140px;
-}
-
-.carousel-control-prev-icon {
-  margin-left: -140px;
-}
-
-.carousel-inner .carousel-item img {
-  width: 100%;
-  height: 650px;
-}
-
-.breadcrumb {
-  background-color: #f2f4f7;
-}
-
-.breadcrumb a {
-  text-decoration: none;
-  color: black;
-}
-
-.breadcrumb a:hover {
-  color: red;
-}
-
-.main {
-  background-color: #f2f4f7;
-}
-
-.video-container video {
-  width: 89.8%;
-  height: 400px;
-  object-fit: cover;
-  margin-left: 89px;
-  border-radius: 30px;
-}
-
-.btn-light {
-  font-weight: bold;
-  /* Đặt chữ in đậm cho tất cả các nút btn-light */
-  margin-left: 10px;
-}
-
-.category-buttons {
-  margin-left: 40%;
-  margin-top: 20px;
-}
-
-.category-buttons button:hover {
-  background-color: #fff0bf;
-  color: #222222;
-}
-
-.countdown-timer {
-  margin-left: 36.5%;
-  margin-bottom: 20px;
-}
-
-/* Container bao bên ngoài với overflow: hidden để ngăn tràn */
-.sale-banner-container {
-  overflow: hidden;
-  max-width: 100%;
-  /* Đảm bảo chiều rộng theo ý muốn */
-  position: relative;
-}
-
-/* Cài đặt cho phần tử `.sale-banner` chính */
-.sale-banner {
-  background-color: #f9415b;
-  position: relative;
-  overflow: visible;
-  /* Cho phép các mũi tên nằm ngoài khung */
-  max-width: 100%;
-  width: 90%;
-  height: 610px;
-  margin-left: 85px;
-  border-radius: 15px;
-  padding: 0;
-  /* Bỏ padding nếu không cần thiết */
-}
-
-/* Căn chỉnh vị trí mũi tên */
-.slick-prev,
-.slick-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  /* Đảm bảo mũi tên nằm trên slider */
-  color: #fff;
-}
-
-.slick-prev {
-  left: -30px;
-  /* Đẩy mũi tên ra ngoài khung bên trái */
-}
-
-.slick-next {
-  right: -30px;
-  /* Đẩy mũi tên ra ngoài khung bên phải */
-}
-
-.sale-banner img {
-  margin-left: 20px;
-  border-radius: 15px;
-  width: 36%;
-}
-
-.sale-banner #countdown {
-  color: #fff0bf;
-  margin-top: 20px;
-}
-
-.responsive1 .phone-item {
-  display: flex;
-  max-width: 100%;
-  /* Đảm bảo không vượt quá chiều rộng của phần tử cha */
-  height: 400px;
-  background-color: #ffffff;
-  justify-content: center;
-  margin: 0 10px;
-  padding: 10px 0px;
-  border-radius: 15px;
-}
-
-.phone-item .tagSale {
-  background-color: #d70018;
-  color: white;
-  border-radius: 0 30px 30px 0;
-  /* Bo tròn bên phải */
-  padding: 12px 1px;
-  /* Điều chỉnh kích thước tag */
-}
-
-.phone-item {
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  will-change: transform;
-}
-
-.phone-item:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
-}
-
-.img-phone-item {
-  display: flex;
-  justify-content: center;
-}
-
-.phone-item img {
-  width: 100%;
-  height: 150px;
-  margin: 0;
-}
-
-.text-phone-item {
-  display: flex;
-  height: 170px;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.name-phone {
-  padding: 10px;
-  font-weight: bold;
-}
-
-.name-phone a {
-  color: black;
-  text-decoration: none;
-}
-
-.name-phone a:hover {
-  color: red;
-}
-
-.product-price-container {
-  display: flex;
-  margin-top: 15px;
-  margin-left: 2px;
-  margin-bottom: 5px;
-}
-
-.product-discount {
-  color: #ff5f5f;
-  font-weight: bold;
-}
-
-.product-price {
-  text-decoration: line-through;
-  padding: 0px 10px;
-  color: #8c8c8c;
-}
-
-.notification-box {
-  background-color: #f0f0f0;
-  /* Màu nền nhạt */
-  border-radius: 5px;
-  color: #333;
-  /* Màu chữ tối để dễ đọc */
-  font-size: 0.8em;
-  margin-left: 10px;
-  max-width: 90%;
-}
-
-.iconProduct {
-  margin-top: 10%;
-  margin-left: 10px;
-}
-
-.iconProduct span {
-  margin-left: 16%;
-}
-
-.responsive2 .phone-item2 {
-  display: flex;
-  max-width: 100%;
-  /* Đảm bảo không vượt quá chiều rộng của phần tử cha */
-  height: 400px;
-  background-color: #ffffff;
-  justify-content: center;
-  margin: 0 10px;
-  padding: 10px 0px;
-  border-radius: 15px;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
-}
-
-.phone-item2 .tagSale2 {
-  background-color: #d70018;
-  color: white;
-  border-radius: 0 30px 30px 0;
-  /* Bo tròn bên phải */
-  padding: 12px 1px;
-  /* Điều chỉnh kích thước tag */
-}
-
-.phone-item2 {
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  will-change: transform;
-}
-
-.phone-item2:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
-}
-
-.img-phone-item2 {
-  display: flex;
-  justify-content: center;
-}
-
-.phone-item2 img {
-  width: 100%;
-  height: 150px;
-  margin: 0px;
-}
-
-.text-phone-item2 {
-  display: flex;
-  height: 170px;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.name-phone2 {
-  padding: 10px;
-  font-weight: bold;
-}
-
-.name-phone2 a {
-  color: black;
-  text-decoration: none;
-}
-
-.name-phone2 a:hover {
-  color: red;
-}
-
-.product-price-container2 {
-  display: flex;
-  margin-top: 15px;
-  margin-left: 2px;
-  margin-bottom: 5px;
-}
-
-.product-discount2 {
-  color: #ff5f5f;
-  font-weight: bold;
-}
-
-.product-price2 {
-  text-decoration: line-through;
-  padding: 0px 10px;
-  color: #8c8c8c;
-}
-
-.notification-box2 {
-  background-color: #f0f0f0;
-  /* Màu nền nhạt */
-  border-radius: 5px;
-  color: #333;
-  /* Màu chữ tối để dễ đọc */
-  font-size: 0.8em;
-  margin-left: 10px;
-  max-width: 90%;
-}
-
-.iconProduct2 {
-  margin-top: 10%;
-  margin-left: 10px;
-}
-
-.iconProduct2 span {
-  margin-left: 16%;
-}
-
-.mainBanner {
-  width: 89.8%;
-  margin-left: 90px;
-}
-
-.banner-item1 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item2 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item3 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item4 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.support {
-  display: flex;
-}
-
-.policy-item {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-left: 7.5%;
-}
-
-.policy-item img {
-  height: 90px;
-}
-
-.policy-item2 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-left: 12%;
-}
-
-.policy-item2 img {
-  height: 90px;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  color: black !important;
-}
-
-.newPost {
-  margin-left: 40px;
-  display: flex;
-  height: 380px;
-}
-
-.newPostItem {
-  background-color: #ffffff;
-  border-radius: 15px;
-  width: 300px;
-  overflow: hidden;
-  margin-left: 53px;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  will-change: transform;
-  /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
-}
-
-.newPostItem:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
-}
-
-.newPostImg {
-  background-color: #ffffff;
-}
-
-.newPostImg img {
-  width: 100%;
-}
-
-.textNewPost1 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost1 p {
-  margin-top: 25px;
-  padding-left: 10px;
-}
-
-.textNewPost2 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost2 p {
-  padding-left: 10px;
-}
-
-.textNewPost3 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost3 p {
-  margin-top: 25px;
-  padding-left: 10px;
-}
-
-.textNewPost4 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost4 p {
-  padding-left: 10px;
-}
-
-.truncated-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  /* Số dòng hiển thị tối đa */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sloganBanner img {
-  margin-left: 6%;
-  width: 89.8%;
-}
-
-#countdown {
-  font-size: 24px;
-  font-weight: bold;
-  color: tomato;
-}
-
-.progress {
-  height: 30px;
-  background-color: pink;
-  position: relative;
-}
-
-.progress-bar {
-  background-color: tomato;
-  transition: width 1s ease-in-out;
-}
-
-.progress-text {
-  position: absolute;
-  top: 50%;
-  /* Căn chỉnh vị trí đứng giữa dọc */
-  left: 50%;
-  /* Căn chỉnh vị trí đứng giữa ngang */
-  transform: translate(-50%, -50%);
-  /* Dịch chuyển vị trí để căn giữa */
-  color: white;
-  font-weight: bolder;
-  text-shadow: 5px 5px 15px #333;
-  flex-direction: row;
-}
-
-#footer-main {
-  height: 250px;
-}
-
-.introduce {
-  margin-left: 35px;
-}
-
-.introduce ul {
-  list-style: none;
-  padding: 0;
-}
-
-.introduce li {
-  margin-top: 26px;
-}
-
-.introduce a {
-  text-decoration: none;
-  color: black;
-}
-
-.introduce a:hover {
-  color: red;
-}
-
-.contactFooter {
-  margin-left: 13%;
-}
-
-.contactFooter ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contactFooter i {
-  margin-top: 25px;
-  margin-right: 5px;
-}
-
-.contactFooter a {
-  text-decoration: none;
-  color: black;
-}
-
-.contactFooter a:hover {
-  color: red;
-}
-
-.interactFooter {
-  margin-left: 8%;
-}
-
-.bottom-social-media {
-  font-size: 35px;
-}
-
-.bottom-social-media li {
-  margin-top: 5px;
-}
-
-.pay ul {
-  list-style: none;
-  padding: 0;
-}
-
-.pay li {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.pay-icons img {
-  width: 51px;
-  height: 60px;
-}
-
-.ship h4 {
-  margin-top: 15px;
-}
-
-.ship ul {
-  list-style: none;
-  padding: 0;
-}
-
-.ship li {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.ship-icons img {
-  width: 51px;
-  height: 60px;
-}
-
-hr {
-  border: 1px solid #ccc;
-  margin: 20px;
-}
-
-.footer-bottom p {
-  font-weight: bold;
-}
-
 :root {
   --nw-bg: #000000;
   --nw-text: #1c1c1a;
   --nw-muted: #cccccc;
+  --nw-accent: #ffdd00;
   --nw-hero-bg: url("../images/bg.png") center / cover no-repeat;
 }
 
@@ -772,7 +69,7 @@ hr {
 
 .nw-logo {
   grid-column: 3;
-  font-family: "Merriweather";
+  font-family: "Merriweather", serif;
   font-weight: 700;
   font-size: 2rem;
   letter-spacing: 0.02em;
@@ -786,15 +83,18 @@ hr {
   line-height: 1.8;
 }
 
+.nw-logo-accent {
+  color: var(--nw-accent);
+}
+
 .nw-menu-link {
   color: #1c1c1a;
-  font-family: "Merriweather";
+  font-family: "Merriweather", serif;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
 }
 
-/* Xoá màu hover CSS – hiệu ứng di chuyển do GSAP xử lý */
 .nw-menu-link:hover,
 .nw-menu-link:focus,
 .nw-menu-link:active,
@@ -852,8 +152,6 @@ hr {
   }
 
   .nw-team-tag {
-    position: static;
-    transform: none;
     grid-area: team;
     margin-right: 0;
   }
@@ -916,13 +214,11 @@ hr {
   color: #000;
 }
 
-/* Chỉ disable transition/animation trên logo và các phần tử khác, KHÔNG trên menu items để GSAP hoạt động */
 .nw-navbar *:not(.nw-menu-item):not(.nw-menu-link):not(.nw-ham-line) {
   transition: none !important;
   animation: none !important;
 }
 
-/* ── Custom Hamburger (2 lines) ──────────────────────────────────────── */
 .nw-hamburger-btn {
   display: flex;
   align-items: center;
@@ -946,7 +242,6 @@ hr {
   will-change: transform;
 }
 
-
 .nw-hero {
   margin-top: -25px;
   min-height: calc(100vh - 63px);
@@ -967,6 +262,8 @@ hr {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   white-space: nowrap;
+  margin: 0;
+  width: 100%;
   text-align: center;
 }
 
@@ -974,16 +271,15 @@ hr {
   background: #1c1c1a;
   position: relative;
   margin-top: 40px;
-  padding: 50px clamp(16px, 2vw, 24px);
-  display: grid;
-  place-items: center;
+  padding: 50px clamp(16px, 2vw, 24px) 10px clamp(16px, 2vw, 24px);
+  min-height: clamp(150px, 18vw, 260px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Section 2 styles moved to css/section2.css */
-
-/* ───────────── Custom cursor ──────────────*/
-
-/* Giữ con trỏ mặc định luôn hiển thị */
+/* Custom cursor */
 *,
 *::before,
 *::after {
@@ -996,21 +292,13 @@ hr {
   border-radius: 50%;
   background: #ffffff;
   mix-blend-mode: difference;
-
-  /* Cố định theo viewport (không bị ảnh hưởng khi scroll) */
   position: fixed;
   top: 0;
   left: 0;
-
-  /* Dịch chuyển -50% để tâm cursor trùng với vị trí chuột */
   transform: translate(-50%, -50%);
   z-index: 9999;
   pointer-events: none;
-
-  /* thông báo cho browser biết trước là transform để tăng gpu render */
   will-change: transform;
-
-  /* Chỉ transition cho hover để tránh js animate render lại liên tục */
   transition:
     width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
     height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
