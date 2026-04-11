@@ -10,9 +10,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     var isDragging = false;
     var hasDragged = false;
+    var isReady = false;
     var startX = 0;
     var dragStartTranslateX = 0;
     var currentTranslateX = 0;
+
+    function markReady() {
+      if (isReady) return;
+      isReady = true;
+      container.classList.add("feed-ready");
+    }
 
     function getMinTranslateX() {
       return Math.min(0, container.clientWidth - track.scrollWidth);
@@ -112,14 +119,31 @@ document.addEventListener("DOMContentLoaded", function () {
       refreshBounds(true);
     });
 
+    // Compute centered anchor before reveal to avoid first-paint jump from x=0.
+    refreshBounds(true);
+
+    requestAnimationFrame(function () {
+      refreshBounds(true);
+      markReady();
+    });
+
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(function () {
         refreshBounds(true);
       });
     }
 
-    requestAnimationFrame(function () {
-      refreshBounds(true);
-    });
+    if (document.readyState === "complete") {
+      markReady();
+    } else {
+      window.addEventListener(
+        "load",
+        function () {
+          refreshBounds(true);
+          markReady();
+        },
+        { once: true }
+      );
+    }
   });
 });

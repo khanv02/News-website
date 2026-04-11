@@ -11,10 +11,12 @@ body {
   color: #333;
   scroll-behavior: smooth;
 }
+
 ::selection {
   background-color: white;
   color: black;
 }
+
 #top-header {
   background-color: #f2f4f7;
 }
@@ -743,7 +745,7 @@ hr {
 .nw-navbar-shell {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) minmax(0, 0fr) minmax(0, 1fr) auto;
+  grid-template-columns: auto 1fr 1fr 1fr auto;
   align-items: center;
 }
 
@@ -776,7 +778,7 @@ hr {
   font-family: "Merriweather";
   font-weight: 700;
   font-size: 2rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
   color: #1c1c1a;
   text-decoration: none;
   text-transform: uppercase;
@@ -815,12 +817,12 @@ hr {
 
 .nw-main-menu-left {
   grid-column: 2;
-  justify-self: center;
+  justify-self: end;
 }
 
 .nw-main-menu-right {
   grid-column: 4;
-  justify-self: center;
+  justify-self: start;
 }
 
 .nw-main-menu .nw-menu-item {
@@ -942,6 +944,7 @@ hr {
   white-space: nowrap;
   text-align: center;
 }
+
 .nw-title-wrap {
   background: #1c1c1a;
   position: relative;
@@ -950,6 +953,7 @@ hr {
   display: grid;
   place-items: center;
 }
+
 /* Section 2 styles moved to css/section2.css */
 
 /* ───────────── Custom cursor ──────────────*/
@@ -960,6 +964,7 @@ hr {
 *::after {
   cursor: none !important;
 }
+
 #nw-cursor {
   width: 20px;
   height: 20px;

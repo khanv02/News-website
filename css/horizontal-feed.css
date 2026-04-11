@@ -1,7 +1,7 @@
 .feed-container {
   --feed-border: rgba(74, 65, 53, 0.28);
   --feed-text: #1f1b17;
-  --feed-muted: #1C1C1A;
+  --feed-muted: #1c1c1a;
 
   position: relative;
   z-index: 2;
@@ -26,6 +26,14 @@
   user-select: none;
   -webkit-user-select: none;
   touch-action: pan-y;
+}
+
+.nw-feed-js .feed-container .feed-track {
+  opacity: 0;
+}
+
+.nw-feed-js .feed-container.feed-ready .feed-track {
+  opacity: 1;
 }
 
 .feed-container.is-dragging {
@@ -104,7 +112,7 @@
 .proj-desc {
   margin: 0;
   color: var(--feed-muted);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: lighter;
   letter-spacing: -0.05em;
   line-height: 0.8;
@@ -131,17 +139,28 @@
   font-size: clamp(28px, 3vw, 60px);
   font-weight: 700;
   line-height: 1.12;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.05em;
 }
 
 .center-subtitle {
   margin: 0;
-  color: rgba(32, 28, 23, 0.82);
-  font-family: "Merriweather", serif;
-  font-size: clamp(15px, 1.25vw, 16px);
-  line-height: 1.6;
+  color: var(--feed-text);
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 0;
+  font-size: clamp(15px, 2vw, 50px);
+  line-height: 1.33;
 }
-
+.nw-highlight {
+  font-family: "Dancing Script", cursive;
+  font-style: italic;
+  font-weight: 700;
+  font-size: larger;
+}
+.nw-khorap {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: larger;
+  font-weight: 100;
+}
 .center-tip {
   margin: 0.82rem 0 0;
   color: rgba(52, 46, 38, 0.62);
