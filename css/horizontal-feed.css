@@ -2,7 +2,6 @@
   --feed-border: rgba(74, 65, 53, 0.28);
   --feed-text: #1f1b17;
   --feed-muted: #1c1c1a;
-  --nw-hero-bg: url("../images/bg.png") center / cover no-repeat;
 
   position: relative;
   z-index: 2;
@@ -10,7 +9,7 @@
   overflow: hidden;
   margin-top: 25px;
   margin-bottom: clamp(1rem, 2.4vw, 1.8rem);
-  background: var(--nw-hero-bg);
+  background: none;
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
@@ -119,11 +118,13 @@
   width: 29%;
   padding: 1.8rem 2rem;
   /* background: rgba(245, 238, 225, 0.4); */
-  border-right: 0.5px solid var(--feed-border);
-  border-left: 0.5px solid var(--feed-border);
+  border-right: 1px solid var(--feed-border);
+  border-left: 1px solid var(--feed-border);
 }
 
 .center-title {
+  display: inline-block;
+  transform: scaleY(1.5);
   margin: 0 0 0.45rem;
   color: var(--feed-text);
   font-family: "Playfair Display", "Merriweather", serif;

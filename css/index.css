@@ -22,7 +22,7 @@ body {
   --nw-text: #1c1c1a;
   --nw-muted: #cccccc;
   --nw-accent: #ffdd00;
-  --nw-hero-bg: url("../images/bg.png") center / cover no-repeat;
+  --nw-hero-bg: url("../images/bg.png") center / 101% 101% no-repeat;
 }
 
 .nw-body {
@@ -73,7 +73,7 @@ body {
   font-weight: 700;
   font-size: 2rem;
   letter-spacing: 0.02em;
-  color: #1c1c1a;
+  color: #4e4d4d;
   text-decoration: none;
   text-transform: uppercase;
   white-space: nowrap;
@@ -252,6 +252,8 @@ body {
 }
 
 .nw-display-title {
+  display: inline-block;
+  transform: scaleY(2);
   font-family: "Merriweather", serif;
   font-size: clamp(3.8rem, 10.6vw, 14rem);
   font-weight: 600;
@@ -271,7 +273,7 @@ body {
   background: #1c1c1a;
   position: relative;
   margin-top: 40px;
-  padding: 50px clamp(16px, 2vw, 24px) 10px clamp(16px, 2vw, 24px);
+  padding: 140px clamp(16px, 2vw, 24px) 80px clamp(16px, 2vw, 24px);
   min-height: clamp(150px, 18vw, 260px);
   display: flex;
   align-items: center;

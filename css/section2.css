@@ -1,0 +1,104 @@
+
+.nw-section-two {
+  background: var(--nw-hero-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: clamp(56px, 8vw, 96px) 0 clamp(72px, 9vw, 120px);
+}
+
+.nw-s2-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(28, 28, 26, 0.28);
+  margin-bottom: clamp(20px, 3vw, 34px);
+}
+
+.nw-s2-kicker {
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(0.78rem, 1vw, 0.95rem);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(28, 28, 26, 0.9);
+}
+
+.nw-s2-title {
+  font-family: "Merriweather", serif;
+  font-size: clamp(1.4rem, 4.8vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.015em;
+  color: #1c1c1a;
+}
+
+.nw-s2-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 24px);
+}
+
+.nw-s2-card {
+  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid rgba(28, 28, 26, 0.22);
+  padding: clamp(16px, 2.2vw, 24px);
+  min-height: clamp(220px, 28vw, 300px);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nw-s2-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(20, 18, 16, 0.12);
+}
+
+.nw-s2-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border: 1px solid rgba(28, 28, 26, 0.35);
+  font-family: "Inter", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #1c1c1a;
+}
+
+.nw-s2-card-title {
+  margin: 0.95rem 0 0.8rem;
+  font-family: "Playfair Display", "Merriweather", serif;
+  font-size: clamp(1.15rem, 2.3vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1c1c1a;
+}
+
+.nw-s2-card-desc {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(0.96rem, 1.3vw, 1.08rem);
+  line-height: 1.55;
+  color: rgba(28, 28, 26, 0.88);
+}
+
+@media (max-width: 991.98px) {
+  .nw-s2-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 575.98px) {
+  .nw-s2-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+  }
+
+  .nw-s2-grid {
+    grid-template-columns: 1fr;
+  }
+}
