@@ -736,7 +736,7 @@ hr {
 
 .nw-navbar {
   background-image: url("../images/bg.png");
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .nw-navbar-shell {
@@ -917,10 +917,35 @@ hr {
 }
 
 /* Chỉ disable transition/animation trên logo và các phần tử khác, KHÔNG trên menu items để GSAP hoạt động */
-.nw-navbar *:not(.nw-menu-item):not(.nw-menu-link) {
+.nw-navbar *:not(.nw-menu-item):not(.nw-menu-link):not(.nw-ham-line) {
   transition: none !important;
   animation: none !important;
 }
+
+/* ── Custom Hamburger (2 lines) ──────────────────────────────────────── */
+.nw-hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+}
+
+.nw-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 28px;
+}
+
+.nw-ham-line {
+  display: block;
+  height: 1.5px;
+  background-color: #1c1c1a;
+  border-radius: 2px;
+  width: 100%;
+  will-change: transform;
+}
+
 
 .nw-hero {
   margin-top: -25px;

@@ -44,5 +44,38 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       });
     });
+
+    // ── GSAP Hover cho hamburger ──────────────────────────────────────────
+    const hamburgerBtn = document.querySelector(".nw-hamburger-btn");
+    if (hamburgerBtn) {
+      const topLine    = hamburgerBtn.querySelector(".nw-ham-top");
+      const bottomLine = hamburgerBtn.querySelector(".nw-ham-bottom");
+
+      gsap.set([topLine, bottomLine], { x: 0 });
+
+      hamburgerBtn.addEventListener("mouseenter", function () {
+        gsap.to(topLine, {
+          x: 4,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+        gsap.to(bottomLine, {
+          x: -4,
+          duration: 0.3,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      });
+
+      hamburgerBtn.addEventListener("mouseleave", function () {
+        gsap.to([topLine, bottomLine], {
+          x: 0,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      });
+    }
   }
-});
+});
