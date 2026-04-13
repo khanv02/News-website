@@ -73,7 +73,6 @@
   letter-spacing: -0.02em;
 }
 
-
 .news-s3-sports-line {
   margin: clamp(20px, 2vw, 32px) 0 0;
   display: flex;
@@ -199,13 +198,65 @@
   min-height: auto;
 }
 
+.sports-feed-shell {
+  position: relative;
+}
+
+.sports-feed-nav {
+  position: absolute;
+  top: clamp(8px, 1vw, 14px);
+  z-index: 4;
+  width: clamp(36px, 2.8vw, 48px);
+  height: clamp(36px, 2.8vw, 48px);
+  border: 1px solid rgba(0, 0, 0, 0.24);
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111;
+  font-family: "Oswald", sans-serif;
+  font-size: clamp(1rem, 1.25vw, 1.35rem);
+  line-height: 1;
+  display: inline-grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition:
+    background-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease,
+    opacity 0.2s ease;
+}
+
+.sports-feed-nav--prev {
+  left: clamp(8px, 1vw, 14px);
+}
+
+.sports-feed-nav--next {
+  right: clamp(8px, 1vw, 14px);
+}
+
+.sports-feed-nav:hover:not(:disabled) {
+  background: #f2f2f2;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+  transform: translateY(-1px);
+}
+
+.sports-feed-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
 .sports-feed-viewport {
-  overflow-x: auto;
+  width: 100%;
+  overflow-x: hidden;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x proximity;
-  scrollbar-width: thin;
-  scrollbar-color: #3d3d3d #151515;
+  scrollbar-width: none;
+  scrollbar-color: auto;
+}
+
+.sports-feed-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .sports-feed-track {
@@ -359,6 +410,21 @@
 @media (max-width: 575.98px) {
   .news-section-three {
     padding: 22px 10px 34px;
+  }
+
+  .sports-feed-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+    top: 8px;
+  }
+
+  .sports-feed-nav--prev {
+    left: 8px;
+  }
+
+  .sports-feed-nav--next {
+    right: 8px;
   }
 
   .sports-feed-card {
