@@ -1,55 +1,53 @@
 /* SECTION 3: Crafting Culture collage */
 .news-section-three {
-  background: var(--news-bg);
+  margin-top: 3vw;
+  background: white;
   padding: clamp(44px, 5vw, 68px) 0 clamp(32px, 4vw, 60px);
   overflow: clip;
-  display: grid;
-  grid-template-columns: 60% 40%;
-  align-items: start;
-}
-
-.s3-left {
+  display: block;
   position: relative;
-  min-height: clamp(350px, 20vw, 980px);
-}
-.w-cup {
-  position: absolute;
-  bottom: 0;
-  left: 40vw;
-  width: 150px;
-}
-.nba-cup {
-  position: absolute;
-  bottom: 0;
-  left: 25vw;
-  width: 150px;
-}
-.news-s3-right {
-  position: relative;
-  width: 100%;
-  min-height: clamp(350px, 20vw, 980px);
-  margin: 0;
   isolation: isolate;
 }
 
-.news-s3-copy {
+.news-section-three::before {
+  content: "";
   position: absolute;
-  z-index: 4;
-  top: clamp(16px, 2vw, 36px);
-  left: clamp(18px, 2vw, 42px);
-  right: clamp(18px, 2vw, 42px);
-  max-width: none;
+  inset: 0;
+  background-image: url("../images/basketball.png");
+  background-repeat: no-repeat;
+  background-position: right clamp(-24px, -2vw, -8px) top clamp(24px, 4vw, 72px);
+  background-size: min(44vw, 620px) auto;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 0;
 }
 
-.news-section-three > .container-fluid {
-  grid-column: 1 / -1;
+.news-section-three > * {
+  position: relative;
+  z-index: 1;
+}
+
+.news-s3-header {
+  position: relative;
+  width: 100%;
+  min-height: clamp(320px, 30vw, 460px);
+}
+
+.news-s3-copy {
+  position: relative;
+  z-index: 4;
+  top: auto;
+  left: auto;
+  right: auto;
+  padding: 0 clamp(18px, 2vw, 42px);
+  max-width: min(65%, 1000px);
 }
 
 .news-s3-title {
   margin: 0;
   color: var(--news-text);
   text-transform: uppercase;
-  font-family: "Merriweather", serif;
+  font-family: "Playfair Display", "Merriweather", serif;
   font-size: clamp(4.8rem, 10vw, 13.9rem);
   font-weight: 700;
   line-height: 0.82;
@@ -63,21 +61,128 @@
 }
 
 .news-s3-kicker {
-  margin: clamp(20px, 2vw, 34px) 0 0;
-  max-width: 24ch;
+  padding-left: 2vw;
+  margin: clamp(20px, 5vw, 100px) auto 0 0;
+  width: 80%;
+  color: var(--news-text);
+  text-transform: uppercase;
+  font-family: "Merriweather", serif;
+  font-size: clamp(1.3rem, 1.7vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+
+.news-s3-sports-line {
+  margin: clamp(20px, 2vw, 32px) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(10px, 1vw, 14px);
+  width: min(1080px, 100%);
+}
+
+.news-s3-sport-btn {
+  --sport-icon: none;
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.66rem;
+  padding: 0.44rem 0.95rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
   color: var(--news-text);
   text-transform: uppercase;
   font-family: "Oswald", sans-serif;
-  font-size: clamp(1.3rem, 2vw, 2.5rem);
+  font-size: clamp(1.06rem, 2vw, 2rem);
   font-weight: 700;
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    background-color 0.28s ease,
+    color 0.28s ease,
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.news-s3-sport-btn:hover,
+.news-s3-sport-btn:focus-visible,
+.news-s3-sport-btn.is-active {
+  background: #1c1c1a;
+  color: #fff;
+  transform: translateY(-1px) scale(1.08);
+  outline: none;
+}
+
+.news-s3-sport-sep {
+  width: 1.34rem;
+  height: 1.34rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.12);
+  position: relative;
+  flex: 0 0 1.34rem;
+}
+
+.news-s3-sport-sep::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background-image: var(--sport-icon);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.news-s3-sport-btn:hover .news-s3-sport-sep,
+.news-s3-sport-btn:focus-visible .news-s3-sport-sep,
+.news-s3-sport-btn.is-active .news-s3-sport-sep {
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.news-s3-hover-gallery {
+  position: absolute;
+  top: clamp(14px, 1.8vw, 28px);
+  right: clamp(18px, 2vw, 42px);
+  width: min(36vw, 520px);
+  height: clamp(260px, 28vw, 360px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.news-s3-preview-card {
+  position: absolute;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: var(--w, 180px);
+  aspect-ratio: 4 / 5;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(0.92);
+  opacity: 0;
+  border: 1px solid rgba(28, 28, 26, 0.15);
+  box-shadow: 0 20px 44px rgba(10, 10, 10, 0.2);
+  background: #fff;
+  overflow: hidden;
+  transition:
+    opacity 0.32s ease,
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.news-s3-preview-card.is-visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+}
+
+.news-s3-preview-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .news-s3-services {
   margin: 0.5rem 0 0;
   color: var(--news-text);
-  text-transform: uppercase;
   font-family: "Oswald", sans-serif;
   font-size: clamp(1.15rem, 1.65vw, 2rem);
   font-weight: 600;
@@ -86,6 +191,7 @@
 }
 
 .box-horizontal {
+  margin-top: 0.5vw;
   background: #1c1c1a;
   width: 80%;
   margin-right: auto;
@@ -185,12 +291,8 @@
 }
 /* ===== RESPONSIVE: Large Tablet ===== */
 @media (max-width: 1199.98px) {
-  .news-s3-right {
-    min-height: clamp(680px, 82vw, 860px);
-  }
-
   .news-s3-copy {
-    max-width: none;
+    max-width: min(76%, 980px);
   }
 
   .news-s3-title {
@@ -204,37 +306,20 @@
   .news-s3-services {
     font-size: clamp(1rem, 1.8vw, 1.45rem);
   }
-
-  .news-s3-card--bottle {
-    width: min(50vw, 600px);
-  }
-
-  .news-s3-card--car {
-    top: clamp(270px, 30vw, 390px);
-    left: clamp(29%, 25vw, 33%);
-    width: min(39vw, 500px);
-  }
-
-  .news-s3-card--carnival {
-    width: min(20vw, 240px);
-  }
 }
 
 /* ===== RESPONSIVE: Tablet ===== */
 @media (max-width: 991.98px) {
   .news-section-three {
     padding: 28px 12px 44px;
-    grid-template-columns: 1fr;
   }
 
-  .s3-left {
-    display: none;
-  }
-
-  .news-s3-right {
-    width: min(960px, 100%);
+  .news-s3-header {
     min-height: auto;
-    margin: 0 auto;
+  }
+
+  .news-s3-hover-gallery {
+    display: none;
   }
 
   .box-horizontal {
@@ -242,11 +327,16 @@
   }
 
   .news-s3-copy {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
     max-width: 100%;
+  }
+
+  .news-s3-sports-line {
+    gap: 8px;
+  }
+
+  .news-s3-sport-btn {
+    font-size: clamp(0.92rem, 2.55vw, 1.12rem);
+    padding: 0.4rem 0.76rem;
   }
 
   .news-s3-title {
@@ -263,41 +353,12 @@
   .news-s3-services {
     font-size: clamp(0.95rem, 2.45vw, 1.25rem);
   }
-
-  .news-s3-card {
-    position: relative;
-    inset: auto;
-    width: 100%;
-  }
-
-  .news-s3-card--carnival {
-    grid-area: carnival;
-    aspect-ratio: 0.85 / 1;
-  }
-
-  .news-s3-card--bottle {
-    grid-area: bottle;
-    aspect-ratio: 1.22 / 1;
-  }
-
-  .news-s3-card--car {
-    grid-area: car;
-    aspect-ratio: 1.4 / 1;
-  }
-
-  .news-s3-card--bubbles {
-    display: none;
-  }
 }
 
 /* ===== RESPONSIVE: Mobile ===== */
 @media (max-width: 575.98px) {
   .news-section-three {
     padding: 22px 10px 34px;
-  }
-
-  .news-s3-right {
-    width: 100%;
   }
 
   .sports-feed-card {
@@ -314,6 +375,17 @@
   .news-s3-kicker {
     font-size: clamp(0.9rem, 4.4vw, 1.12rem);
     max-width: 100%;
+  }
+
+  .news-s3-sport-btn {
+    padding: 0.38rem 0.66rem;
+    gap: 0.5rem;
+  }
+
+  .news-s3-sport-sep {
+    width: 1.12rem;
+    height: 1.12rem;
+    flex-basis: 1.12rem;
   }
 
   .news-s3-services {
