@@ -1,187 +1,870 @@
-<!doctype html>
-<html lang="en">
+﻿<!doctype html>
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News Website</title>
+
+    <!-- SCROLL RESET, no-defer -->
+    <script>
+      document.documentElement.classList.add("news-feed-js");
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+
+      // Problem: scroll-behavior: smooth trên body CSS can thiệp vào GSAP ScrollTrigger.refresh().
+      // Khi ST refresh nội bộ cần scroll về 0 để đo positions, smooth behavior
+      // làm scroll animation bất đồng bộ -> ST đọc vị trí sai.
+      // Override về "auto" để scroll luôn instant với GSAP.
+      document.documentElement.style.scrollBehavior = "auto";
+    </script>
+
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/local-fonts.css" />
+    <link rel="stylesheet" href="../css/root.css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/section2.css" />
+    <link rel="stylesheet" href="../css/section3.css" />
+    <link rel="stylesheet" href="../css/section4.css" />
+    <link rel="stylesheet" href="../css/horizontal-feed.css" />
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap JS -->
     <script src="../js/bootstrap.bundle.min.js" defer></script>
-    <script src="../js/gsap.min.js" defer></script>
-    <script src="../js/ScrollTrigger.min.js" defer></script>
-    <script src="../js/index.js" defer></script>
-    <script src="../js/cursor.js" defer></script>
+
+    <!-- GSAP -->
+    <script src="../js/gsap/gsap.min.js" defer></script>
+    <script src="../js/gsap/ScrollTrigger.min.js" defer></script>
+
+    <!-- JS sections -->
+    <script src="../js/heroSection.js" defer></script>
+    <script src="../js/sectionTwo.js" defer></script>
+    <script src="../js/sectionThree.js" defer></script>
+    <script src="../js/components/horizontalFeed.js" defer></script>
+
+    <script src="../js/auth.js" defer></script>
   </head>
 
-  <body class="nw-body">
-    <!-- Custom circular cursor -->
-    <div id="nw-cursor" aria-hidden="true"></div>
+  <body class="news-body">
+    <!-- HEADER / NAVBAR -->
+    <header class="news-header sticky-top">
+      <nav class="navbar navbar-dark news-navbar py-0">
+        <div class="container-fluid px-3 px-xl-4">
+          <!-- Desktop menu -->
+          <div class="news-navbar-shell w-100">
+            <span class="news-team-tag">Nhóm 7</span>
 
-    <header class="nw-header sticky-top" data-page-reveal>
-      <nav class="navbar navbar-expand-xl navbar-dark nw-navbar py-0">
-        <div class="container-fluid px-4 px-xl-5">
-          <a class="navbar-brand nw-logo py-3" href="#">
-            <span>BÁO CHÍ</span>
-            <span class="nw-logo-accent"> DESIGN</span>
-          </a>
-          <button
-            class="navbar-toggler border-0 shadow-none"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#nwMenu"
-            aria-controls="nwMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="nwMenu">
-            <ul class="navbar-nav mx-auto mb-2 mb-xl-0 gap-xl-4">
-              <li class="nav-item">
-                <a class="nav-link nw-menu-link" href="#"
+            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-left">
+              <li class="nav-item news-menu-item">
+                <a class="nav-link news-menu-link" href="./Home.html"
                   >Kinh tế &amp; Chính trị</a
                 >
               </li>
-              <li class="nav-item">
-                <a class="nav-link nw-menu-link" href="#">Thể thao</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nw-menu-link" href="#"
-                  >Giải trí &amp; Đời sống</a
-                >
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nw-menu-link" href="#">Khoa học vũ trụ</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link nw-menu-link" href="#"
-                  >Khám phá thiên nhiên</a
+              <li class="nav-item news-menu-item">
+                <a class="nav-link news-menu-link" href="#"
+                  >Thể thao &amp; Sức khoẻ</a
                 >
               </li>
             </ul>
-            <a href="#" class="btn nw-login-btn rounded-0 px-4 py-4"
-              >Đăng nhập</a
+
+            <a class="news-logo py-3 mb-0" href="./Home.html">
+              <span>
+                BÁO CHÍ
+                <span aria-label="DESIGN">
+                  <span style="color: #c30000">D</span>
+                  <span style="color: #1c9a3f">E</span>
+                  <span style="color: #f2c200">S</span>
+                  <span style="color: #7a3bd6">I</span>
+                  <span style="color: #ff8a00">G</span>
+                  <span style="color: #1262ff">N</span>
+                </span>
+              </span>
+            </a>
+
+            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-right">
+              <li class="nav-item news-menu-item">
+                <a class="nav-link news-menu-link" href="./Home.html"
+                  >Giải trí &amp; Đời sống</a
+                >
+              </li>
+              <li class="nav-item news-menu-item">
+                <a class="nav-link news-menu-link" href="./Home.html"
+                  >Vũ trụ &amp; Thiên nhiên</a
+                >
+              </li>
+            </ul>
+
+            <!-- Nút hamburger (mobile) -->
+            <button
+              class="navbar-toggler border-0 shadow-none news-hamburger-btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#nwMenu"
+              aria-controls="nwMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
             >
+              <span class="news-hamburger" aria-hidden="true">
+                <span class="news-ham-line news-ham-top"></span>
+                <span class="news-ham-line news-ham-bottom"></span>
+              </span>
+            </button>
+          </div>
+
+          <!-- Menu collapse (mobile) -->
+          <div class="collapse navbar-collapse justify-content-end" id="nwMenu">
+            <div
+              class="d-flex justify-content-center justify-content-lg-end w-100 mb-2 news-menu-actions"
+            >
+              <a
+                class="btn news-login-btn rounded-0 px-4 py-4"
+                id="login-link"
+                href="./dang-nhap.html"
+              >
+                Đăng nhập
+              </a>
+            </div>
+            <ul
+              class="navbar-nav list-inline mb-0 justify-content-center justify-content-lg-end w-100"
+              id="user-options"
+            ></ul>
           </div>
         </div>
       </nav>
     </header>
 
-    <main class="nw-main">
-      <section class="nw-hero position-relative" data-page-reveal>
-        <div class="container-fluid px-4 px-xl-5">
-          <div class="row align-items-center gx-4 gx-xl-5 nw-hero-upper">
-            <div class="col-lg-7">
-              <div class="nw-copy">
-                <!-- nw-kicker -->
-                <p class="nw-kicker mb-0">
-                  <span class="nw-line-wrap"
-                    ><span class="nw-line-inner">BÁO CHÍ</span></span
-                  >
-                </p>
-
-                <!-- nw-title: two visual lines, each gets its own wipe-up clip -->
-                <p class="nw-title mb-0">
-                  <span class="nw-line-wrap"
-                    ><span class="nw-line-inner"
-                      >Không chỉ dừng lại ở</span
-                    ></span
-                  >
-                  <span class="nw-line-wrap"
-                    ><span class="nw-line-inner nw-title-sub"
-                      >Nội dung</span
-                    ></span
-                  >
-                </p>
-
-                <!-- nw-subtitle -->
-                <p class="nw-subtitle mt-4">
-                  <span class="nw-line-wrap"
-                    ><span class="nw-line-inner"
-                      >Mà còn là từ cách bạn</span
-                    ></span
-                  >
-                </p>
-
-                <!-- nw-highlight -->
-                <p class="nw-highlight mb-3">
-                  <span class="nw-line-wrap"
-                    ><span class="nw-line-inner">Thể hiện</span></span
-                  >
+    <main class="news-main">
+      <!-- SECTION 1: Horizontal Feed -->
+      <section class="news-hero position-relative">
+        <div class="feed-container">
+          <div class="feed-track">
+            <article class="proj-card">
+              <img
+                src="../images/Trump.png"
+                alt="Global Dispatch"
+                loading="lazy"
+              />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Global Dispatch</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">
+                  Editorial package tracking high-stakes diplomacy.
                 </p>
               </div>
-            </div>
-            <div
-              class="col-lg-5 d-flex justify-content-lg-end mt-4 mt-lg-0 nw-video-col"
-            >
-              <article class="nw-video-card" data-animate="video-card">
-                <div class="nw-video-media">
-                  <video
-                    src="../images/videos/2025lookback.mp4"
-                    autoplay
-                    muted
-                    loop
-                    playsinline
-                  ></video>
-                  <span class="nw-year-badge">2025</span>
+            </article>
+
+            <article class="proj-card">
+              <img
+                src="../images/trump2.png"
+                alt="Policy Lens"
+                loading="lazy"
+              />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Policy Lens</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">
+                  Longform layout balancing data callouts and context.
+                </p>
+              </div>
+            </article>
+
+            <article class="proj-card">
+              <img
+                src="../images/iranbombed.png"
+                alt="Live Wire"
+                loading="lazy"
+              />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Live Wire</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">Cộng hoà xã hội chủ nghĩa Việt Nam</p>
+              </div>
+            </article>
+
+            <!-- Card trung tâm -->
+            <article class="center-card" aria-label="Feed center title card">
+              <h3 class="center-title">BÁO CHÍ !</h3>
+              <p class="center-subtitle mt-3">
+                Không chỉ dừng lại ở <br /><span class="news-khorap"
+                  >Nội dung</span
+                ><br />
+                Mà bắt đầu từ cách bạn <br />
+                <span class="news-highlight">Thể hiện</span>.
+              </p>
+              <p class="center-tip">
+                <span class="news-tip">TIP!</span> Kéo ngang để xem các mục tin
+                tức
+              </p>
+            </article>
+
+            <article class="proj-card">
+              <img
+                src="../images/iranbomb.png"
+                alt="Market Pulse"
+                loading="lazy"
+              />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Market Pulse</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">
+                  Financial briefing flow with sector-by-sector snapshots.
+                </p>
+              </div>
+            </article>
+
+            <article class="proj-card">
+              <img src="../images/Trump.png" alt="Signal Desk" loading="lazy" />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Signal Desk</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">
+                  Compact newsroom module for tracking brief alerts.
+                </p>
+              </div>
+            </article>
+
+            <article class="proj-card">
+              <img src="../images/injury.png" alt="Deep Focus" loading="lazy" />
+              <div class="proj-content">
+                <div class="proj-title-row">
+                  <h3 class="proj-title">Deep Focus</h3>
+                  <span class="proj-badge">NEW</span>
+                </div>
+                <p class="proj-desc">
+                  Chuyên mục Thể thao & Sức khỏe: Những câu chuyện truyền cảm
+                  hứng.
+                </p>
+                <a href="./the-thao-suc-khoe.html" class="stretched-link"></a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="container-fluid px-3 px-xl-4">
+          <div class="news-title-wrap">
+            <h2 class="news-display-title mb-0">TIN TỨC ONLINE</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Horizontal scroll với GSAP -->
+      <div class="news-s2-wrapper">
+        <section class="news-section-two">
+          <div class="news-s2-viewport">
+            <div class="news-s2-track">
+              <!-- ▸ Panel 1: Title Block -->
+              <article class="s2-panel s2-title-block s2-first">
+                <div class="news-s2-editorial">
+                  <div class="news-s2-mark" aria-hidden="true">
+                    <span class="s2-mark-line">KINH TẾ &amp;</span>
+                    <span class="s2-mark-line">CHÍNH TRỊ</span>
+                  </div>
+                  <p
+                    class="news-s2-editorial-text news-s2-editorial-text--dropcap"
+                  >
+                    <span class="news-initial-block">N</span>ơi quyền lực và sự
+                    thao túng chi phối dòng tiền, định hình chính sách và vận
+                    hành xã hội.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ▸ Panel 2: Lead Story -->
+              <article class="s2-panel s2-lead-panel">
+                <div class="s2-lead-badge">Bài chính</div>
+                <div class="s2-lead-image-wrap">
+                  <img
+                    class="s2-lead-image"
+                    src="../images/iranbombed.png"
+                    alt="Wall Street — Kiến trúc thị trường toàn cầu"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="s2-lead-headline">
+                  Kiến Trúc Thị Trường Toàn Cầu Đang Rạn Nứt
+                </h3>
+                <p class="s2-lead-desc">
+                  Khi các cấu trúc thể chế sụp đổ trước sức ép chưa từng có,
+                  những mô hình phân phối tài sản mới đang nổi lên từ những vết
+                  nứt của trật tự tài chính cũ.
+                </p>
+                <div class="s2-lead-cta">
+                  <span class="s2-lead-cta-text">Đọc Phân Tích Đầy Đủ</span>
+                  <span class="s2-lead-cta-time">12 phút đọc</span>
+                </div>
+              </article>
+
+              <!-- ▸ Panel 3: Data / Secondary Column -->
+              <article class="s2-panel s2-data-panel">
+                <!-- Row 1: Market tickers -->
+                <div class="s2-data-cell s2-data-tickers">
+                  <div class="s2-ticker-row">
+                    <span class="s2-ticker-symbol">NYX</span>
+                    <span class="s2-ticker-value">14,204.11</span>
+                  </div>
+                  <div class="s2-ticker-row">
+                    <span class="s2-ticker-symbol">GLD</span>
+                    <span class="s2-ticker-value">2,451.09</span>
+                  </div>
+                  <h4 class="s2-data-heading">
+                    Điều Chỉnh Thị Trường Tăng Tốc
+                  </h4>
+                </div>
+
+                <!-- Row 2: Secondary image -->
+                <div class="s2-data-cell s2-data-image-wrap">
+                  <img
+                    class="s2-data-image"
+                    src="../images/iranbomb.png"
+                    alt="Biểu tình chính trị"
+                    loading="lazy"
+                  />
+                  <div class="s2-data-image-overlay"></div>
+                </div>
+
+                <!-- Row 3: Briefing -->
+                <div class="s2-data-cell s2-data-briefing">
+                  <div class="s2-briefing-label">Briefing</div>
+                  <p class="s2-briefing-text">
+                    Bế tắc lập pháp đạt đỉnh lịch sử khi các phe phái phân cực
+                    từ chối thỏa hiệp về các chính sách tài khoá mới.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ▸ Panel 4: Lead Story (large) -->
+              <article class="s2-panel s2-lead-panel">
+                <div class="s2-lead-badge">Bài nổi bật</div>
+                <div class="s2-lead-image-wrap">
+                  <img
+                    class="s2-lead-image"
+                    src="../images/Trump.png"
+                    alt="Chính sách thuế quan mới"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="s2-lead-headline">
+                  Cuộc Đua Thuế Quan Mới Đang Tái Định Hình Chuỗi Cung Ứng
+                </h3>
+                <p class="s2-lead-desc">
+                  Khi các nền kinh tế lớn đồng loạt điều chỉnh chính sách thương
+                  mại, doanh nghiệp phải tái cấu trúc chuỗi cung ứng để giữ biên
+                  lợi nhuận và năng lực cạnh tranh.
+                </p>
+                <div class="s2-lead-cta">
+                  <span class="s2-lead-cta-text">Đọc Báo Cáo Chi Tiết</span>
+                  <span class="s2-lead-cta-time">10 phút đọc</span>
+                </div>
+              </article>
+
+              <!-- ▸ Panel 5: Data / Secondary Column (small) -->
+              <article class="s2-panel s2-data-panel">
+                <div class="s2-data-cell s2-data-tickers">
+                  <div class="s2-ticker-row">
+                    <span class="s2-ticker-symbol">USDX</span>
+                    <span class="s2-ticker-value">105.42</span>
+                  </div>
+                  <div class="s2-ticker-row">
+                    <span class="s2-ticker-symbol">BRENT</span>
+                    <span class="s2-ticker-value">82.37</span>
+                  </div>
+                  <h4 class="s2-data-heading">
+                    Chi Phí Năng Lượng Tác Động Lạm Phát
+                  </h4>
+                </div>
+
+                <div class="s2-data-cell s2-data-image-wrap">
+                  <img
+                    class="s2-data-image"
+                    src="../images/trump2.png"
+                    alt="Biến động thị trường hàng hóa"
+                    loading="lazy"
+                  />
+                  <div class="s2-data-image-overlay"></div>
+                </div>
+
+                <div class="s2-data-cell s2-data-briefing">
+                  <div class="s2-briefing-label">Briefing</div>
+                  <p class="s2-briefing-text">
+                    Giá dầu và chi phí logistics cùng tăng khiến áp lực lạm phát
+                    quay trở lại trong quý tới.
+                  </p>
+                </div>
+              </article>
+
+              <!-- ▸ Panel 6: Lead Story (large) -->
+              <article class="s2-panel s2-lead-panel">
+                <div class="s2-lead-badge">Phân tích</div>
+                <div class="s2-lead-image-wrap">
+                  <img
+                    class="s2-lead-image"
+                    src="../images/iranbombed.png"
+                    alt="Dòng tiền chuyển dịch tài sản rủi ro"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="s2-lead-headline">
+                  Dòng Tiền Đang Rời Tài Sản Phòng Thủ Sang Kênh Rủi Ro
+                </h3>
+                <p class="s2-lead-desc">
+                  Nhà đầu tư gia tăng tỷ trọng cổ phiếu và crypto sau tín hiệu
+                  nới lỏng chính sách tiền tệ ở nhiều thị trường lớn.
+                </p>
+                <div class="s2-lead-cta">
+                  <span class="s2-lead-cta-text">Đọc Nhận Định Nhanh</span>
+                  <span class="s2-lead-cta-time">8 phút đọc</span>
                 </div>
               </article>
             </div>
           </div>
-        </div>
+        </section>
+      </div>
 
-        <div class="nw-ruler" data-animate="ruler">
-          <div
-            class="container-fluid px-4 px-xl-5 d-flex align-items-center nw-ruler-inner"
-          >
-            <span>UI/UX Design</span>
-            <span>Sự tương phản</span>
-          </div>
-        </div>
-
-        <!-- display-title: invisible anchor – acts as final landing target for the overlay text -->
-        <div class="container-fluid px-4 px-xl-5" data-page-reveal>
-          <div class="nw-display-wrap" id="nw-dt-anchor">
-            <!-- Real title: starts hidden (autoAlpha:0), revealed by JS when overlay fades -->
-            <h2 class="nw-display-title mb-0" id="nw-dt-title">
-              TIN TỨC ONLINE
+      <!-- SECTION 3: Crafting Culture collage -->
+      <section class="news-section-three">
+        <div class="news-s3-header">
+          <div class="news-s3-copy">
+            <h2 class="news-s3-title">
+              <span class="s2-mark-line">THỂ THAO</span>
             </h2>
-          </div>
-        </div>
-      </section>
 
-      <section class="nw-cm-transition" id="nw-cm-transition">
-        <div class="nw-cm-next-layer">
-          <div class="container-fluid px-4 px-xl-5 nw-cm-next-wrap">
-            <p class="nw-cm-reveal" data-cm-reveal>CHỦ ĐỀ TRỌNG TÂM</p>
-            <h3 class="nw-cm-headline nw-cm-reveal" data-cm-reveal>
-              Những lát cắt thiết kế tạo nên cảm xúc đọc tin liền mạch.
-            </h3>
-            <p class="nw-cm-copy nw-cm-reveal" data-cm-reveal>
-              Hiệu ứng chuyển cảnh này dùng mặt nạ hình tròn mở dần theo nhịp
-              cuộn, giúp nội dung kế tiếp xuất hiện tự nhiên, không bị khựng
-              khung.
+            <div
+              class="news-s3-sports-line"
+              id="news-s3-sports-line"
+              role="list"
+              aria-label="Danh mục thể thao"
+            >
+              <button
+                type="button"
+                class="news-s3-sport-btn is-active"
+                role="listitem"
+                data-sport="bong-da"
+                data-preview1="../images/thethao1.png"
+                data-preview2="../images/football.png"
+                data-preview3="../images/atletico_madrid.jpg"
+                style="--sport-icon: url(&quot;../images/football.png&quot;)"
+              >
+                <span class="news-s3-sport-text">BÓNG ĐÁ</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+
+              <button
+                type="button"
+                class="news-s3-sport-btn"
+                role="listitem"
+                data-sport="bong-ro"
+                data-preview1="../images/basketball.png"
+                data-preview2="../images/thethao3.png"
+                data-preview3="../images/thethao4.png"
+                style="--sport-icon: url(&quot;../images/basketball.png&quot;)"
+              >
+                <span class="news-s3-sport-text">BÓNG RỔ</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+
+              <button
+                type="button"
+                class="news-s3-sport-btn"
+                role="listitem"
+                data-sport="bong-bau-duc"
+                data-preview1="../images/thethao2.png"
+                data-preview2="../images/Fomular1.png"
+                data-preview3="../images/thethao4.png"
+                style="--sport-icon: url(&quot;../images/thethao2.png&quot;)"
+              >
+                <span class="news-s3-sport-text">BÓNG BẦU DỤC</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+
+              <button
+                type="button"
+                class="news-s3-sport-btn"
+                role="listitem"
+                data-sport="f1"
+                data-preview1="../images/Fomular1.png"
+                data-preview2="../images/thethao4.png"
+                data-preview3="../images/F1er.png"
+                style="--sport-icon: url(&quot;../images/F1.png&quot;)"
+              >
+                <span class="news-s3-sport-text">F1</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+
+              <button
+                type="button"
+                class="news-s3-sport-btn"
+                role="listitem"
+                data-sport="cau-long"
+                data-preview1="../images/thethao3.png"
+                data-preview2="../images/suckhoe2.png"
+                data-preview3="../images/suckhoe1.png"
+                style="--sport-icon: url(&quot;../images/thethao3.png&quot;)"
+              >
+                <span class="news-s3-sport-text">CẦU LÔNG</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+
+              <button
+                type="button"
+                class="news-s3-sport-btn"
+                role="listitem"
+                data-sport="quan-vot"
+                data-preview1="../images/suckhoe3.png"
+                data-preview2="../images/suckhoe2.png"
+                data-preview3="../images/thethao1.png"
+                style="--sport-icon: url(&quot;../images/suckhoe3.png&quot;)"
+              >
+                <span class="news-s3-sport-text">QUẦN VỢT</span>
+                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+              </button>
+            </div>
+
+            <p class="news-s3-kicker">
+              - CẬP NHẬT MỌI TIN TỨC THỂ THAO SỚM NHẤT -
             </p>
           </div>
+
+          <div class="news-s3-hover-gallery" aria-hidden="true">
+            <figure
+              class="news-s3-preview-card news-s3-preview-card--1 is-visible"
+              style="--x: 0%; --y: 24%; --w: 200px; --r: -8deg"
+            >
+              <img
+                src="../images/thethao1.png"
+                alt="Ảnh thể thao 1"
+                loading="lazy"
+              />
+            </figure>
+            <figure
+              class="news-s3-preview-card news-s3-preview-card--2 is-visible"
+              style="--x: 25%; --y: 55%; --w: 205px; --r: 6deg"
+            >
+              <img
+                src="../images/football.png"
+                alt="Ảnh thể thao 2"
+                loading="lazy"
+              />
+            </figure>
+            <figure
+              class="news-s3-preview-card news-s3-preview-card--3 is-visible"
+              style="--x: 56%; --y: 20%; --w: 200px; --r: 11deg"
+            >
+              <img
+                src="../images/atletico_madrid.jpg"
+                alt="Ảnh thể thao 3"
+                loading="lazy"
+              />
+            </figure>
+          </div>
         </div>
 
-        <div class="nw-cm-overlay" aria-hidden="true"></div>
-        <div class="nw-cm-ring" aria-hidden="true"></div>
+        <div class="container-fluid px-3 px-xl-4">
+          <div class="box-horizontal">
+            <div class="sports-feed-shell">
+              <button
+                type="button"
+                class="sports-feed-nav sports-feed-nav--prev"
+                aria-label="Xem mục trước"
+              >
+                &lt;
+              </button>
+
+              <div class="sports-feed-viewport" aria-label="Sports video feed">
+                <div class="sports-feed-track">
+                  <article class="sports-feed-card">
+                    <img
+                      src="../images/thethao3.png"
+                      alt="Rwanda tries to protect farmland"
+                      loading="lazy"
+                    />
+                    <div class="sports-feed-body">
+                      <h3 class="sports-feed-title">
+                        Rwanda tries to protect farmland in Africa's most
+                        densely populated nation
+                      </h3>
+                      <p class="sports-feed-meta">
+                        <span class="sports-play" aria-hidden="true"></span
+                        ><span>0:50</span>
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="sports-feed-card">
+                    <img
+                      src="../images/atletico_madrid.jpg"
+                      alt="Prediction market reacts to ceasefire update"
+                      loading="lazy"
+                    />
+                    <div class="sports-feed-body">
+                      <h3 class="sports-feed-title">
+                        Polymarket bets on Iran ceasefire surged before Trump's
+                        announcement
+                      </h3>
+                      <p class="sports-feed-meta">
+                        <span class="sports-play" aria-hidden="true"></span
+                        ><span>1:12</span>
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="sports-feed-card">
+                    <img
+                      src="../images/Fomular1.png"
+                      alt="Large fire in central Beirut"
+                      loading="lazy"
+                    />
+                    <div class="sports-feed-body">
+                      <h3 class="sports-feed-title">
+                        Huge fire burns in central Beirut after consecutive
+                        Israeli airstrikes hit the city
+                      </h3>
+                      <p class="sports-feed-meta">
+                        <span class="sports-play" aria-hidden="true"></span
+                        ><span>0:26</span>
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="sports-feed-card">
+                    <img
+                      src="../images/tennis.jpg"
+                      alt="Temporary ceasefire briefing"
+                      loading="lazy"
+                    />
+                    <div class="sports-feed-body">
+                      <h3 class="sports-feed-title">
+                        Iran, the US and Israel agree to a temporary ceasefire
+                      </h3>
+                      <p class="sports-feed-meta">
+                        <span class="sports-play" aria-hidden="true"></span
+                        ><span>1:41</span>
+                      </p>
+                    </div>
+                  </article>
+
+                  <article class="sports-feed-card">
+                    <img
+                      src="../images/volleyball.jpg"
+                      alt="Infrastructure threat statement"
+                      loading="lazy"
+                    />
+                    <div class="sports-feed-body">
+                      <h3 class="sports-feed-title">
+                        Trump says it would take 4 hours to destroy Iran's
+                        bridges and power plants
+                      </h3>
+                      <p class="sports-feed-meta">
+                        <span class="sports-play" aria-hidden="true"></span
+                        ><span>0:28</span>
+                      </p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                class="sports-feed-nav sports-feed-nav--next"
+                aria-label="Xem mục tiếp theo"
+              >
+                &gt;
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Sticky lead story + right rail list -->
+      <section class="news-section-four" id="news-section-four">
+        <div class="container-fluid px-3 px-xl-4">
+          <div class="news-s4-layout">
+            <div class="news-s4-feature-wrap">
+              <article class="news-s4-feature">
+                <a
+                  class="news-s4-feature-link"
+                  href="./the-thao-football-detail.html"
+                >
+                  <img
+                    src="../images/Dune3.jpg"
+                    alt="Felicien Kabuga: Rwanda genocide suspect unfit to stand trial"
+                    loading="lazy"
+                  />
+                  <div class="news-s4-feature-overlay">
+                    <p class="news-s4-feature-tag">Tin nổi bật</p>
+                    <h3 class="news-s4-feature-title">
+                      Felicien Kabuga: Rwanda genocide suspect unfit to stand
+                      trial, UN court rules
+                    </h3>
+                    <p class="news-s4-feature-excerpt">
+                      International court delivers verdict on one of the most
+                      wanted suspects in the 1994 Rwanda genocide.
+                    </p>
+                    <p class="news-s4-feature-meta">
+                      <span>Jack Harksom</span>
+                      <span>12 hours ago</span>
+                    </p>
+                  </div>
+                </a>
+              </article>
+            </div>
+
+            <aside class="news-s4-list" aria-label="Danh sach tin nhanh">
+              <article class="news-s4-item">
+                <a class="news-s4-item-link" href="./the-thao-suc-khoe.html">
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/Trump.png"
+                      alt="Tokyo and Seoul want a closer relationship"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Jane Hilson <span>• 5 hours ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >Tokyo and Seoul want a closer relationship so does
+                      Beijing</span
+                    >
+                    <span class="news-s4-item-read">7 min read</span>
+                  </span>
+                </a>
+              </article>
+
+              <article class="news-s4-item">
+                <a
+                  class="news-s4-item-link"
+                  href="./suc-khoe-mental-detail.html"
+                >
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/Dune3.jpg"
+                      alt="Pope Francis undergoes abdominal surgery"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Mac Thaer <span>• 3 hours ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >Pope Francis undergoes abdominal surgery in latest
+                      health</span
+                    >
+                    <span class="news-s4-item-read">5 min read</span>
+                  </span>
+                </a>
+              </article>
+
+              <article class="news-s4-item">
+                <a
+                  class="news-s4-item-link"
+                  href="./the-thao-tennis-detail.html"
+                >
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/thethao1.png"
+                      alt="At least one killed in shooting during protest"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Wake Hilcher <span>• 1 hour ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >At least one killed in shooting during a protest that
+                      clash happened</span
+                    >
+                    <span class="news-s4-item-read">4 min read</span>
+                  </span>
+                </a>
+              </article>
+
+              <article class="news-s4-item">
+                <a class="news-s4-item-link" href="./the-thao-f1-detail.html">
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/Fomular1.png"
+                      alt="Formula 1 battle tightens"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Anna Crest <span>• 58 minutes ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >Formula 1 title race tightens after dramatic final-lap
+                      overtake</span
+                    >
+                    <span class="news-s4-item-read">6 min read</span>
+                  </span>
+                </a>
+              </article>
+
+              <article class="news-s4-item">
+                <a class="news-s4-item-link" href="./suc-khoe-yoga-detail.html">
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/suckhoe2.png"
+                      alt="How breathwork helps reduce daily stress"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Lina Park <span>• 36 minutes ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >How breathwork routines can reduce daily stress in urban
+                      life</span
+                    >
+                    <span class="news-s4-item-read">5 min read</span>
+                  </span>
+                </a>
+              </article>
+
+              <article class="news-s4-item">
+                <a
+                  class="news-s4-item-link"
+                  href="./suc-khoe-nutrition-detail.html"
+                >
+                  <span class="news-s4-item-media">
+                    <img
+                      src="../images/suckhoe3.png"
+                      alt="Food inflation pushes families to new habits"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="news-s4-item-body">
+                    <span class="news-s4-item-author"
+                      >Nina Stone <span>• 20 minutes ago</span></span
+                    >
+                    <span class="news-s4-item-title"
+                      >Food inflation pushes families to rebuild weekly shopping
+                      habits</span
+                    >
+                    <span class="news-s4-item-read">3 min read</span>
+                  </span>
+                </a>
+              </article>
+            </aside>
+          </div>
+        </div>
       </section>
     </main>
-
-    <!-- ═══════════════════════════════════════════════════════════════════
-       CINEMATIC INTRO OVERLAY
-       Full-viewport black stage. Phases 1-3 animate automatically.
-       Overlay is removed from the paint tree after Phase 3 completes.
-  ════════════════════════════════════════════════════════════════════ -->
-    <div id="nw-intro-overlay" aria-hidden="true">
-      <!-- Single text node in overlay; white wipe layer is rendered via CSS ::after -->
-      <div id="nw-intro-text">
-        <h2 class="nw-it-wipe" data-text="TIN TỨC ONLINE">TIN TỨC ONLINE</h2>
-      </div>
-    </div>
   </body>
 </html>

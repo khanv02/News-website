@@ -1,1297 +1,264 @@
-/* Custom styles */
+﻿/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #333;
+  color: var(--news-text);
 }
 
-#top-header {
-  background-color: #f2f4f7;
+::selection {
+  background-color: var(--news-white);
+  color: var(--news-black);
 }
 
-ul {
-  margin: 0;
-  padding: 0;
+/* ===== BODY & BACKGROUND ===== */
+.news-body {
+  background: var(--news-bg);
+  color: var(--news-text);
 }
 
-#top-contact a {
-  text-decoration: none;
-  color: #333;
-}
-
-#top-contact a:hover {
-  color: red;
-}
-
-#top-header .fab {
-  font-size: 20px;
-}
-
-.fa-facebook {
-  color: blue;
-}
-
-.fa-instagram {
-  color: red;
-}
-
-.fa-tiktok {
-  color: black;
-}
-
-.fa-youtube {
-  color: red;
-}
-
-.fa-cart-shopping {
-  color: orangered;
-}
-
-.nav-item {
-  margin-right: 10px;
-}
-
-#navbar-menu {
-  background-color: #d70018;
-}
-
-#select-product-category {
-  max-width: 160px;
-}
-
-/* Trang trí cho dropdown menu */
-.dropdown-menu {
-  background-color: #d45a69;
-}
-
-.dropdown-menu h6 {
-  color: rgb(49, 48, 48);
-}
-
-.dropdown-menu a {
-  color: #ffffff !important;
-  /* Màu chữ trong dropdown menu */
-}
-
-.dropdown-menu a:hover {
-  background-color: rgba(255, 192, 203, 0.755);
-}
-
-.carousel-control-next-icon,
-.carousel-control-prev-icon {
-  background-color: black;
-  /* Màu nền đen */
-  border-radius: 50%;
-  /* Tạo hình tròn */
-  border: 1px solid white;
-  /* Viền trắng */
-  width: 30px;
-  /* Adjust width to control size */
-  height: 30px;
-  /* Adjust height to control size */
-}
-
-.carousel-control-next-icon {
-  margin-right: -140px;
-}
-
-.carousel-control-prev-icon {
-  margin-left: -140px;
-}
-
-.carousel-inner .carousel-item img {
-  width: 100%;
-  height: 650px;
-}
-
-.breadcrumb {
-  background-color: #f2f4f7;
-}
-
-.breadcrumb a {
-  text-decoration: none;
-  color: black;
-}
-
-.breadcrumb a:hover {
-  color: red;
-}
-
-.main {
-  background-color: #f2f4f7;
-}
-
-.video-container video {
-  width: 89.8%;
-  height: 400px;
-  object-fit: cover;
-  margin-left: 89px;
-  border-radius: 30px;
-}
-
-.btn-light {
-  font-weight: bold;
-  /* Đặt chữ in đậm cho tất cả các nút btn-light */
-  margin-left: 10px;
-}
-
-.category-buttons {
-  margin-left: 40%;
-  margin-top: 20px;
-}
-
-.category-buttons button:hover {
-  background-color: #fff0bf;
-  color: #222222;
-}
-
-.countdown-timer {
-  margin-left: 36.5%;
-  margin-bottom: 20px;
-}
-
-/* Container bao bên ngoài với overflow: hidden để ngăn tràn */
-.sale-banner-container {
-  overflow: hidden;
-  max-width: 100%;
-  /* Đảm bảo chiều rộng theo ý muốn */
-  position: relative;
-}
-
-/* Cài đặt cho phần tử `.sale-banner` chính */
-.sale-banner {
-  background-color: #f9415b;
-  position: relative;
-  overflow: visible;
-  /* Cho phép các mũi tên nằm ngoài khung */
-  max-width: 100%;
-  width: 90%;
-  height: 610px;
-  margin-left: 85px;
-  border-radius: 15px;
-  padding: 0;
-  /* Bỏ padding nếu không cần thiết */
-}
-
-/* Căn chỉnh vị trí mũi tên */
-.slick-prev,
-.slick-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
-  /* Đảm bảo mũi tên nằm trên slider */
-  color: #fff;
-}
-
-.slick-prev {
-  left: -30px;
-  /* Đẩy mũi tên ra ngoài khung bên trái */
-}
-
-.slick-next {
-  right: -30px;
-  /* Đẩy mũi tên ra ngoài khung bên phải */
-}
-
-.sale-banner img {
-  margin-left: 20px;
-  border-radius: 15px;
-  width: 36%;
-}
-
-.sale-banner #countdown {
-  color: #fff0bf;
-  margin-top: 20px;
-}
-
-.responsive1 .phone-item {
-  display: flex;
-  max-width: 100%;
-  /* Đảm bảo không vượt quá chiều rộng của phần tử cha */
-  height: 400px;
-  background-color: #ffffff;
-  justify-content: center;
-  margin: 0 10px;
-  padding: 10px 0px;
-  border-radius: 15px;
-}
-
-.phone-item .tagSale {
-  background-color: #d70018;
-  color: white;
-  border-radius: 0 30px 30px 0;
-  /* Bo tròn bên phải */
-  padding: 12px 1px;
-  /* Điều chỉnh kích thước tag */
-}
-
-.phone-item {
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
+/* ===== NAVBAR ===== */
+.news-header {
+  transition: transform 0.35s ease;
   will-change: transform;
 }
 
-.phone-item:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
+.news-header.news-header--hidden {
+  transform: translateY(-105%);
 }
 
-.img-phone-item {
-  display: flex;
-  justify-content: center;
+.news-navbar {
+  background: var(--news-white);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
-.phone-item img {
-  width: 100%;
-  height: 150px;
-  margin: 0;
-}
-
-.text-phone-item {
-  display: flex;
-  height: 170px;
-  flex-direction: column;
-  justify-content: flex-start;
+.news-navbar-shell {
   position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1fr auto;
+  align-items: center;
 }
 
-.name-phone {
-  padding: 10px;
-  font-weight: bold;
-}
-
-.name-phone a {
-  color: black;
-  text-decoration: none;
-}
-
-.name-phone a:hover {
-  color: red;
-}
-
-.product-price-container {
-  display: flex;
-  margin-top: 15px;
-  margin-left: 2px;
-  margin-bottom: 5px;
-}
-
-.product-discount {
-  color: #ff5f5f;
-  font-weight: bold;
-}
-
-.product-price {
-  text-decoration: line-through;
-  padding: 0px 10px;
-  color: #8c8c8c;
-}
-
-.notification-box {
-  background-color: #f0f0f0;
-  /* Màu nền nhạt */
-  border-radius: 5px;
-  color: #333;
-  /* Màu chữ tối để dễ đọc */
-  font-size: 0.8em;
-  margin-left: 10px;
-  max-width: 90%;
-}
-
-.iconProduct {
-  margin-top: 10%;
-  margin-left: 10px;
-}
-
-.iconProduct span {
-  margin-left: 16%;
-}
-
-.responsive2 .phone-item2 {
-  display: flex;
-  max-width: 100%;
-  /* Đảm bảo không vượt quá chiều rộng của phần tử cha */
-  height: 400px;
-  background-color: #ffffff;
-  justify-content: center;
-  margin: 0 10px;
-  padding: 10px 0px;
-  border-radius: 15px;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
-}
-
-.phone-item2 .tagSale2 {
-  background-color: #d70018;
-  color: white;
-  border-radius: 0 30px 30px 0;
-  /* Bo tròn bên phải */
-  padding: 12px 1px;
-  /* Điều chỉnh kích thước tag */
-}
-
-.phone-item2 {
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  will-change: transform;
-}
-
-.phone-item2:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
-}
-
-.img-phone-item2 {
-  display: flex;
-  justify-content: center;
-}
-
-.phone-item2 img {
-  width: 100%;
-  height: 150px;
-  margin: 0px;
-}
-
-.text-phone-item2 {
-  display: flex;
-  height: 170px;
-  flex-direction: column;
-  justify-content: flex-start;
-  position: relative;
-}
-
-.name-phone2 {
-  padding: 10px;
-  font-weight: bold;
-}
-
-.name-phone2 a {
-  color: black;
-  text-decoration: none;
-}
-
-.name-phone2 a:hover {
-  color: red;
-}
-
-.product-price-container2 {
-  display: flex;
-  margin-top: 15px;
-  margin-left: 2px;
-  margin-bottom: 5px;
-}
-
-.product-discount2 {
-  color: #ff5f5f;
-  font-weight: bold;
-}
-
-.product-price2 {
-  text-decoration: line-through;
-  padding: 0px 10px;
-  color: #8c8c8c;
-}
-
-.notification-box2 {
-  background-color: #f0f0f0;
-  /* Màu nền nhạt */
-  border-radius: 5px;
-  color: #333;
-  /* Màu chữ tối để dễ đọc */
-  font-size: 0.8em;
-  margin-left: 10px;
-  max-width: 90%;
-}
-
-.iconProduct2 {
-  margin-top: 10%;
-  margin-left: 10px;
-}
-
-.iconProduct2 span {
-  margin-left: 16%;
-}
-
-.mainBanner {
-  width: 89.8%;
-  margin-left: 90px;
-}
-
-.banner-item1 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item2 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item3 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.banner-item4 img {
-  width: 96.5%;
-  height: 225px;
-  margin-left: 10px;
-  border-radius: 25px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-}
-
-.support {
-  display: flex;
-}
-
-.policy-item {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-left: 7.5%;
-}
-
-.policy-item img {
-  height: 90px;
-}
-
-.policy-item2 {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  margin-left: 12%;
-}
-
-.policy-item2 img {
-  height: 90px;
-}
-
-.slick-prev:before,
-.slick-next:before {
-  color: black !important;
-}
-
-.newPost {
-  margin-left: 40px;
-  display: flex;
-  height: 380px;
-}
-
-.newPostItem {
-  background-color: #ffffff;
-  border-radius: 15px;
-  width: 300px;
-  overflow: hidden;
-  margin-left: 53px;
-  transition:
-    transform 0.3s ease,
-    background-color 0.3s ease;
-  will-change: transform;
-  /* Thêm hiệu ứng chuyển tiếp cho thay đổi */
-}
-
-.newPostItem:hover {
-  transform: scale(1.03);
-  /* Tăng kích thước nhẹ của phần bài viết khi di chuột */
-  background-color: #f0f0f0;
-  /* Thay đổi màu nền khi di chuột */
-}
-
-.newPostImg {
-  background-color: #ffffff;
-}
-
-.newPostImg img {
-  width: 100%;
-}
-
-.textNewPost1 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost1 p {
-  margin-top: 25px;
-  padding-left: 10px;
-}
-
-.textNewPost2 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost2 p {
-  padding-left: 10px;
-}
-
-.textNewPost3 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost3 p {
-  margin-top: 25px;
-  padding-left: 10px;
-}
-
-.textNewPost4 h6 {
-  margin-top: 15px;
-  padding-left: 10px;
-}
-
-.textNewPost4 p {
-  padding-left: 10px;
-}
-
-.truncated-text {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  /* standard property for compatibility */
-  /* Số dòng hiển thị tối đa */
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.sloganBanner img {
-  margin-left: 6%;
-  width: 89.8%;
-}
-
-#countdown {
-  font-size: 24px;
-  font-weight: bold;
-  color: tomato;
-}
-
-.progress {
-  height: 30px;
-  background-color: pink;
-  position: relative;
-}
-
-.progress-bar {
-  background-color: tomato;
-  transition: width 1s ease-in-out;
-}
-
-.progress-text {
-  position: absolute;
-  top: 50%;
-  /* Căn chỉnh vị trí đứng giữa dọc */
-  left: 50%;
-  /* Căn chỉnh vị trí đứng giữa ngang */
-  transform: translate(-50%, -50%);
-  /* Dịch chuyển vị trí để căn giữa */
-  color: white;
-  font-weight: bolder;
-  text-shadow: 5px 5px 15px #333;
-  flex-direction: row;
-}
-
-#footer-main {
-  height: 250px;
-}
-
-.introduce {
-  margin-left: 35px;
-}
-
-.introduce ul {
-  list-style: none;
-  padding: 0;
-}
-
-.introduce li {
-  margin-top: 26px;
-}
-
-.introduce a {
-  text-decoration: none;
-  color: black;
-}
-
-.introduce a:hover {
-  color: red;
-}
-
-.contactFooter {
-  margin-left: 13%;
-}
-
-.contactFooter ul {
-  list-style: none;
-  padding: 0;
-}
-
-.contactFooter i {
-  margin-top: 25px;
-  margin-right: 5px;
-}
-
-.contactFooter a {
-  text-decoration: none;
-  color: black;
-}
-
-.contactFooter a:hover {
-  color: red;
-}
-
-.interactFooter {
-  margin-left: 8%;
-}
-
-.bottom-social-media {
-  font-size: 35px;
-}
-
-.bottom-social-media li {
-  margin-top: 5px;
-}
-
-.pay ul {
-  list-style: none;
-  padding: 0;
-}
-
-.pay li {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.pay-icons img {
-  width: 51px;
-  height: 60px;
-}
-
-.ship h4 {
-  margin-top: 15px;
-}
-
-.ship ul {
-  list-style: none;
-  padding: 0;
-}
-
-.ship li {
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.ship-icons img {
-  width: 51px;
-  height: 60px;
-}
-
-hr {
-  border: 1px solid #ccc;
-  margin: 20px;
-}
-
-.footer-bottom p {
-  font-weight: bold;
-}
-
-/* Home page redesign based on Figma node 159:416 */
-:root {
-  --nw-bg: #000000;
-  --nw-text: #f2f2f2;
-  --nw-muted: #cccccc;
-  --nw-accent: #ffdd00;
-  --nw-ruler: #f9f9f9;
-}
-
-.nw-body {
-  background: var(--nw-bg);
-  color: var(--nw-text);
-  font-family: "Inter", sans-serif;
-}
-
-.nw-navbar {
-  background: #000;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  min-height: 78px;
-  padding-top: 2px !important;
-  padding-bottom: 2px !important;
-}
-
-.nw-logo {
+/* ===== TEAM TAG ===== */
+.news-team-tag {
+  grid-column: 1;
   font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  letter-spacing: -0.02em;
-  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--news-text);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.nw-logo-accent {
-  color: var(--nw-accent);
+/* ===== HAMBURGER BUTTON ===== */
+.news-navbar-shell .navbar-toggler {
+  grid-column: 5;
+  justify-self: end;
 }
 
-.nw-menu-link {
-  color: #ffffff !important;
+.news-navbar .navbar-collapse {
+  background: var(--news-white);
+  margin-top: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+/* ===== LOGO ===== */
+.news-logo {
+  grid-column: 3;
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #4e4d4d;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  justify-self: center;
+  line-height: 1.35;
+  padding-top: 0.45rem !important;
+  padding-bottom: 0.45rem !important;
+  letter-spacing: -0.03em;
+}
+
+.news-logo [aria-label="DESIGN"] {
+  letter-spacing: -0.03em;
+  word-spacing: -0.3em;
+}
+
+/* ===== MENU ===== */
+.news-main-menu {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.6rem, 1.6vw, 1.35rem);
+  list-style: none;
+}
+
+.news-main-menu-left {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.news-main-menu-right {
+  grid-column: 4;
+  justify-self: start;
+}
+
+.news-menu-link {
+  color: var(--news-text);
+  font-family: "Merriweather", serif;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.2;
-  transition: color 0.2s ease;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  text-align: center;
 }
 
-.nw-menu-link:hover {
-  color: var(--nw-accent) !important;
+.news-menu-link:hover,
+.news-menu-link:focus,
+.news-menu-link:active,
+.navbar-dark .nav-link:hover,
+.navbar-dark .nav-link:focus,
+.navbar-dark .nav-link.active,
+.navbar-dark .nav-link:active {
+  color: var(--news-text) !important;
 }
 
-.nw-login-btn {
-  background: var(--nw-accent);
-  color: #000;
+/* ===== LOGIN BUTTON ===== */
+.news-login-btn {
+  background: var(--news-text);
+  color: var(--news-black);
   font-weight: 700;
   border: none;
 }
 
-.nw-login-btn:hover {
-  background: #f4c900;
-  color: #000;
+.news-login-btn:hover {
+  background: var(--news-text);
+  color: var(--news-black);
 }
 
-.nw-hero {
+/* ===== HAMBURGER ICON ===== */
+.news-hamburger-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px;
+}
+
+.news-hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 28px;
+}
+
+.news-ham-line {
+  display: block;
+  height: 1.5px;
+  background-color: var(--news-text);
+  border-radius: 2px;
+  width: 100%;
+  will-change: transform;
+}
+
+/* Tắt transition trên navbar (trừ menu/hamburger line) */
+.news-navbar *:not(.news-menu-item):not(.news-menu-link):not(.news-ham-line) {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ===== HERO SECTION ===== */
+.news-hero {
   margin-top: -25px;
   min-height: calc(100vh - 63px);
+  background: var(--news-white);
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
 }
 
-.nw-hero-upper {
-  min-height: 420px;
-  padding-top: 8px;
-  overflow: visible;
-}
-
-.nw-copy {
-  max-width: 620px;
-}
-
-.nw-kicker {
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(2.2rem, 4.4vw, 4.2rem);
-  letter-spacing: 0.04em;
-  font-weight: bold;
-}
-
-.nw-title {
-  margin-top: 4px;
-  font-family: "Oswald", sans-serif;
-  font-size: 49px;
-  /* line-height: 1.3 so Vietnamese stacked diacritics (Ứ, Ề…) aren't
-     clipped by the overflow:hidden on .nw-line-wrap */
-  line-height: 1.3;
-  letter-spacing: 0.01em;
-}
-
-/* 'Nội dung' accent line – scoped to avoid bleeding onto .nw-line-wrap spans */
-.nw-title .nw-title-sub {
-  display: block; /* makes it its own visual line */
-  color: var(--nw-muted);
-  font-weight: 700;
-  margin-top: 7px;
-}
-
-.nw-subtitle {
-  margin-top: 8px;
-  font-family: "Oswald", sans-serif;
-  font-size: 49px;
-  line-height: 1.3; /* room for diacritics inside overflow:hidden wrap */
-}
-
-.nw-highlight {
-  margin-top: -2px;
+/* ===== TITLE (text clip effect) ===== */
+.news-display-title {
+  display: inline-block;
+  transform: scaleY(2);
   font-family: "Merriweather", serif;
-  font-style: italic;
-  font-size: 49px;
-  line-height: 1.3; /* Merriweather ascenders need extra room inside overflow:hidden */
-  color: #fff8bf;
-}
-
-/* ──────────────────────────────────────────────────────────────────
-   WIPE-UP LINE REVEAL
-   Each text line is: <span class="nw-line-wrap"><span class="nw-line-inner">...
-   .nw-line-wrap → overflow:hidden vertical mask
-   .nw-line-inner → the element GSAP slides from 110% → 0%
-   ────────────────────────────────────────────────────────────────── */
-
-/* Vertical clipping mask: must be display:block to create a proper box */
-.nw-line-wrap {
-  display: block;
-  overflow: hidden;
-  /* A small negative margin trims the extra padding that line-height: 1.3
-     adds around the text so lines don't have too much space between them */
-  margin-bottom: -0.15em;
-}
-
-/* The sliding element – GSAP sets y: '110%' initially then animates to 0 */
-.nw-line-inner {
-  display: block;
-  will-change: transform; /* compositor hint: promote to GPU layer */
-}
-
-.nw-video-col {
-  position: relative;
-  z-index: 2;
-  transform: translateY(60px) translateX(-50px);
-  perspective: 900px;
-  transform-origin: top right;
-}
-
-.nw-video-card {
-  width: min(100%, 620px);
-  border-radius: 12px;
-  overflow: hidden;
-  transform-origin: top right;
-}
-
-.nw-video-media {
-  position: relative;
-  border-radius: 8px;
-  overflow: hidden;
-  height: 430px;
-}
-
-.nw-video-media iframe,
-.nw-video-media video {
-  position: absolute;
-  inset: 0;
+  font-size: clamp(3.8rem, 10.6vw, 14rem);
+  font-weight: 600;
+  line-height: 1.33;
+  color: var(--news-white);
+  margin: 0;
   width: 100%;
-  height: 100%;
-  border: none;
-  object-fit: cover;
-}
-
-.nw-play-btn {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  border: none;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.92);
-  color: #000;
-  font-size: 1.4rem;
-  line-height: 52px;
-  text-align: center;
-  padding-left: 4px;
-}
-
-.nw-year-badge {
-  position: absolute;
-  right: 14px;
-  bottom: 14px;
-  font-family: "Oswald", sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: rgba(255, 196, 80, 0.85);
-  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.45);
-}
-
-.nw-video-caption {
-  padding: 16px 8px 12px;
-  color: #1a1a1a;
-  font-size: 1.2rem;
-}
-
-.nw-info {
-  width: 20px;
-  height: 20px;
-  border: 1px solid #222;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.78rem;
-  font-weight: 600;
-}
-
-.nw-ruler {
-  background: var(--nw-ruler);
-  color: #000;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-  min-height: 28px;
-  /* split-horizontal-out animation needs:
-     - overflow:hidden to clip spans during their outward x-slide
-     - transform-origin:center so scaleX expands from the middle */
-  overflow: hidden;
-  transform-origin: center center;
-  font-weight: bold;
-}
-
-.nw-ruler-inner {
-  margin-left: 100px;
-  gap: 20vw;
-  font-size: 1rem;
-  min-height: 28px;
-}
-
-.nw-display-wrap {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 50px;
-  padding: 50px 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.nw-display-title {
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(3.8rem, 17vw, 14rem);
-  line-height: 1;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  color: #f1f1f1;
-  text-transform: uppercase;
-  white-space: nowrap;
   text-align: center;
 }
 
-.nw-cm-prelude {
-  min-height: 100vh;
+.news-title-wrap {
+  background: var(--news-text);
+  margin-top: 40px;
+  padding: 140px clamp(16px, 2vw, 24px) 80px;
+  min-height: clamp(150px, 18vw, 260px);
   display: flex;
   align-items: center;
-  background:
-    radial-gradient(
-      circle at 10% 12%,
-      rgba(255, 214, 90, 0.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 88% 80%,
-      rgba(255, 255, 255, 0.08),
-      transparent 36%
-    ),
-    #060606;
-  border-top: 1px solid rgba(255, 255, 255, 0.09);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
-}
-
-.nw-cm-prelude-inner {
-  max-width: 860px;
-}
-
-.nw-cm-kicker {
-  font-family: "Oswald", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #bdbdbd;
-}
-
-.nw-cm-title {
-  font-family: "Merriweather", serif;
-  font-size: clamp(2rem, 5vw, 4.3rem);
-  line-height: 1.05;
-  color: #f4f4f4;
-}
-
-.nw-cm-transition {
-  height: 100vh;
-  position: relative;
-  overflow: hidden;
-  background: #111;
-}
-
-.nw-cm-next-layer {
-  position: absolute;
-  inset: 0;
-  background: #f6f6f6;
-  color: #111;
-  z-index: 3;
-  /* White circular reveal starts tiny at center and expands on scroll */
-  clip-path: circle(40px at 50% 50%);
-  will-change: clip-path;
-}
-
-.nw-cm-next-wrap {
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
   justify-content: center;
-  max-width: 980px;
+  text-align: center;
 }
 
-.nw-cm-headline {
-  font-family: "Merriweather", serif;
-  font-size: clamp(2.1rem, 5.3vw, 5rem);
-  line-height: 1.05;
-  margin-bottom: 1rem;
-}
-
-.nw-cm-copy {
-  max-width: 62ch;
-  font-size: clamp(1rem, 1.4vw, 1.22rem);
-  line-height: 1.7;
-  margin-bottom: 0;
-}
-
-.nw-cm-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: #000000;
-}
-
-.nw-cm-ring {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 82px;
-  height: 82px;
-  margin-left: -41px;
-  margin-top: -41px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  z-index: 3;
-  pointer-events: none;
-}
-
-.nw-cm-reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  filter: blur(8px);
-}
-
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1199.98px) {
-  .nw-navbar {
-    padding-top: 0.4rem;
-    padding-bottom: 0.4rem;
+  .news-navbar-shell {
+    grid-template-columns: minmax(64px, 1fr) auto minmax(44px, 1fr);
+    grid-template-areas:
+      "team logo toggler"
+      "left left left"
+      "right right right";
+    row-gap: 0.2rem;
+    column-gap: 0.5rem;
   }
 
-  .nw-login-btn {
-    margin-top: 0.4rem;
-    padding: 0.6rem 1rem !important;
+  .news-team-tag {
+    grid-area: team;
   }
-}
-
-@media (max-width: 991.98px) {
-  .nw-video-card {
-    margin-bottom: 1.2rem;
+  .news-logo {
+    grid-area: logo;
+    justify-self: center;
+  }
+  .news-navbar-shell .navbar-toggler {
+    grid-area: toggler;
+  }
+  .news-main-menu-left {
+    grid-area: left;
+    justify-self: center;
+  }
+  .news-main-menu-right {
+    grid-area: right;
+    justify-self: center;
   }
 
-  .nw-ruler-inner {
-    justify-content: space-between;
-    gap: 1rem;
+  .news-main-menu {
+    flex-wrap: wrap;
+    gap: 0.3rem 0.9rem;
   }
 
-  .nw-ruler-inner span {
-    font-size: 0.92rem;
-  }
-
-  .nw-display-wrap {
-    padding-top: 28px;
-    padding-bottom: 24px;
+  .news-menu-link {
+    font-size: 0.86rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
   }
 }
 
 @media (max-width: 575.98px) {
-  .nw-logo {
-    font-size: 1.55rem;
+  .news-team-tag {
+    font-size: 0.8rem;
   }
-
-  .nw-copy {
-    max-width: 100%;
+  .news-logo {
+    font-size: 1.35rem;
   }
-
-  .nw-video-media {
-    height: 200px;
+  .news-menu-link {
+    font-size: 0.76rem;
   }
-
-  .nw-video-caption {
-    font-size: 0.95rem;
-  }
-
-  .nw-year-badge {
-    font-size: 2.2rem;
-  }
-
-  .nw-ruler-inner span {
-    font-size: 0.82rem;
-  }
-
-  .nw-cm-headline {
-    font-size: clamp(1.8rem, 8.5vw, 2.9rem);
-  }
-
-  .nw-cm-copy {
-    line-height: 1.62;
-  }
-}
-
-/* ══════════════════════════════════════════════════════════════════════════
-   CINEMATIC INTRO OVERLAY — Phase 1 / 2 / 3
-   All transforms are GPU-composited (no layout properties changed).
-   ══════════════════════════════════════════════════════════════════════════ */
-
-/* ── 1. Page-reveal: hide all content behind the overlay at load time ────── */
-[data-page-reveal] {
-  /* GSAP autoAlpha will toggle both opacity and visibility together */
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* ── 2. Full-viewport black stage ─────────────────────────────────────────── */
-#nw-intro-overlay {
-  position: fixed;
-  inset: 0; /* shorthand for top/right/bottom/left: 0 */
-  z-index: 8888; /* above page content, below cursor (9999) */
-  background: #000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  /* Removed from the paint tree by JS after Phase 3 */
-}
-
-/* ── 3. Text wrapper: stacking context for intro text animation ─────────────── */
-#nw-intro-text {
-  position: relative;
-  display: inline-block; /* shrink-wraps to the text content */
-  transform-origin: center center; /* Phase 3 scale pivots from the centre */
-  will-change: transform; /* GPU layer hint */
-}
-
-/* ── 4. Overlay title typography (matches .nw-display-title on the page) ───── */
-.nw-it-wipe {
-  font-family: "Oswald", sans-serif;
-  font-size: clamp(3rem, 10vw, 11rem);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  /* line-height: 1.3 gives diacritics (Ứ, Ề, etc.) vertical breathing room
-     so they don't render above/below the element's border box and get
-     cut off by clip-path's default border-box clipping boundary */
-  line-height: 1.3;
-  margin: 0;
-  padding: 0;
-  user-select: none;
-}
-
-/* ── 5. Base text remains dark gray; white reveal is drawn by ::after ─────── */
-.nw-it-wipe {
-  color: #333;
-  display: block;
-  position: relative;
-  --nw-wipe-right: 100%;
-}
-
-/* ── 6. White layer sits above base text and is clipped from right to left ── */
-.nw-it-wipe::after {
-  content: attr(data-text);
-  color: #fff;
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  /*
-   * clip-path: inset(top right bottom left)
-   *
-   * FIX: Use NEGATIVE top/bottom values so the clipping region extends
-   * BEYOND the element's border box. Vietnamese diacritics like Ứ, Ề
-   * (which stack circumflex + tone marks) render above line-height and
-   * would otherwise peek through because border-box clip cuts too early.
-   *
-   * -0.5em top / -0.3em bottom = safe margin for stacked diacritics.
-   * right: 100% = fully hidden at start (wipe will animate this to 0%).
-   */
-  clip-path: inset(-0.5em var(--nw-wipe-right) -0.3em 0);
-  will-change: clip-path; /* GPU-composited, zero layout cost */
-}
-
-/* ── 7. Anchor: real page title lives here, matches display-title styling ─── */
-#nw-dt-anchor {
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  margin-top: 50px;
-  padding: 50px 40px;
-  /* overflow: visible so the h2 inside is not clipped */
-  overflow: visible;
-}
-
-/* Real title starts invisible; GSAP crossfades it in when overlay leaves */
-#nw-dt-title {
-  opacity: 0;
-  visibility: hidden;
-}
-
-/* ── Custom circular cursor ────────────────────────────────────────────── */
-
-/* Hide the default OS cursor everywhere */
-*,
-*::before,
-*::after {
-  cursor: none !important;
-}
-
-#nw-cursor {
-  /* Size: ~8px circle */
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #ffffff;
-
-  /* Invert against any background */
-  mix-blend-mode: difference;
-
-  /* Fixed so it rides on top of the viewport */
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  /* Centre the circle on the hot-spot (GSAP moves via translate) */
-  transform: translate(-50%, -50%);
-
-  /* Keep above everything else */
-  z-index: 99999;
-
-  /* No pointer events so it never blocks clicks */
-  pointer-events: none;
-
-  /* Scale transition handled by GSAP, but add will-change for GPU hint */
-  will-change: transform;
-
-  /* Keep transform fully controlled by JS to avoid per-frame transition jitter */
-  transition:
-    width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-    height 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-/* Expanded state – applied by JS on interactive elements */
-#nw-cursor.nw-cursor--hover {
-  width: 26px;
-  height: 26px;
 }

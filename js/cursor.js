@@ -1,23 +1,25 @@
-// ── Con trỏ tròn tùy biến (GSAP + rAF nội suy) ─────────────────────────────
+﻿/* LERP: công thức bắt chuột mượt */
+
 (function () {
-  var cursor = document.getElementById("nw-cursor");
+  var cursor = document.getElementById("news-cursor");
   if (!cursor) return;
 
-  // Vị trí đang hiển thị (đích nội suy)
+  // Vị trí đang hiển thị, khởi tạo giữa màn hình
   var posX = window.innerWidth / 2;
   var posY = window.innerHeight / 2;
 
-  // Vị trí chuột thô
+  // Khởi tạo vị trí thật
   var mouseX = posX;
   var mouseY = posY;
 
-  // Hệ số làm mượt gốc cho 60fps (sau đó đổi sang alpha độc lập tốc độ khung hình ở dưới)
+  // Hệ số làm mượt (60fps)
   var BASE_EASE = 0.6;
+  // Lưu thời điểm frame trước để tính delta time
   var lastTime = performance.now();
 
-  // Cập nhật tọa độ chuột ở mỗi lần di chuyển
+  // Lắng nghe sự kiện di chuyển chuột, lấy toạ độ của chuột thật realtime
   document.addEventListener(
-    "mousemove",
+    "mousemove",      //mousemove, mouseover, mouseleave, mouseenter,...
     function (e) {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -25,82 +27,106 @@
     { passive: true }
   );
 
-  // Vòng lặp rAF: nội suy về phía chuột rồi cập nhật vị trí con trỏ
   function tick(now) {
-    // Làm mượt độc lập FPS giúp chuyển động ổn định trên nhiều tốc độ khung hình.
-    var dt = Math.min(now - lastTime, 40);
-    lastTime = now;
+    var dt = Math.min(now - lastTime, 40);  //Tính time giữa 2 frame, đặt max là 40 (tránh lag khi time giữa 2 frame quá lớn (bị lag))
+    lastTime = now; //Cập nhật lại cột mốc tgian
+    //Tính hệ só di chuyển theo thời gian (tối ưu hoá BASE_EASE cho mọi fps)
     var alpha = 1 - Math.pow(1 - BASE_EASE, dt / 16.67);
 
-    // Nội suy tuyến tính để tạo đuôi bám mượt
+    // Nội suy tuyến tính để tạo đuôi bám mượt -> đi chậm hơn
     posX += (mouseX - posX) * alpha;
     posY += (mouseY - posY) * alpha;
 
-    // Dùng GSAP set để biến đổi trên GPU, tránh rung lắc bố cục
-    if (typeof gsap !== "undefined") {
+    // Dùng GSAP set để biến đổi trên GPU, giúp mượt hơn
+    if (typeof gsap !== "undefined") {  //Kiểm tra có GSAP không?
       gsap.set(cursor, { x: posX, y: posY, force3D: true });
-    } else {
-      cursor.style.transform =
-        "translate(" +
+    }
+    else { //css truyền thống
+      cursor.style.transform ="translate(" +
         (posX - cursor.offsetWidth / 2) +
         "px, " +
         (posY - cursor.offsetHeight / 2) +
         "px)";
+        //translate(Xpx, Ypy);
     }
 
-    requestAnimationFrame(tick);
+    requestAnimationFrame(tick);  //callback
   }
 
   requestAnimationFrame(tick);
 
-  // ── Phóng to khi di chuột trên phần tử tương tác ───────────────────
-  var interactiveSelectors =
-    "a, button, [role='button'], input, textarea, select, label, .nw-video-card";
 
-  document.querySelectorAll(interactiveSelectors).forEach(addHoverListeners);
 
-  // Hỗ trợ cả phần tử được thêm động bằng cơ chế ủy quyền sự kiện
-  document.addEventListener("mouseover", function (e) {
-    if (
-      e.target.matches(interactiveSelectors) ||
-      e.target.closest(interactiveSelectors)
-    ) {
-      cursor.classList.add("nw-cursor--hover");
-    }
-  });
 
-  document.addEventListener("mouseout", function (e) {
-    if (
-      e.target.matches(interactiveSelectors) ||
-      e.target.closest(interactiveSelectors)
-    ) {
-      cursor.classList.remove("nw-cursor--hover");
-    }
-  });
+
+
+  // ──────── Phóng to khi di chuột trên phần tử tương tác ────────
+  
+  //Quy định những nơi được hover
+  var phan_tu_duoc_chon_hover =
+    "a, button, [role='button'], input, textarea, select, label, .news-feed-card";
 
   function addHoverListeners(el) {
     el.addEventListener("mouseenter", function () {
-      cursor.classList.add("nw-cursor--hover");
+      cursor.classList.add("news-cursor--hover");
     });
     el.addEventListener("mouseleave", function () {
-      cursor.classList.remove("nw-cursor--hover");
+      cursor.classList.remove("news-cursor--hover");
     });
   }
 
-  // ── Ẩn con trỏ khi rời khỏi cửa sổ ─────────────────────────────────
-  document.addEventListener("mouseleave", function () {
-    if (typeof gsap !== "undefined") {
-      gsap.to(cursor, { opacity: 0, duration: 0.2 });
-    } else {
-      cursor.style.opacity = "0";
+  document.querySelectorAll(phan_tu_duoc_chon_hover).forEach(addHoverListeners);
+
+  // Khi vào elements được chọn -> hover bật
+  // Hỗ trợ cả phần tử được thêm động bằng cơ chế ủy quyền sự kiện
+  document.addEventListener("mouseover", function (e) {
+    if (
+      e.target.matches(phan_tu_duoc_chon_hover) ||
+      e.target.closest(phan_tu_duoc_chon_hover)
+    ) {
+      cursor.classList.add("news-cursor--hover");
     }
   });
 
+  // Khi ra khỏi elements được chọn -> hover tắt
+  document.addEventListener("mouseout", function (e) {
+    if (
+      e.target.matches(phan_tu_duoc_chon_hover) ||
+      e.target.closest(phan_tu_duoc_chon_hover)
+    ) {
+      cursor.classList.remove("news-cursor--hover");
+    }
+  });
+
+  // ──── Ẩn cursor khi rời khỏi màn hình web ────────
+  document.addEventListener("mouseleave", function () {
+    //Dùng gsap để tối ưu
+    if (typeof gsap !== "undefined") {
+      gsap.to(cursor,
+        {
+          opacity: 0,
+          duration: 0.2
+        }
+      );
+    }
+    else { //css truyền thống
+      cursor.style.opacity = "0";
+    }
+  });
+  // Hiện cursor Khi vào màn hình web
   document.addEventListener("mouseenter", function () {
     if (typeof gsap !== "undefined") {
-      gsap.to(cursor, { opacity: 1, duration: 0.2 });
-    } else {
+      gsap.to(cursor,
+        {
+          opacity: 1,
+          duration: 0.2
+        }
+      );
+    }
+    else {  //css truyền thống
       cursor.style.opacity = "1";
     }
   });
 })();
+
+

@@ -1,0 +1,367 @@
+/* ===== FEED CONTAINER ===== */
+.feed-container {
+  --feed-border: rgba(74, 65, 53, 0.28);
+  --feed-text: #1f1b17;
+  --feed-muted: var(--news-text);
+
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 25px;
+  margin-bottom: clamp(1rem, 2.4vw, 1.8rem);
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+}
+
+/* An track cho den khi JS san sang */
+.news-feed-js .feed-container .feed-track {
+  opacity: 0;
+}
+
+.news-feed-js .feed-container.feed-ready .feed-track {
+  opacity: 1;
+}
+
+.feed-container.is-dragging {
+  cursor: grabbing;
+}
+
+/* ===== FEED TRACK ===== */
+.feed-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  will-change: transform;
+}
+
+/* ===== CARD CHUNG ===== */
+.proj-card,
+.center-card {
+  margin-top: 2vw;
+  flex-shrink: 0;
+  min-height: 260px;
+}
+
+/* ===== PROJ CARD (card tin tuc) ===== */
+.proj-card {
+  position: relative;
+  width: 36%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 4vw;
+}
+
+.proj-card img {
+  width: 100%;
+  height: clamp(140px, 18vw, 210px);
+  object-fit: cover;
+  display: block;
+  border: 1px solid var(--news-black);
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.proj-content {
+  padding: 1rem 1.25rem;
+}
+
+.proj-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.proj-title {
+  margin: 0;
+  color: var(--feed-text);
+  font-family: "Newsreader", sans-serif;
+  font-size: 0.84rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.proj-badge {
+  background: #c0392b;
+  color: var(--news-white);
+  font-family: "Inter", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.proj-desc {
+  margin: 0;
+  color: var(--feed-muted);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.7vw;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+
+/* ===== CENTER CARD (card trung tam) ===== */
+.center-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 29%;
+  padding: 1.8rem 2rem;
+  border-left: 1px solid var(--feed-border);
+  border-right: 1px solid var(--feed-border);
+}
+
+.center-title {
+  display: inline-block;
+  transform: scaleY(1.5);
+  margin: 0 0 0.45rem;
+  color: var(--feed-text);
+  font-family: "Playfair Display", "Merriweather", serif;
+  font-size: clamp(28px, 3vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.12;
+}
+
+.center-subtitle {
+  margin: 0;
+  color: var(--feed-text);
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(15px, 2vw, 50px);
+  line-height: 1.33;
+}
+
+.news-highlight {
+  font-family: "Dancing Script", cursive;
+  font-style: italic;
+  font-weight: 700;
+  font-size: larger;
+}
+
+.news-khorap {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: larger;
+  font-weight: 100;
+}
+
+.center-tip {
+  margin-top: 0.82rem;
+  color: var(--feed-text);
+  font-family: "Times New Roman", Times, serif;
+  font-size: clamp(17px, 1vw, 60px);
+  font-weight: 100;
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+}
+
+.news-tip {
+  color: var(--feed-text);
+  font-family: "Playfair Display", "Merriweather", serif;
+  letter-spacing: -0.05em;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* TABLET (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .feed-container {
+    margin-top: 20px;
+    margin-bottom: clamp(1rem, 2vw, 1.6rem);
+  }
+
+  .proj-card {
+    width: calc(100% / 3);
+    min-height: 220px;
+    padding: 0 3vw;
+  }
+
+  .center-card {
+    width: 30%;
+    min-height: 220px;
+  }
+
+  .proj-card img {
+    height: clamp(110px, 20vw, 160px);
+  }
+
+  .proj-content {
+    padding: 0.75rem 0.85rem;
+  }
+
+  .proj-title {
+    font-size: 0.8rem;
+  }
+
+  .proj-desc {
+    font-size: 1.5vw;
+  }
+
+  .center-title {
+    font-size: clamp(24px, 2.8vw, 50px);
+  }
+
+  .center-subtitle {
+    font-size: clamp(14px, 1.8vw, 40px);
+  }
+
+  .center-tip {
+    font-size: clamp(14px, 0.9vw, 50px);
+  }
+}
+
+/* LARGE TABLET (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .feed-container {
+    margin-top: 18px;
+    margin-bottom: clamp(0.8rem, 1.8vw, 1.4rem);
+  }
+
+  .proj-card,
+  .center-card {
+    margin-top: 3vw;
+  }
+
+  .proj-card {
+    width: calc(100% / 2.5);
+    min-height: 200px;
+    padding: 0 2.5vw;
+  }
+
+  .center-card {
+    width: 35%;
+    min-height: 200px;
+    padding: 1.5rem 1.5rem;
+  }
+
+  .proj-card img {
+    height: clamp(100px, 18vw, 140px);
+  }
+
+  .proj-content {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .proj-title {
+    font-size: 0.75rem;
+  }
+
+  .proj-desc {
+    font-size: 1.4vw;
+    line-height: 0.75;
+  }
+
+  .center-title {
+    font-size: clamp(22px, 2.5vw, 42px);
+  }
+
+  .center-subtitle {
+    font-size: clamp(12px, 1.6vw, 35px);
+  }
+
+  .center-tip {
+    font-size: clamp(12px, 0.8vw, 40px);
+  }
+}
+
+/* MOBILE (max-width: 575px) */
+@media (max-width: 575.98px) {
+  .feed-container {
+    margin-top: 15px;
+    margin-bottom: clamp(0.8rem, 2vw, 1.2rem);
+    touch-action: pan-y;
+  }
+
+  .proj-card,
+  .center-card {
+    margin-top: 2vw;
+  }
+
+  .proj-card {
+    width: calc(100% / 2);
+    min-height: 180px;
+    padding: 0 2vw;
+  }
+
+  .center-card {
+    width: 50%;
+    min-height: 180px;
+    padding: 1.2rem 1rem;
+  }
+
+  .proj-card img {
+    height: clamp(90px, 16vw, 130px);
+  }
+
+  .proj-content {
+    padding: 0.6rem 0.7rem;
+  }
+
+  .proj-title {
+    font-size: 0.7rem;
+    margin-bottom: 0.35rem;
+  }
+
+  .proj-badge {
+    font-size: 8px;
+    padding: 2px 5px;
+  }
+
+  .proj-desc {
+    font-size: 1.3vw;
+    line-height: 0.75;
+  }
+
+  .center-title {
+    font-size: clamp(20px, 2.2vw, 36px);
+    margin: 0 0 0.35rem;
+  }
+
+  .center-subtitle {
+    font-size: clamp(11px, 1.5vw, 28px);
+    line-height: 1.25;
+  }
+
+  .center-tip {
+    font-size: clamp(10px, 0.7vw, 24px);
+    margin-top: 0.6rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+/* ULTRA SMALL MOBILE (max-width: 360px) */
+@media (max-width: 360px) {
+  .proj-card {
+    width: calc(100% / 1.8);
+    padding: 0 1.5vw;
+  }
+
+  .center-card {
+    width: 55%;
+  }
+
+  .proj-card img {
+    height: clamp(80px, 15vw, 120px);
+  }
+
+  .proj-title {
+    font-size: 0.65rem;
+  }
+
+  .proj-desc {
+    font-size: 1.2vw;
+  }
+
+  .center-title {
+    font-size: clamp(18px, 2vw, 32px);
+  }
+
+  .center-subtitle {
+    font-size: clamp(10px, 1.4vw, 24px);
+  }
+}

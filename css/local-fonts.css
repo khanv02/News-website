@@ -63,3 +63,60 @@
   font-display: swap;
   src: url(../fonts/google/Oswald-Bold-700.ttf) format("truetype");
 }
+
+@font-face {
+  font-family: "Newsreader";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/google/Newsreader_36pt-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/google/PlayfairDisplay-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/google/DancingScript-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(../fonts/google/DancingScript-Medium.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(../fonts/google/DancingScript-SemiBold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Dancing Script";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(../fonts/google/DancingScript-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "PP Editorial New";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url(../fonts/google/PPEditorialNew-Ultralight-BF644b21500d0c0.otf)
+    format("opentype");
+}
