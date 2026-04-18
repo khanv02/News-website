@@ -262,3 +262,41 @@ body {
     font-size: 0.76rem;
   }
 }
+
+/* =========================================================
+   NÚT SCROLL TO TOP (CUỘN LÊN ĐẦU TRANG)
+   ========================================================= */
+.scroll-top {
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    z-index: 1000; /* Nổi trên tất cả các thành phần khác */
+    background-color: #32373c; /* Màu xanh đậm The Good Trade */
+    border: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+/* Responsive: Hiện to hơn ở màn hình tablet/desktop */
+@media (min-width: 768px) {
+    .scroll-top {
+        bottom: 24px;
+        right: 24px;
+    }
+}
+
+/* Hiệu ứng khi hover */
+.scroll-top:hover {
+    background-color: #f2c200; /* Đổi màu vàng khi hover (lấy từ logo của bạn) */
+    transform: translateY(-3px); /* Nảy nhẹ lên */
+}
+
+/* Class được kích hoạt bằng JS để hiện nút */
+.scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+}
