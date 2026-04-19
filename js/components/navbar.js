@@ -192,7 +192,7 @@
 
               "<ul class=\"navbar-nav mb-0 main-menu main-menu-left\">" +
                 navLink("./Home.html",           "Kinh tế &amp; Chính trị", "home",      activeKey) +
-                navLink("./the-thao-suc-khoe.html", "Thể thao &amp; Sức khoẻ", "sports", activeKey) +
+                navLink("./the-thao-suc-khoe.html", "Thể thao &amp; Điện tử", "sports", activeKey) +
               "</ul>" +
 
               LOGO_HTML +

@@ -4,17 +4,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function initSportsPreview() {
-	var sportsLine = document.getElementById("news-s3-sports-line");
-	var previewCards = document.querySelectorAll(".s3-preview-card, .news-s3-preview-card");
+	var sportsLine = document.getElementById("s3-sports-category");
+	var previewCards = document.querySelectorAll(".s3-card-gallery");
 
 	if (!sportsLine || !previewCards.length) return;
 
-	var sportButtons = sportsLine.querySelectorAll(".s3-sport-btn, .news-s3-sport-btn");
+	var sportButtons = sportsLine.querySelectorAll(".s3-btn");
 
 	if (!sportButtons.length) return;
 
 	var activeButton =
-		sportsLine.querySelector(".s3-sport-btn.is-active, .news-s3-sport-btn.is-active") || sportButtons[0];
+		sportsLine.querySelector(".s3-btn.is-active") || sportButtons[0];
 
 	function updatePreview(button, animate) {
 		if (!button) return;
@@ -38,8 +38,8 @@ function initSportsPreview() {
 				card.hidden = false;
 				img.src = src;
 
-				var sportTextEl = button.querySelector(".s3-sport-text");
-				var sportText = sportTextEl ? sportTextEl.textContent : "Ảnh thể thao";
+				var sportTextEl = button.querySelector("span:first-child");
+				var sportText = sportTextEl ? sportTextEl.textContent.trim() : "Ảnh thể thao";
 				img.alt = sportText + " " + String(index + 1);
 			});
 
