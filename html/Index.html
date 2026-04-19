@@ -3,7 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News Website</title>
+    <title>Tin tức Online - Báo Chí DESIGN</title>
+    <meta
+      name="description"
+      content="Cập nhật tin tức mới nhất về kinh tế, chính trị, thể thao, giải trí và khoa học từ Báo Chí DESIGN."
+    />
 
     <!-- SCROLL RESET, no-defer -->
     <script>
@@ -20,124 +24,40 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../css/local-fonts.css" />
-    <link rel="stylesheet" href="../css/root.css" />
     <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/index.css" />
-    <link rel="stylesheet" href="../css/section2.css" />
-    <link rel="stylesheet" href="../css/section3.css" />
-    <link rel="stylesheet" href="../css/section4.css" />
-    <link rel="stylesheet" href="../css/horizontal-feed.css" />
+    <link rel="stylesheet" href="../css/components/root.css" />
+    <link rel="stylesheet" href="../css/components/navbar.css" />
+    <link rel="stylesheet" href="../css/index/section1.css" />
+    <link rel="stylesheet" href="../css/index/section2.css" />
+    <link rel="stylesheet" href="../css/index/section3.css" />
+    <link rel="stylesheet" href="../css/index/section4.css" />
+    <link rel="stylesheet" href="../css/index/horizontal-feed.css" />
 
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../js/lib/jquery/jquery-4.0.0.js" defer></script>
 
     <!-- Bootstrap JS -->
-    <script src="../js/bootstrap.bundle.min.js" defer></script>
+    <script src="../js/lib/bootstrap/bootstrap.bundle.min.js" defer></script>
 
     <!-- GSAP -->
-    <script src="../js/gsap/gsap.min.js" defer></script>
-    <script src="../js/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="../js/lib/gsap/gsap.min.js" defer></script>
+    <script src="../js/lib/gsap/ScrollTrigger.min.js" defer></script>
 
     <!-- JS sections -->
-    <script src="../js/heroSection.js" defer></script>
-    <script src="../js/sectionTwo.js" defer></script>
-    <script src="../js/sectionThree.js" defer></script>
-    <script src="../js/components/horizontalFeed.js" defer></script>
-
+    <script src="../js/components/navbar.js" defer></script>
+    <script src="../js/index/sectionTwo.js" defer></script>
+    <script src="../js/index/sectionThree.js" defer></script>
+    <script src="../js/index/horizontalFeed.js" defer></script>
     <script src="../js/auth.js" defer></script>
   </head>
 
-  <body class="news-body">
-    <!-- HEADER / NAVBAR -->
-    <header class="news-header sticky-top">
-      <nav class="navbar navbar-dark news-navbar py-0">
-        <div class="container-fluid px-3 px-xl-4">
-          <!-- Desktop menu -->
-          <div class="news-navbar-shell w-100">
-            <span class="news-team-tag">Nhóm 7</span>
+  <body class="body m-0">
+    <!-- HEADER: injected by js/components/navbar.js -->
+    <div id="site-header"></div>
 
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-left">
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="./Home.html"
-                  >Kinh tế &amp; Chính trị</a
-                >
-              </li>
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="#"
-                  >Thể thao &amp; Sức khoẻ</a
-                >
-              </li>
-            </ul>
-
-            <a class="news-logo py-3 mb-0" href="./Home.html">
-              <span>
-                BÁO CHÍ
-                <span aria-label="DESIGN">
-                  <span style="color: #c30000">D</span>
-                  <span style="color: #1c9a3f">E</span>
-                  <span style="color: #f2c200">S</span>
-                  <span style="color: #7a3bd6">I</span>
-                  <span style="color: #ff8a00">G</span>
-                  <span style="color: #1262ff">N</span>
-                </span>
-              </span>
-            </a>
-
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-right">
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="./Home.html"
-                  >Giải trí &amp; Đời sống</a
-                >
-              </li>
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="./Home.html"
-                  >Vũ trụ &amp; Thiên nhiên</a
-                >
-              </li>
-            </ul>
-
-            <!-- Nút hamburger (mobile) -->
-            <button
-              class="navbar-toggler border-0 shadow-none news-hamburger-btn"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#nwMenu"
-              aria-controls="nwMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="news-hamburger" aria-hidden="true">
-                <span class="news-ham-line news-ham-top"></span>
-                <span class="news-ham-line news-ham-bottom"></span>
-              </span>
-            </button>
-          </div>
-
-          <!-- Menu collapse (mobile) -->
-          <div class="collapse navbar-collapse justify-content-end" id="nwMenu">
-            <div
-              class="d-flex justify-content-center justify-content-lg-end w-100 mb-2 news-menu-actions"
-            >
-              <a
-                class="btn news-login-btn rounded-0 px-4 py-4"
-                id="login-link"
-                href="./dang-nhap.html"
-              >
-                Đăng nhập
-              </a>
-            </div>
-            <ul
-              class="navbar-nav list-inline mb-0 justify-content-center justify-content-lg-end w-100"
-              id="user-options"
-            ></ul>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <main class="news-main">
+    <main class="main">
       <!-- SECTION 1: Horizontal Feed -->
-      <section class="news-hero position-relative">
+      <section class="hero position-relative">
         <div class="feed-container">
           <div class="feed-track">
             <article class="proj-card">
@@ -147,11 +67,13 @@
                 loading="lazy"
               />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Global Dispatch</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Global Dispatch</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">
+                <p class="proj-desc mb-0">
                   Editorial package tracking high-stakes diplomacy.
                 </p>
               </div>
@@ -164,11 +86,13 @@
                 loading="lazy"
               />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Policy Lens</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Policy Lens</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">
+                <p class="proj-desc mb-0">
                   Longform layout balancing data callouts and context.
                 </p>
               </div>
@@ -181,18 +105,20 @@
                 loading="lazy"
               />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Live Wire</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Live Wire</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">Cộng hoà xã hội chủ nghĩa Việt Nam</p>
+                <p class="proj-desc mb-0">Cộng hoà xã hội chủ nghĩa Việt Nam</p>
               </div>
             </article>
 
             <!-- Card trung tâm -->
             <article class="center-card" aria-label="Feed center title card">
-              <h3 class="center-title">BÁO CHÍ !</h3>
-              <p class="center-subtitle mt-3">
+              <h3 class="center-title mb-2">BÁO CHÍ !</h3>
+              <p class="center-subtitle mt-3 mb-0">
                 Không chỉ dừng lại ở <br /><span class="news-khorap"
                   >Nội dung</span
                 ><br />
@@ -212,11 +138,13 @@
                 loading="lazy"
               />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Market Pulse</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Market Pulse</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">
+                <p class="proj-desc mb-0">
                   Financial briefing flow with sector-by-sector snapshots.
                 </p>
               </div>
@@ -225,11 +153,13 @@
             <article class="proj-card">
               <img src="../images/Trump.png" alt="Signal Desk" loading="lazy" />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Signal Desk</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Signal Desk</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">
+                <p class="proj-desc mb-0">
                   Compact newsroom module for tracking brief alerts.
                 </p>
               </div>
@@ -238,45 +168,48 @@
             <article class="proj-card">
               <img src="../images/injury.png" alt="Deep Focus" loading="lazy" />
               <div class="proj-content">
-                <div class="proj-title-row">
-                  <h3 class="proj-title">Deep Focus</h3>
+                <div
+                  class="proj-title-row d-flex align-items-center gap-2 mb-2"
+                >
+                  <h3 class="proj-title mb-0">Deep Focus</h3>
                   <span class="proj-badge">NEW</span>
                 </div>
-                <p class="proj-desc">
-                  Chuyên mục Thể thao & Sức khỏe: Những câu chuyện truyền cảm
+                <p class="proj-desc mb-0">
+                  Chuyên mục Thể thao & Điện tử: Những câu chuyện truyền cảm
                   hứng.
                 </p>
-                <a href="./the-thao-suc-khoe.html" class="stretched-link"></a>
+                <a
+                  href="./the-thao/the-thao-suc-khoe.html"
+                  class="stretched-link"
+                ></a>
               </div>
             </article>
           </div>
         </div>
 
         <div class="container-fluid px-3 px-xl-4">
-          <div class="news-title-wrap">
-            <h2 class="news-display-title mb-0">TIN TỨC ONLINE</h2>
+          <div class="title-wrap">
+            <h2 class="display-title mb-0">TIN TỨC ONLINE</h2>
           </div>
         </div>
       </section>
 
       <!-- SECTION 2: Horizontal scroll với GSAP -->
-      <div class="news-s2-wrapper">
-        <section class="news-section-two">
-          <div class="news-s2-viewport">
-            <div class="news-s2-track">
+      <div class="s2-wrapper">
+        <section class="section-two">
+          <div class="s2-viewport">
+            <div class="s2-track">
               <!-- ▸ Panel 1: Title Block -->
               <article class="s2-panel s2-title-block s2-first">
-                <div class="news-s2-editorial">
-                  <div class="news-s2-mark" aria-hidden="true">
+                <div class="s2-editorial">
+                  <div class="s2-mark" aria-hidden="true">
                     <span class="s2-mark-line">KINH TẾ &amp;</span>
                     <span class="s2-mark-line">CHÍNH TRỊ</span>
                   </div>
-                  <p
-                    class="news-s2-editorial-text news-s2-editorial-text--dropcap"
-                  >
-                    <span class="news-initial-block">N</span>ơi quyền lực và sự
-                    thao túng chi phối dòng tiền, định hình chính sách và vận
-                    hành xã hội.
+                  <p class="s2-editorial-text s2-editorial-text--dropcap">
+                    <span class="initial-block">N</span>ơi quyền lực và sự thao
+                    túng chi phối dòng tiền, định hình chính sách và vận hành xã
+                    hội.
                   </p>
                 </div>
               </article>
@@ -433,112 +366,112 @@
       </div>
 
       <!-- SECTION 3: Crafting Culture collage -->
-      <section class="news-section-three">
-        <div class="news-s3-header">
-          <div class="news-s3-copy">
-            <h2 class="news-s3-title">
+      <section class="s3-section">
+        <div class="s3-header">
+          <div class="s3-copy">
+            <h2 class="s3-title mb-0">
               <span class="s2-mark-line">THỂ THAO</span>
             </h2>
 
             <div
-              class="news-s3-sports-line"
-              id="news-s3-sports-line"
+              class="s3-sports-category"
+              id="s3-sports-category"
               role="list"
               aria-label="Danh mục thể thao"
             >
               <button
                 type="button"
-                class="news-s3-sport-btn is-active"
+                class="s3-btn is-active"
                 role="listitem"
                 data-sport="bong-da"
                 data-preview1="../images/thethao1.png"
                 data-preview2="../images/football.png"
                 data-preview3="../images/atletico_madrid.jpg"
-                style="--sport-icon: url(&quot;../images/football.png&quot;)"
+                style="--sport-icon: url(&quot;../../images/football.png&quot;)"
               >
-                <span class="news-s3-sport-text">BÓNG ĐÁ</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>BÓNG ĐÁ</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
 
               <button
                 type="button"
-                class="news-s3-sport-btn"
+                class="s3-btn"
                 role="listitem"
                 data-sport="bong-ro"
                 data-preview1="../images/basketball.png"
                 data-preview2="../images/thethao3.png"
                 data-preview3="../images/thethao4.png"
-                style="--sport-icon: url(&quot;../images/basketball.png&quot;)"
+                style="
+                  --sport-icon: url(&quot;../../images/basketball.png&quot;);
+                "
               >
-                <span class="news-s3-sport-text">BÓNG RỔ</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>BÓNG RỔ</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
 
               <button
                 type="button"
-                class="news-s3-sport-btn"
+                class="s3-btn"
                 role="listitem"
                 data-sport="bong-bau-duc"
                 data-preview1="../images/thethao2.png"
                 data-preview2="../images/Fomular1.png"
                 data-preview3="../images/thethao4.png"
-                style="--sport-icon: url(&quot;../images/thethao2.png&quot;)"
+                style="--sport-icon: url(&quot;../../images/thethao2.png&quot;)"
               >
-                <span class="news-s3-sport-text">BÓNG BẦU DỤC</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>BÓNG BẦU DỤC</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
 
               <button
                 type="button"
-                class="news-s3-sport-btn"
+                class="s3-btn"
                 role="listitem"
                 data-sport="f1"
                 data-preview1="../images/Fomular1.png"
                 data-preview2="../images/thethao4.png"
                 data-preview3="../images/F1er.png"
-                style="--sport-icon: url(&quot;../images/F1.png&quot;)"
+                style="--sport-icon: url(&quot;../../images/F1.png&quot;)"
               >
-                <span class="news-s3-sport-text">F1</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>F1</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
 
               <button
                 type="button"
-                class="news-s3-sport-btn"
+                class="s3-btn"
                 role="listitem"
                 data-sport="cau-long"
                 data-preview1="../images/thethao3.png"
                 data-preview2="../images/suckhoe2.png"
                 data-preview3="../images/suckhoe1.png"
-                style="--sport-icon: url(&quot;../images/thethao3.png&quot;)"
+                style="--sport-icon: url(&quot;../../images/thethao3.png&quot;)"
               >
-                <span class="news-s3-sport-text">CẦU LÔNG</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>CẦU LÔNG</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
 
               <button
                 type="button"
-                class="news-s3-sport-btn"
+                class="s3-btn"
                 role="listitem"
                 data-sport="quan-vot"
                 data-preview1="../images/suckhoe3.png"
                 data-preview2="../images/suckhoe2.png"
                 data-preview3="../images/thethao1.png"
-                style="--sport-icon: url(&quot;../images/suckhoe3.png&quot;)"
+                style="--sport-icon: url(&quot;../../images/suckhoe3.png&quot;)"
               >
-                <span class="news-s3-sport-text">QUẦN VỢT</span>
-                <span class="news-s3-sport-sep" aria-hidden="true"></span>
+                <span>QUẦN VỢT</span>
+                <span class="s3-sport-icon" aria-hidden="true"></span>
               </button>
             </div>
 
-            <p class="news-s3-kicker">
-              - CẬP NHẬT MỌI TIN TỨC THỂ THAO SỚM NHẤT -
-            </p>
+            <p class="s3-kicker">- CẬP NHẬT MỌI TIN TỨC THỂ THAO SỚM NHẤT -</p>
           </div>
 
-          <div class="news-s3-hover-gallery" aria-hidden="true">
+          <div class="s3-pic-gallery" aria-hidden="true">
             <figure
-              class="news-s3-preview-card news-s3-preview-card--1 is-visible"
+              class="s3-card-gallery s3-card-gallery--1 is-visible"
               style="--x: 0%; --y: 24%; --w: 200px; --r: -8deg"
             >
               <img
@@ -548,7 +481,7 @@
               />
             </figure>
             <figure
-              class="news-s3-preview-card news-s3-preview-card--2 is-visible"
+              class="s3-card-gallery s3-card-gallery--2 is-visible"
               style="--x: 25%; --y: 55%; --w: 205px; --r: 6deg"
             >
               <img
@@ -558,7 +491,7 @@
               />
             </figure>
             <figure
-              class="news-s3-preview-card news-s3-preview-card--3 is-visible"
+              class="s3-card-gallery s3-card-gallery--3 is-visible"
               style="--x: 56%; --y: 20%; --w: 200px; --r: 11deg"
             >
               <img
@@ -590,7 +523,7 @@
                       loading="lazy"
                     />
                     <div class="sports-feed-body">
-                      <h3 class="sports-feed-title">
+                      <h3 class="sports-feed-title mb-0">
                         Rwanda tries to protect farmland in Africa's most
                         densely populated nation
                       </h3>
@@ -608,7 +541,7 @@
                       loading="lazy"
                     />
                     <div class="sports-feed-body">
-                      <h3 class="sports-feed-title">
+                      <h3 class="sports-feed-title mb-0">
                         Polymarket bets on Iran ceasefire surged before Trump's
                         announcement
                       </h3>
@@ -626,7 +559,7 @@
                       loading="lazy"
                     />
                     <div class="sports-feed-body">
-                      <h3 class="sports-feed-title">
+                      <h3 class="sports-feed-title mb-0">
                         Huge fire burns in central Beirut after consecutive
                         Israeli airstrikes hit the city
                       </h3>
@@ -644,7 +577,7 @@
                       loading="lazy"
                     />
                     <div class="sports-feed-body">
-                      <h3 class="sports-feed-title">
+                      <h3 class="sports-feed-title mb-0">
                         Iran, the US and Israel agree to a temporary ceasefire
                       </h3>
                       <p class="sports-feed-meta">
@@ -661,7 +594,7 @@
                       loading="lazy"
                     />
                     <div class="sports-feed-body">
-                      <h3 class="sports-feed-title">
+                      <h3 class="sports-feed-title mb-0">
                         Trump says it would take 4 hours to destroy Iran's
                         bridges and power plants
                       </h3>
@@ -687,177 +620,279 @@
       </section>
 
       <!-- SECTION 4: Sticky lead story + right rail list -->
-      <section class="news-section-four" id="news-section-four">
+      <section class="s4-section" id="s4-section">
         <div class="container-fluid px-3 px-xl-4">
-          <div class="news-s4-layout">
-            <div class="news-s4-feature-wrap">
-              <article class="news-s4-feature">
-                <a
-                  class="news-s4-feature-link"
-                  href="./the-thao-football-detail.html"
-                >
-                  <img
-                    src="../images/Dune3.jpg"
-                    alt="Felicien Kabuga: Rwanda genocide suspect unfit to stand trial"
-                    loading="lazy"
-                  />
-                  <div class="news-s4-feature-overlay">
-                    <p class="news-s4-feature-tag">Tin nổi bật</p>
-                    <h3 class="news-s4-feature-title">
-                      Felicien Kabuga: Rwanda genocide suspect unfit to stand
-                      trial, UN court rules
-                    </h3>
-                    <p class="news-s4-feature-excerpt">
-                      International court delivers verdict on one of the most
-                      wanted suspects in the 1994 Rwanda genocide.
-                    </p>
-                    <p class="news-s4-feature-meta">
-                      <span>Jack Harksom</span>
-                      <span>12 hours ago</span>
-                    </p>
-                  </div>
-                </a>
-              </article>
-            </div>
+          <div class="s4-layout gap-4">
+            <article class="s4-feature-wrap">
+              <a
+                class="s4-feature-link"
+                href="./the-thao/the-thao-football-detail.html"
+              >
+                <img
+                  src="../images/Dune3.jpg"
+                  alt="Felicien Kabuga: Rwanda genocide suspect unfit to stand trial"
+                  loading="lazy"
+                />
+                <div class="s4-feature-overlay">
+                  <p class="s4-feature-tag mb-0">Tin nổi bật</p>
+                  <h3 class="s4-feature-title">
+                    Felicien Kabuga: Rwanda genocide suspect unfit to stand
+                    trial, UN court rules
+                  </h3>
+                  <p class="s4-feature-excerpt">
+                    International court delivers verdict on one of the most
+                    wanted suspects in the 1994 Rwanda genocide.
+                  </p>
+                  <p class="s4-feature-meta">
+                    <span>Jack Harksom</span>
+                    <span>12 hours ago</span>
+                  </p>
+                </div>
+              </a>
+            </article>
 
-            <aside class="news-s4-list" aria-label="Danh sach tin nhanh">
-              <article class="news-s4-item">
-                <a class="news-s4-item-link" href="./the-thao-suc-khoe.html">
-                  <span class="news-s4-item-media">
+            <aside class="s4-list" aria-label="Danh sach tin nhanh">
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
                     <img
                       src="../images/Trump.png"
                       alt="Tokyo and Seoul want a closer relationship"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Jane Hilson <span>• 5 hours ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >Tokyo and Seoul want a closer relationship so does
                       Beijing</span
                     >
-                    <span class="news-s4-item-read">7 min read</span>
+                    <span class="s4-item-readtime">7 min read</span>
                   </span>
                 </a>
               </article>
-
-              <article class="news-s4-item">
+              <article class="s4-item">
                 <a
-                  class="news-s4-item-link"
-                  href="./suc-khoe-mental-detail.html"
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
                 >
-                  <span class="news-s4-item-media">
+                  <span class="s4-item-media">
+                    <img
+                      src="../images/Trump.png"
+                      alt="Tokyo and Seoul want a closer relationship"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
+                      >Jane Hilson <span>• 5 hours ago</span></span
+                    >
+                    <span class="s4-item-title"
+                      >Tokyo and Seoul want a closer relationship so does
+                      Beijing</span
+                    >
+                    <span class="s4-item-readtime">7 min read</span>
+                  </span>
+                </a>
+              </article>
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
+                    <img
+                      src="../images/Trump.png"
+                      alt="Tokyo and Seoul want a closer relationship"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
+                      >Jane Hilson <span>• 5 hours ago</span></span
+                    >
+                    <span class="s4-item-title"
+                      >Tokyo and Seoul want a closer relationship so does
+                      Beijing</span
+                    >
+                    <span class="s4-item-readtime">7 min read</span>
+                  </span>
+                </a>
+              </article>
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
+                    <img
+                      src="../images/Trump.png"
+                      alt="Tokyo and Seoul want a closer relationship"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
+                      >Jane Hilson <span>• 5 hours ago</span></span
+                    >
+                    <span class="s4-item-title"
+                      >Tokyo and Seoul want a closer relationship so does
+                      Beijing</span
+                    >
+                    <span class="s4-item-readtime">7 min read</span>
+                  </span>
+                </a>
+              </article>
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
+                    <img
+                      src="../images/Trump.png"
+                      alt="Tokyo and Seoul want a closer relationship"
+                      loading="lazy"
+                    />
+                  </span>
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
+                      >Jane Hilson <span>• 5 hours ago</span></span
+                    >
+                    <span class="s4-item-title"
+                      >Tokyo and Seoul want a closer relationship so does
+                      Beijing</span
+                    >
+                    <span class="s4-item-readtime">7 min read</span>
+                  </span>
+                </a>
+              </article>
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
                     <img
                       src="../images/Dune3.jpg"
                       alt="Pope Francis undergoes abdominal surgery"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Mac Thaer <span>• 3 hours ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >Pope Francis undergoes abdominal surgery in latest
                       health</span
                     >
-                    <span class="news-s4-item-read">5 min read</span>
+                    <span class="s4-item-readtime">5 min read</span>
                   </span>
                 </a>
               </article>
 
-              <article class="news-s4-item">
+              <article class="s4-item">
                 <a
-                  class="news-s4-item-link"
-                  href="./the-thao-tennis-detail.html"
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-tennis-detail.html"
                 >
-                  <span class="news-s4-item-media">
+                  <span class="s4-item-media">
                     <img
                       src="../images/thethao1.png"
                       alt="At least one killed in shooting during protest"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Wake Hilcher <span>• 1 hour ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >At least one killed in shooting during a protest that
                       clash happened</span
                     >
-                    <span class="news-s4-item-read">4 min read</span>
+                    <span class="s4-item-readtime">4 min read</span>
                   </span>
                 </a>
               </article>
 
-              <article class="news-s4-item">
-                <a class="news-s4-item-link" href="./the-thao-f1-detail.html">
-                  <span class="news-s4-item-media">
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-f1-detail.html"
+                >
+                  <span class="s4-item-media">
                     <img
                       src="../images/Fomular1.png"
                       alt="Formula 1 battle tightens"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Anna Crest <span>• 58 minutes ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >Formula 1 title race tightens after dramatic final-lap
                       overtake</span
                     >
-                    <span class="news-s4-item-read">6 min read</span>
+                    <span class="s4-item-readtime">6 min read</span>
                   </span>
                 </a>
               </article>
 
-              <article class="news-s4-item">
-                <a class="news-s4-item-link" href="./suc-khoe-yoga-detail.html">
-                  <span class="news-s4-item-media">
+              <article class="s4-item">
+                <a
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
+                >
+                  <span class="s4-item-media">
                     <img
                       src="../images/suckhoe2.png"
                       alt="How breathwork helps reduce daily stress"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Lina Park <span>• 36 minutes ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >How breathwork routines can reduce daily stress in urban
                       life</span
                     >
-                    <span class="news-s4-item-read">5 min read</span>
+                    <span class="s4-item-readtime">5 min read</span>
                   </span>
                 </a>
               </article>
 
-              <article class="news-s4-item">
+              <article class="s4-item">
                 <a
-                  class="news-s4-item-link"
-                  href="./suc-khoe-nutrition-detail.html"
+                  class="s4-item-link"
+                  href="./the-thao/the-thao-suc-khoe.html"
                 >
-                  <span class="news-s4-item-media">
+                  <span class="s4-item-media">
                     <img
                       src="../images/suckhoe3.png"
                       alt="Food inflation pushes families to new habits"
                       loading="lazy"
                     />
                   </span>
-                  <span class="news-s4-item-body">
-                    <span class="news-s4-item-author"
+                  <span class="s4-item-body">
+                    <span class="s4-item-author mb-0"
                       >Nina Stone <span>• 20 minutes ago</span></span
                     >
-                    <span class="news-s4-item-title"
+                    <span class="s4-item-title"
                       >Food inflation pushes families to rebuild weekly shopping
                       habits</span
                     >
-                    <span class="news-s4-item-read">3 min read</span>
+                    <span class="s4-item-readtime">3 min read</span>
                   </span>
                 </a>
               </article>
