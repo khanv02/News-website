@@ -14,97 +14,15 @@
 
     <script src="../../js/lib/jquery/jquery-4.0.0.js" defer></script>
     <script src="../../js/lib/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="../../js/components/navbar.js" defer></script>
     <script src="../../js/auth.js" defer></script>
   </head>
 
   <body class="news-body tgt-page">
     <div id="news-cursor" aria-hidden="true"></div>
 
-    <header class="news-header sticky-top">
-      <nav class="navbar navbar-dark news-navbar py-0">
-        <div class="container-fluid px-3 px-xl-4">
-          <!-- Desktop menu -->
-          <div class="news-navbar-shell w-100">
-            <span class="news-team-tag">Nhóm 7</span>
-
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-left">
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="../Index.html"
-                  >Kinh tế &amp; Chính trị</a
-                >
-              </li>
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="#"
-                  >Thể thao &amp; Sức khoẻ</a
-                >
-              </li>
-            </ul>
-
-            <a class="news-logo py-3 mb-0" href="../Index.html">
-              <span>
-                BÁO CHÍ
-                <span aria-label="DESIGN">
-                  <span style="color: #c30000">D</span>
-                  <span style="color: #1c9a3f">E</span>
-                  <span style="color: #f2c200">S</span>
-                  <span style="color: #7a3bd6">I</span>
-                  <span style="color: #ff8a00">G</span>
-                  <span style="color: #1262ff">N</span>
-                </span>
-              </span>
-            </a>
-
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-right">
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="../Index.html"
-                  >Giải trí &amp; Đời sống</a
-                >
-              </li>
-              <li class="nav-item news-menu-item">
-                <a class="nav-link news-menu-link" href="../Index.html"
-                  >Vũ trụ &amp; Thiên nhiên</a
-                >
-              </li>
-            </ul>
-
-            <!-- Nút hamburger (mobile) -->
-            <button
-              class="navbar-toggler border-0 shadow-none news-hamburger-btn"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#nwMenu"
-              aria-controls="nwMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="news-hamburger" aria-hidden="true">
-                <span class="news-ham-line news-ham-top"></span>
-                <span class="news-ham-line news-ham-bottom"></span>
-              </span>
-            </button>
-          </div>
-
-          <!-- Menu collapse (mobile) -->
-          <div class="collapse navbar-collapse justify-content-end" id="nwMenu">
-            <div
-              class="d-flex justify-content-center justify-content-lg-end w-100 mb-2 news-menu-actions"
-            >
-              <a
-                class="btn news-login-btn rounded-0 px-4 py-4"
-                id="login-link"
-                href="../dang-nhap.html"
-              >
-                Đăng nhập
-              </a>
-            </div>
-            <ul
-              class="navbar-nav list-inline mb-0 justify-content-center justify-content-lg-end w-100"
-              id="user-options"
-            ></ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <!-- HEADER: injected by js/components/navbar.js -->
+    <div id="site-header" data-base="../"></div>
 
     <main style="background-color: #fbf9f6">
       <section class="tgt-hero">
@@ -112,7 +30,7 @@
           <h1>Giải Trí & Đời Sống</h1>
           <p>
             Cập nhật nhịp sống hiện đại, nơi giải trí, xu hướng và câu chuyện
-            đời thường hội tụ – mang đến góc nhìn sâu sắc và truyền cảm hứng mỗi
+            đời thường hội tụ - mang đến góc nhìn sâu sắc và truyền cảm hứng mỗi
             ngày.
           </p>
         </div>

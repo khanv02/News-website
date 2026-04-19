@@ -6,99 +6,23 @@
     <title>Vũ trụ & Thiên nhiên - Tin tức</title>
 
     <link rel="stylesheet" href="../../css/local-fonts.css" />
-    <link rel="stylesheet" href="../../css/root.css" />
     <link rel="stylesheet" href="../../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../css/index.css" />
+    <link rel="stylesheet" href="../../css/components/root.css" />
+    <link rel="stylesheet" href="../../css/components/navbar.css" />
     <link rel="stylesheet" href="../../css/article-detail.css" />
     <link rel="stylesheet" href="../../css/styles_giaitridoisong.css" />
-    <link rel="stylesheet" href="../../css/footer.css" />
+    <link rel="stylesheet" href="../../css/components/footer.css" />
 
-    <style>
-      .page-vu-tru .tgt-card {
-        border-radius: 24px !important;
-        overflow: hidden;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        background: #ffffff;
-      }
-      .page-vu-tru .tgt-card img {
-        width: 100%;
-        height: 240px;
-        object-fit: cover;
-        display: block;
-        border-radius: 24px 24px 0 0;
-      }
-      .page-vu-tru .tgt-card .p-4 {
-        padding: 1.5rem !important;
-      }
-      .page-vu-tru .tgt-card .text-uppercase {
-        font-size: 0.75rem;
-        letter-spacing: 0.18em;
-        color: #6c757d;
-      }
-      .page-vu-tru .tgt-card h3 {
-        line-height: 1.15;
-        font-size: 1.75rem;
-        margin-top: 0.8rem;
-        margin-bottom: 1rem;
-      }
-      .page-vu-tru .tgt-card p {
-        margin-bottom: 1rem;
-        color: #6c757d;
-      }
-      .page-vu-tru .tgt-card small {
-        color: #6c757d;
-      }
-      .page-vu-tru .tgt-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-        background-color: #fcfcfc;
-      }
-      .page-vu-tru .tgt-card:hover img {
-        transform: scale(1.02);
-      }
-    </style>
-
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../../js/cursor.js" defer></script>
+    <script src="../../js/lib/jquery/jquery-4.0.0.js" defer></script>
+    <script src="../../js/lib/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="../../js/components/navbar.js" defer></script>
     <script src="../../js/auth.js" defer></script>
   </head>
 
   <body class="news-body page-vu-tru">
     <div id="news-cursor"></div>
-    <header class="news-header sticky-top" style="background: white; border-bottom: 2px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
-      <nav class="navbar navbar-dark news-navbar py-0">
-        <div class="container-fluid px-3 px-xl-4">
-          <div class="news-navbar-shell w-100">
-            <span class="news-team-tag">Nhóm 7</span>
-
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-left">
-              <li class="nav-item"><a class="nav-link" href="./Home.html">Kinh tế & Chính trị</a></li>
-              <li class="nav-item"><a class="nav-link" href="./the-thao-suc-khoe.html">Thể thao & Sức khoẻ</a></li>
-            </ul>
-
-            <a class="news-logo py-3 mb-0" href="./Home.html">
-              <span>BÁO CHÍ 
-                <span aria-label="DESIGN" class="d-inline-flex">
-                  <span style="color: #c30000">D</span>
-                  <span style="color: #1c9a3f">E</span>
-                  <span style="color: #f2c200">S</span>
-                  <span style="color: #7a3bd6">I</span>
-                  <span style="color: #ff8a00">G</span>
-                  <span style="color: #1262ff">N</span>
-                </span>
-              </span>
-            </a>
-
-            <ul class="navbar-nav mb-0 news-main-menu news-main-menu-right">
-              <li class="nav-item"><a class="nav-link" href="./giai-tri-doi-song.html">Giải trí & Đời sống</a></li>
-              <li class="nav-item active"><a class="nav-link" href="./vu-tru-thien-nhien.html">Vũ trụ & Thiên nhiên</a></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+    <!-- HEADER: injected by js/components/navbar.js -->
+    <div id="site-header" data-base="../"></div>
 
     <main style="background:#fbf9f6; padding:40px 0;">
       <div class="container">

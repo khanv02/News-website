@@ -13,7 +13,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/basketball.png");
+  background-image: url("../../images/basketball.png");
   background-repeat: no-repeat;
   background-position: right clamp(-24px, -2vw, -8px) top clamp(24px, 4vw, 72px);
   background-size: min(44vw, 620px) auto;
