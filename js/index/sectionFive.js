@@ -27,7 +27,7 @@ $(() => {
     height: "94vh",
     borderRadius: "14px",
     top: "3vh",
-    left: "2vw",
+    left: "1.5vw",
     xPercent: 0,
     yPercent: 0,
     x: 0,
@@ -70,8 +70,8 @@ $(() => {
 
   // ── 6. item-tr1 (mới thêm): bay Phải + Lên (mạnh hơn xíu để ra khỏi màn hình) ──
   tl.to(".item-tr1", {
-    xPercent: 150,
-    yPercent: -200,
+    xPercent: 200,
+    yPercent: -300,
     duration: 1,
     ease: "power2.inOut"
   }, 0);
