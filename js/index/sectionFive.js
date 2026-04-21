@@ -1,11 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
+$(() => {
   if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const section = document.querySelector(".s5-section");
-  if (!section) return;
-
+  const section = $(".s5-section")[0];
   const natureFeed = section.querySelector(".s5-nature-feed");
 
   // Initial state cho Nature feed
@@ -29,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     height: "94vh",
     borderRadius: "14px",
     top: "3vh",
-    left: "2vw",
+    left: "1.5vw",
     xPercent: 0,
     yPercent: 0,
     x: 0,
@@ -72,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ── 6. item-tr1 (mới thêm): bay Phải + Lên (mạnh hơn xíu để ra khỏi màn hình) ──
   tl.to(".item-tr1", {
-    xPercent: 150,
-    yPercent: -200,
+    xPercent: 200,
+    yPercent: -300,
     duration: 1,
     ease: "power2.inOut"
   }, 0);

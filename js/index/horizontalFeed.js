@@ -1,80 +1,140 @@
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".feed-container").forEach(container => {
-    const track = container.querySelector(".feed-track");
-    if (!track) return;
+$(() => {
+  $(".feed-container, .s5-nature-feed").each(function() {
+    const $container = $(this);
+    const $track = $container.find(".feed-track, .s5-feed-track");
+    if (!$track.length) return;
 
-    const centerCard = track.querySelector(".center-card");
-    let isDragging = false, hasDragged = false;
-    let startX = 0, dragStartX = 0, currentX = 0;
-    let oldDragX = 0, velocity = 0;
+    if ($container.hasClass("s5-nature-feed")) {
+      $container.css({ overflow: "hidden", cursor: "grab", "touch-action": "pan-y" });
+      $track.removeClass("overflow-x-auto").css("width", "max-content");
+    }
 
-    // Tính toán giới hạn kéo
-    const clamp = (x) => Math.max(Math.min(0, container.clientWidth - track.scrollWidth), Math.min(0, x));
+    const $centerCard = $track.find(".center-card");
+    const $children = $track.children();
     
-    // Hàm di chuyển chính sử dụng GSAP để xử lý độ mượt
-    const moveTo = (x, duration = 0.1) => {
-      currentX = clamp(x);
-      gsap.to(track, { x: currentX, duration, ease: "power2.out", overwrite: true });
+    // --- Thiết lập Vòng lặp Vô Tận (Infinite Loop) ---
+    // Nhân bản nội dung thành 3 phần: [Left Clone] - [Original] - [Right Clone]
+    const $cloneLeft = $children.clone(true).addClass("is-clone").removeAttr("id");
+    const $cloneRight = $children.clone(true).addClass("is-clone").removeAttr("id");
+    $track.prepend($cloneLeft).append($cloneRight);
+    
+    const $origFirst = $children.eq(0); 
+    const $cloneRightFirst = $cloneRight.eq(0);
+    
+    let wrapWidth = 0;
+    const calculateWrap = () => {
+       if (!$cloneRightFirst.length || !$origFirst.length) return;
+       // wrapWidth = khoảng cách chính xác từ mảng gốc tới mảng bên phải
+       wrapWidth = $cloneRightFirst[0].offsetLeft - $origFirst[0].offsetLeft;
     };
 
-    const refreshBounds = (shouldCenter = false, immediate = false) => {
-      let startPos = currentX;
-      if (shouldCenter && !hasDragged && centerCard) {
-         startPos = (container.clientWidth / 2) - (centerCard.offsetLeft + centerCard.offsetWidth / 2);
+    let isDragging = false, hasDragged = false, isRealDrag = false;
+    let startX = 0, currentX = 0, velocity = 0;
+
+    const refreshBounds = (shouldCenter = false) => {
+      calculateWrap();
+      if (!wrapWidth) return; 
+
+      let startPos = currentX || -wrapWidth; // Mặc định ở phần Original
+      
+      if (shouldCenter && !hasDragged && $centerCard.length) {
+         startPos = ($container.innerWidth() / 2) - ($centerCard[0].offsetLeft + $centerCard.outerWidth() / 2);
       }
-      moveTo(startPos, immediate ? 0 : 0.8); // Dùng 0 để nhảy ngay vị trí lập tức
+      
+      // Ghìm vị trí bắt buộc vào "vùng an toàn" hiển thị mượt mà [-2*wrapWidth, -wrapWidth)
+      let temp = ((startPos % wrapWidth) + wrapWidth) % wrapWidth;
+      currentX = temp - wrapWidth * 2;
+      
+      gsap.set($track[0], { x: currentX });
     };
 
-    const startDrag = (x) => {
-      isDragging = true;
-      hasDragged = true;
+    const dragStart = x => {
+      isDragging = hasDragged = true;
+      isRealDrag = false;
       startX = x;
-      dragStartX = currentX;
-      oldDragX = dragStartX;
       velocity = 0;
-      
-      container.classList.add("is-dragging");
-      gsap.killTweensOf(track); // Dừng lại tức thời khi chạm tay (hoặc chuột)
+      $container.addClass("is-dragging").css("cursor", "grabbing");
+      gsap.killTweensOf($track[0]);
     };
 
-    const doDrag = (x) => {
+    const doDrag = x => {
       if (!isDragging) return;
-      const targetX = dragStartX + (x - startX) * 1.5;
-      velocity = targetX - oldDragX; // Tính vận tốc văng
-      oldDragX = targetX;
+      if (Math.abs(x - startX) > 5) isRealDrag = true; // Chống lỡ click khi kéo
       
-      // Update mượt mà (bám chuột với chút độ nảy)
-      moveTo(targetX, 0.15);
+      // Lấy X hiện tại của DOM (phòng khi tween cũ chưa dừng hẳn do click nhanh)
+      let domX = parseFloat(gsap.getProperty($track[0], "x")) || currentX;
+      const deltaX = (x - startX) * 1.5; // Hệ số nhân lướt
+      startX = x; // Consume X
+      
+      let targetX = domX + deltaX;
+      velocity = deltaX; 
+      
+      // Wrap tức thời, âm thầm bẻ lái DOM mà không gây giật
+      if (targetX > -wrapWidth) {
+         targetX -= wrapWidth;
+         domX -= wrapWidth;
+         gsap.set($track[0], { x: domX }); 
+      } else if (targetX < -wrapWidth * 2) {
+         targetX += wrapWidth;
+         domX += wrapWidth;
+         gsap.set($track[0], { x: domX });
+      }
+      
+      currentX = targetX;
+      gsap.to($track[0], { x: currentX, duration: 0.15, ease: "power2.out", overwrite: true });
     };
 
-    const endDrag = () => {
+    const dragEnd = () => {
       if (!isDragging) return;
       isDragging = false;
-      container.classList.remove("is-dragging");
+      $container.removeClass("is-dragging").css("cursor", "grab");
       
-      // Hiệu ứng "Trớn" (Momentum / Fling) khi thả tay ra
-      moveTo(currentX + velocity * 15, 0.8); 
+      let finalX = currentX + velocity * 15;
+      
+      // Vung tay theo quán tính, dùng Modifiers để wrap mượt chạy liên tục không điểm viền
+      gsap.to($track[0], { 
+        x: finalX, 
+        duration: 0.8, 
+        ease: "power2.out", 
+        overwrite: true,
+        modifiers: {
+          x: function(x_val) {
+             if (!wrapWidth) return x_val;
+             let val = parseFloat(x_val);
+             let temp = ((val % wrapWidth) + wrapWidth) % wrapWidth;
+             return (temp - wrapWidth * 2) + "px";
+          }
+        },
+        onUpdate: function() {
+           currentX = parseFloat(gsap.getProperty($track[0], "x"));
+        }
+      });
     };
 
-    // Chuột
-    container.addEventListener("mousedown", e => { if (e.button === 0) { startDrag(e.pageX); e.preventDefault(); } });
-    window.addEventListener("mousemove", e => doDrag(e.pageX));
-    window.addEventListener("mouseup", endDrag);
-    container.addEventListener("mouseleave", endDrag);
+    // Chuột tại container & Touch (Mobile)
+    $container.on({
+      mousedown: e => { if (e.button === 0) { dragStart(e.pageX); e.preventDefault(); } },
+      mouseleave: dragEnd,
+      touchstart: e => dragStart(e.originalEvent.touches[0].pageX),
+      touchmove: e => doDrag(e.originalEvent.touches[0].pageX),
+      "touchend touchcancel": dragEnd
+    });
+    
+    // Bắt sự kiện chuột di chuyển toàn màn hình
+    $(window).on({
+      mousemove: e => doDrag(e.pageX),
+      mouseup: dragEnd,
+      resize: () => refreshBounds(false) 
+    });
 
-    // Cảm ứng (Touch)
-    container.addEventListener("touchstart", e => startDrag(e.touches[0].pageX), { passive: true });
-    container.addEventListener("touchmove", e => doDrag(e.touches[0].pageX), { passive: true });
-    container.addEventListener("touchend", endDrag, { passive: true });
-    container.addEventListener("touchcancel", endDrag, { passive: true });
+    // Vô hiệu mặc định trình duyệt để UX sạch sẽ
+    $track.find("img").on("dragstart", e => e.preventDefault());
+    $track.find("a").on("click", e => { if (isRealDrag) { e.preventDefault(); e.stopImmediatePropagation(); } });
 
-    track.querySelectorAll("img").forEach(img => img.addEventListener("dragstart", e => e.preventDefault()));
-    window.addEventListener("resize", () => refreshBounds(true, true)); // Khi resize cũng nên nhảy luôn để tránh rung mượt quá mức
-
-    const initReadyState = () => { refreshBounds(true, true); container.classList.add("feed-ready"); };
-
-    refreshBounds(true, true); // Gọi nhảy ngay ở frame đầu tiên
-    requestAnimationFrame(initReadyState);
-    if (document.fonts?.ready) document.fonts.ready.then(() => refreshBounds(true, true));
+    // Init khởi động
+    setTimeout(() => refreshBounds(true), 100);
+    $container.addClass("feed-ready");
+    if (document.fonts?.ready) document.fonts.ready.then(() => refreshBounds(true));
   });
 });
+

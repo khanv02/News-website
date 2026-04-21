@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 
 <head>
@@ -31,7 +31,9 @@
   <link rel="stylesheet" href="../css/index/section3.css" />
   <link rel="stylesheet" href="../css/index/section4.css" />
   <link rel="stylesheet" href="../css/index/section5.css" />
+  <link rel="stylesheet" href="../css/index/section6.css" />
   <link rel="stylesheet" href="../css/index/horizontal-feed.css" />
+  <link rel="stylesheet" href="../css/components/footer.css" />
 
   <!-- jQuery -->
   <script src="../js/lib/jquery/jquery-4.0.0.js" defer></script>
@@ -50,7 +52,9 @@
   <script src="../js/index/sectionFour.js" defer></script>
   <script src="../js/index/horizontalFeed.js" defer></script>
   <script src="../js/index/sectionFive.js" defer></script>
+  <script src="../js/index/section6.js" defer></script>
   <script src="../js/auth.js" defer></script>
+  <script src="../js/components/footer.js" defer></script>
 </head>
 
 <body class="body m-0">
@@ -476,7 +480,7 @@
         <div class="row g-4 s4-layout-row">
           <!-- Column trái: Bài nổi bật (Sticky) -->
           <div class="col-12 col-lg-7 col-xl-8">
-            <article class="s4-feature-wrap sticky-lg-top pt-3">
+            <article class="s4-feature-wrap sticky-lg-top">
               <a class="s4-feature-link position-relative d-block rounded-4 overflow-hidden text-decoration-none text-white shadow-lg" style="isolation: isolate;" href="./the-thao/the-thao-football-detail.html">
                 <img class="w-100 h-100 object-fit-cover d-block" src="../images/Dune3.jpg" alt="Felicien Kabuga: Rwanda genocide suspect unfit to stand trial"
                   loading="lazy" />
@@ -715,7 +719,16 @@
 
         <!-- Nature Feed List (Bottom of sticky wrap) -->
         <div class="s5-nature-feed position-absolute bottom-0 start-0 w-100 z-3 px-3 px-xl-4 pb-4">
-          <div class="s5-feed-track d-flex flex-nowrap overflow-x-auto gap-3 pb-2 pt-2">
+          <div class="s5-feed-track d-flex flex-nowrap overflow-x-auto gap-1 pb-2 pt-2">
+            <a href="#" class="s5-feed-item text-white text-decoration-none">
+              <div class="s5-feed-img-wrap overflow-hidden rounded mb-3">
+                <img src="../images/earth.png" class="w-100 h-100 object-fit-cover transition-img" loading="lazy">
+              </div>
+              <div class="s5-feed-body">
+                <h6 class="mb-1 fw-bold fs-6 text-white text-truncate-2">Chậm Lại Băng Tan Tại Nam Cực</h6>
+                <span class="small text-white-50 mt-2 d-block">3 giờ trước</span>
+              </div>
+            </a>
 
             <a href="#" class="s5-feed-item text-white text-decoration-none">
               <div class="s5-feed-img-wrap overflow-hidden rounded mb-3">
@@ -746,6 +759,16 @@
                 <span class="small text-white-50 mt-2 d-block">5 giờ trước</span>
               </div>
             </a>
+            
+            <a href="#" class="s5-feed-item text-white text-decoration-none">
+              <div class="s5-feed-img-wrap overflow-hidden rounded mb-3">
+                <img src="../images/earth.png" class="w-100 h-100 object-fit-cover transition-img" loading="lazy">
+              </div>
+              <div class="s5-feed-body">
+                <h6 class="mb-1 fw-bold fs-6 text-white text-truncate-2">Chậm Lại Băng Tan Tại Nam Cực</h6>
+                <span class="small text-white-50 mt-2 d-block">3 giờ trước</span>
+              </div>
+            </a>
 
             <a href="#" class="s5-feed-item text-white text-decoration-none">
               <div class="s5-feed-img-wrap overflow-hidden rounded mb-3">
@@ -757,15 +780,131 @@
               </div>
             </a>
 
+            <a href="#" class="s5-feed-item text-white text-decoration-none">
+              <div class="s5-feed-img-wrap overflow-hidden rounded mb-3">
+                <img src="../images/vutru-featured.jpg" class="w-100 h-100 object-fit-cover transition-img" loading="lazy">
+              </div>
+              <div class="s5-feed-body">
+                <h6 class="mb-1 fw-bold fs-6 text-white text-truncate-2">Đa Dạng Sinh Học Biển Khu Vực Á Âu</h6>
+                <span class="small text-white-50 mt-2 d-block">5 giờ trước</span>
+              </div>
+            </a>
           </div>
         </div>
 
       </div><!-- end .s5-sticky-wrap -->
     </section>
+    <!-- SECTION 6: Our Team -->
     <section class="s6-section">
-      
+      <div class="s6-container container-fluid px-3 px-xl-4 pb-5">
+        <div class="s6-header text-center pt-5">
+          <h2 class="display-title s6-title">Our Team</h2>
+          <p class="s6-subtitle">Những bộ óc sáng tạo đằng sau thiết kế.</p>
+        </div>
+        
+        <div class="s6-team-grid position-relative">
+          
+          <!-- Card 1 -->
+          <article class="s6-member-card card-1" data-speed="140" style="z-index: 1;">
+            <p class="s6-quote">"Định hướng phong cách nghệ thuật và quản lý các thiết kế Awwwards."</p>
+            <div class="s6-divider"></div>
+            <div class="s6-bottom">
+              <div class="s6-avatar">
+                <img src="../images/iranbombed.png" alt="Phan Tuấn Dương" loading="lazy">
+              </div>
+              <div class="s6-info">
+                <h3 class="s6-name d-flex align-items-center gap-1">
+                  Phan Tuấn Dương
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.536L20.447 9.948L20.736 6.575L17.585 5.568L15.289 3.012L12 4.298L8.711 3.012L6.415 5.568L3.264 6.575L3.553 9.948L1.5 12.536L3.553 15.124L3.264 18.497L6.415 19.504L8.711 22.061L12 20.774L15.289 22.061L17.585 19.504L20.736 18.497L20.447 15.124L22.5 12.536ZM10.59 16.635L6.773 12.875L8.272 11.399L10.59 13.682L16.273 8.086L17.773 9.562L10.59 16.635Z" fill="#1D9BF0"/></svg>
+                </h3>
+                <p class="s6-role">Creative Director</p>
+              </div>
+              <div class="s6-logo ms-auto">Báo Chí</div>
+            </div>
+          </article>
+          
+          <!-- Card 2 -->
+          <article class="s6-member-card card-2" data-speed="250" style="z-index: 3;">
+            <p class="s6-quote">"Biến các ý tưởng tĩnh thành chuyển động GSAP mượt mà."</p>
+            <div class="s6-divider"></div>
+            <div class="s6-bottom">
+              <div class="s6-avatar">
+                <img src="../images/Trump.png" alt="Nguyễn Hoàng Anh" loading="lazy">
+              </div>
+              <div class="s6-info">
+                <h3 class="s6-name d-flex align-items-center gap-1">
+                  Nguyễn Hoàng Anh
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.536L20.447 9.948L20.736 6.575L17.585 5.568L15.289 3.012L12 4.298L8.711 3.012L6.415 5.568L3.264 6.575L3.553 9.948L1.5 12.536L3.553 15.124L3.264 18.497L6.415 19.504L8.711 22.061L12 20.774L15.289 22.061L17.585 19.504L20.736 18.497L20.447 15.124L22.5 12.536ZM10.59 16.635L6.773 12.875L8.272 11.399L10.59 13.682L16.273 8.086L17.773 9.562L10.59 16.635Z" fill="#1D9BF0"/></svg>
+                </h3>
+                <p class="s6-role">Lead UI Developer</p>
+              </div>
+              <div class="s6-logo ms-auto">Báo Chí</div>
+            </div>
+          </article>
+          
+          <!-- Card 3 -->
+          <article class="s6-member-card card-3" data-speed="180" style="z-index: 2;">
+            <p class="s6-quote">"Bố cục lưới, UX và duy trì trải nghiệm liền mạch."</p>
+            <div class="s6-divider"></div>
+            <div class="s6-bottom">
+              <div class="s6-avatar">
+                <img src="../images/Dune3.jpg" alt="Trần Mỹ Linh" loading="lazy">
+              </div>
+              <div class="s6-info">
+                <h3 class="s6-name d-flex align-items-center gap-1">
+                  Trần Mỹ Linh
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.536L20.447 9.948L20.736 6.575L17.585 5.568L15.289 3.012L12 4.298L8.711 3.012L6.415 5.568L3.264 6.575L3.553 9.948L1.5 12.536L3.553 15.124L3.264 18.497L6.415 19.504L8.711 22.061L12 20.774L15.289 22.061L17.585 19.504L20.736 18.497L20.447 15.124L22.5 12.536ZM10.59 16.635L6.773 12.875L8.272 11.399L10.59 13.682L16.273 8.086L17.773 9.562L10.59 16.635Z" fill="#1D9BF0"/></svg>
+                </h3>
+                <p class="s6-role">Layout Specialist</p>
+              </div>
+              <div class="s6-logo ms-auto">Báo Chí</div>
+            </div>
+          </article>
+
+          <!-- Card 4 -->
+          <article class="s6-member-card card-4" data-speed="230" style="z-index: 4;">
+            <p class="s6-quote">"Tạo ra những hiệu ứng nhiễu loạn có kiểm soát."</p>
+            <div class="s6-divider"></div>
+            <div class="s6-bottom">
+              <div class="s6-avatar">
+                <img src="../images/injury.png" alt="Lê Quang Hải" loading="lazy">
+              </div>
+              <div class="s6-info">
+                <h3 class="s6-name d-flex align-items-center gap-1">
+                  Lê Quang Hải
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.536L20.447 9.948L20.736 6.575L17.585 5.568L15.289 3.012L12 4.298L8.711 3.012L6.415 5.568L3.264 6.575L3.553 9.948L1.5 12.536L3.553 15.124L3.264 18.497L6.415 19.504L8.711 22.061L12 20.774L15.289 22.061L17.585 19.504L20.736 18.497L20.447 15.124L22.5 12.536ZM10.59 16.635L6.773 12.875L8.272 11.399L10.59 13.682L16.273 8.086L17.773 9.562L10.59 16.635Z" fill="#1D9BF0"/></svg>
+                </h3>
+                <p class="s6-role">Animation Expert</p>
+              </div>
+              <div class="s6-logo ms-auto">Báo Chí</div>
+            </div>
+          </article>
+
+          <!-- Card 5 -->
+          <article class="s6-member-card card-5" data-speed="160" style="z-index: 5;">
+            <p class="s6-quote">"Tối ưu hoá tải trang và quản lý tài nguyên tĩnh."</p>
+            <div class="s6-divider"></div>
+            <div class="s6-bottom">
+              <div class="s6-avatar">
+                <img src="../images/vutru-featured.jpg" alt="Phạm Tiến Cường" loading="lazy">
+              </div>
+              <div class="s6-info">
+                <h3 class="s6-name d-flex align-items-center gap-1">
+                  Phạm Tiến Cường
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22.5 12.536L20.447 9.948L20.736 6.575L17.585 5.568L15.289 3.012L12 4.298L8.711 3.012L6.415 5.568L3.264 6.575L3.553 9.948L1.5 12.536L3.553 15.124L3.264 18.497L6.415 19.504L8.711 22.061L12 20.774L15.289 22.061L17.585 19.504L20.736 18.497L20.447 15.124L22.5 12.536ZM10.59 16.635L6.773 12.875L8.272 11.399L10.59 13.682L16.273 8.086L17.773 9.562L10.59 16.635Z" fill="#1D9BF0"/></svg>
+                </h3>
+                <p class="s6-role">Web Performance</p>
+              </div>
+              <div class="s6-logo ms-auto">Báo Chí</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
   </main>
+
+  <div id="site-footer" data-base="../"></div>
 </body>
 
 </html>

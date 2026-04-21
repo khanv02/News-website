@@ -1,13 +1,13 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Giải trí & Đời sống - Tin tức</title>
 
-    <link rel="stylesheet" href="../../css/lib/local-fonts.css" />
+    <link rel="stylesheet" href="../../css/local-fonts.css" />
     <link rel="stylesheet" href="../../css/components/root.css" />
-    <link rel="stylesheet" href="../../css/lib/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
     <link rel="stylesheet" href="../../css/components/navbar.css" />
     <link rel="stylesheet" href="../../css/components/footer.css">
     <link rel="stylesheet" href="../../css/chudetintuc/chude_GTvDS.css"/>
@@ -15,11 +15,11 @@
     <script src="../../js/lib/jquery/jquery-4.0.0.js"></script>
     <script src="../../js/lib/bootstrap/bootstrap.bundle.min.js" defer></script>
     <script src="../../js/dangky-dangnhap/auth.js"></script>
-    <script src="../../js/scrolltoTop.js"></script>
     <script src="../../js/components/navbar.js" defer></script>
+    <script src="../../js/components/footer.js" defer></script>
 </head>
-<body class="news-body page-main">
-    <div id="site-header"></div>
+<body class="body m-0">
+    <div id="site-header" data-base="../"></div>
     <main>
         <section class="hero-section py-4 py-lg-5 gsap-fade-in">
             <div class="container">
@@ -174,64 +174,6 @@
             </div>
         </section>
     </main>
-    <footer class="footer mt-5 pt-5 pb-4">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-12 col-lg-5 mb-4 mb-lg-0 d-flex flex-column gap-3">
-                    <a href="../Index.html" class="text-decoration-none text-white mb-2">
-                        <span class="footer-logo fw-bold">BÁO CHÍ 
-                            <span aria-label="DESIGN" class="d-inline-flex">
-                            <span style="color: #c30000">D</span>
-                            <span style="color: #1c9a3f">E</span>
-                            <span style="color: #f2c200">S</span>
-                            <span style="color: #7a3bd6">I</span>
-                            <span style="color: #ff8a00">G</span>
-                            <span style="color: #1262ff">N</span></span>
-                        </span>
-                    </a>
-                    <p style="font-size:16px ; color: #888; line-height: 1.6;">
-                    Kênh thông tin tổng hợp đa phương tiện. Cập nhật tin tức đời sống, thể thao và công nghệ nhanh chóng, chính xác.
-                    </p>
-                    <div class="d-flex align-items-start gap-2">
-                        <div class="footer-icon">
-                            <img src="../../images/footer/graduation-cap-white.png" alt="Địa chỉ" class="w-100 h-auto">
-                        </div>
-                        <div class="footer-text fw-light">
-                            Địa chỉ: Số 12 Nguyễn Văn Bảo, P. Hạnh Thông, Thành phố Hồ Chí Minh
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start gap-2">
-                        <div class="footer-icon">
-                            <img src="../../images/footer/phone-call-white.png" alt="Điện thoại" class="w-100 h-auto">
-                        </div>
-                        <div class="footer-text fw-light">
-                            ĐT: 0123456789
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-start gap-2">
-                        <div class="footer-icon">
-                            <img src="../../images/footer/envelope-white.png" alt="Email" class="w-100 h-auto">
-                        </div>
-                        <div class="footer-text fw-light">
-                            Email: nhom7.htcnw@gmail.com
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-7">
-                    <div class="footer-map-wrap">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.858237841131!2d106.68427047460395!3d10.82215888932938!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528e5496d03cf%3A0xa5b8e7395ec636b9!2sIndustrial%20University%20of%20Ho%20Chi%20Minh%20City!5e0!3m2!1sen!2s!4v1714532679904!5m2!1sen!2s" 
-                            class="w-100 h-100 border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-            <div class="row pt-4 text-center footer-bottom fw-light">
-                <div class="col-12 text-md-end text-white">© 2026 Báo Chí DESIGN. Đây là project của học sinh - Không dành cho mục đích "thương mại"</div>
-            </div>
-        </div>
-    </footer>
-    <button id="scrollToTop" class="btn btn-light rounded-circle shadow-lg d-flex align-items-center justify-content-center position-fixed bottom-0 end-0 m-3 z-3" style="width: 50px; height: 50px; display: none;">
-        <img src="../../images/arrow-circle-up.png" alt="Lên đầu trang" style="width: 24px; height: auto;">
-    </button>
+    <div id="site-footer" data-base="../../"></div>
 </body>
 </html>

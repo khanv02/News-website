@@ -1,0 +1,215 @@
+/* =========================================================
+   SECTION 6: OUR TEAM (AWWWARDS STYLE)
+   ========================================================= */
+.s6-section {
+  position: relative;
+  background-color: var(--nw-white);
+  padding: 100px 0 150px;
+  overflow: hidden;
+}
+
+.s6-header {
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 10;
+}
+
+.s6-title {
+  font-family: var(--nw-font-display);
+  font-size: clamp(3rem, 5vw, 5rem);
+  color: var(--nw-ink-strong);
+  letter-spacing: -0.05em;
+  margin-bottom: 10px;
+}
+
+.s6-subtitle {
+  font-family: var(--nw-font-time);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  color: var(--nw-muted);
+  font-style: italic;
+}
+
+/* =========================================================
+   ASYMMETRICAL LAYOUT
+   ========================================================= */
+.s6-team-grid {
+  height: 180vh; /* Tăng chiều cao để tạo đủ độ trượt */
+  width: 100%;
+}
+
+.s6-member-card {
+  position: absolute;
+  width: clamp(280px, 40vw, 420px);
+  will-change: transform, opacity;
+}
+
+/* Tọa độ bất đối xứng và lệch sóng cho từng thành viên */
+.card-1 {
+  top: 5%;
+  left: 8%;
+}
+
+.card-2 {
+  top: 25%;
+  right: 12%;
+}
+
+.card-3 {
+  top: 45%;
+  left: 18%;
+}
+
+.card-4 {
+  top: 68%;
+  right: 8%;
+}
+
+.card-5 {
+  top: 85%;
+  left: 35%;
+}
+
+/* =========================================================
+   CARD DESIGN (Editorial Quote Layout)
+   ========================================================= */
+.s6-member-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  background: var(--nw-black, #050505);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* =========================================================
+   ELEMENTS INSIDE CARD
+   ========================================================= */
+.s6-quote {
+  font-family: var(--nw-font-sans);
+  font-size: clamp(1.1rem, 1.3vw, 1.3rem);
+  color: var(--nw-white);
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+.s6-divider {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.15);
+  margin-bottom: 20px;
+}
+
+.s6-bottom {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.611);
+  gap: 16px;
+  padding-top: 20px;
+}
+
+.s6-avatar {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  border-radius: 8px; /* Vuông góc bo */
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.s6-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.s6-member-card:hover .s6-avatar img {
+  transform: scale(1.1); /* Phóng to ảnh khi hover card */
+}
+
+.s6-info {
+  flex: 1; /* Chiếm phần còn lại */
+}
+
+.s6-name {
+  font-family: var(--nw-font-display);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--nw-white);
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+
+.s6-role {
+  font-family: var(--nw-font-sans);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.s6-logo {
+  font-family: var(--nw-font-display);
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--nw-white);
+  letter-spacing: -1px;
+}
+
+/* =========================================================
+   RESPONSIVE: MOBILE & TABLET STACKING
+   ========================================================= */
+@media (max-width: 991.98px) {
+  .s6-section {
+    padding: 60px 0;
+  }
+  
+  .s6-team-grid {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  
+  .s6-member-card {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    width: 90%;
+    max-width: 450px;
+  }
+
+  .s6-header {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .s6-member-card {
+    padding: 24px 20px;
+  }
+  
+  .s6-avatar {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .s6-name {
+    font-size: 1rem;
+  }
+  
+  .s6-role {
+    font-size: 0.8rem;
+  }
+
+  .s6-logo {
+    font-size: 1.3rem;
+  }
+}
