@@ -1,121 +1,92 @@
-document.addEventListener("DOMContentLoaded", function () {
+$(() => {
 	initSportsPreview();
 	initSportsFeedNavigation();
 });
 
-function initSportsPreview() {
-	var sportsLine = document.getElementById("news-s3-sports-line");
-	var previewCards = document.querySelectorAll(".s3-preview-card, .news-s3-preview-card");
+const initSportsPreview = () => {
+	const $sportsLine = $("#s3-sports-category");
+	const $previewCards = $(".s3-card-gallery");
 
-	if (!sportsLine || !previewCards.length) return;
+	if (!$sportsLine.length || !$previewCards.length) return;
 
-	var sportButtons = sportsLine.querySelectorAll(".s3-sport-btn, .news-s3-sport-btn");
+	const $sportButtons = $sportsLine.find(".s3-btn");
+	if (!$sportButtons.length) return;
 
-	if (!sportButtons.length) return;
+	let $activeButton = $sportButtons.filter(".is-active").length 
+		? $sportButtons.filter(".is-active").first() 
+		: $sportButtons.first();
 
-	var activeButton =
-		sportsLine.querySelector(".s3-sport-btn.is-active, .news-s3-sport-btn.is-active") || sportButtons[0];
+	const updatePreview = ($button, animate = true) => {
+		if (!$button || (animate && $button.is($activeButton))) return;
+		$activeButton = $button;
+		
+		$sportButtons.removeClass("is-active");
+		$button.addClass("is-active");
 
-	function updatePreview(button, animate) {
-		if (!button) return;
-
-		sportButtons.forEach(function (btn) {
-			btn.classList.toggle("is-active", btn === button);
-		});
-
-		function applySources() {
-			previewCards.forEach(function (card, index) {
-				var img = card.querySelector("img");
-				var key = "preview" + String(index + 1);
-				var src = button.dataset[key];
-
-				if (!img || !src) {
-					card.classList.remove("is-visible");
-					card.hidden = true;
+		const applySources = () => {
+			$previewCards.each((index, card) => {
+				const $card = $(card);
+				const $img = $card.find("img");
+				const src = $button.data(`preview${index + 1}`);
+				
+				if (!$img.length || !src) {
+					$card.removeClass("is-visible").prop("hidden", true);
 					return;
 				}
-
-				card.hidden = false;
-				img.src = src;
-
-				var sportTextEl = button.querySelector(".s3-sport-text");
-				var sportText = sportTextEl ? sportTextEl.textContent : "Ảnh thể thao";
-				img.alt = sportText + " " + String(index + 1);
+				
+				$card.prop("hidden", false);
+				$img.attr("src", src);
+				const sportText = $button.find("span:first-child").text().trim() || "Ảnh thể thao";
+				$img.attr("alt", `${sportText} ${index + 1}`);
 			});
 
-			requestAnimationFrame(function () {
-				previewCards.forEach(function (card) {
-					if (!card.hidden) {
-						card.classList.add("is-visible");
-					}
-				});
+			requestAnimationFrame(() => {
+				$previewCards.not("[hidden]").addClass("is-visible");
 			});
-		}
+		};
 
 		if (animate) {
-			previewCards.forEach(function (card) {
-				card.classList.remove("is-visible");
-			});
-
-			window.setTimeout(applySources, 110);
+			$previewCards.removeClass("is-visible");
+			setTimeout(applySources, 110);
 		} else {
 			applySources();
 		}
+	};
 
-		activeButton = button;
-	}
-
-	sportButtons.forEach(function (button) {
-		button.addEventListener("mouseenter", function () {
-			updatePreview(button, true);
-		});
-
-		button.addEventListener("focus", function () {
-			updatePreview(button, true);
-		});
-
-		button.addEventListener("click", function () {
-			updatePreview(button, true);
-		});
+	$sportButtons.on("mouseenter focus click", function() {
+		updatePreview($(this));
 	});
 
-	updatePreview(activeButton, false);
-}
+	updatePreview($activeButton, false);
+};
 
-function initSportsFeedNavigation() {
-	var viewport = document.querySelector(".sports-feed-viewport");
-	var prevButton = document.querySelector(".sports-feed-nav--prev");
-	var nextButton = document.querySelector(".sports-feed-nav--next");
+const initSportsFeedNavigation = () => {
+	const $viewport = $(".sports-feed-viewport");
+	const $prevButton = $(".sports-feed-nav--prev");
+	const $nextButton = $(".sports-feed-nav--next");
 
-	if (!viewport || !prevButton || !nextButton) return;
+	if (!$viewport.length || !$prevButton.length || !$nextButton.length) return;
 
-	function getStep() {
-		return Math.max(viewport.clientWidth * 0.75, 260);
-	}
+	const updateNavState = () => {
+		const scrollLeft = $viewport.scrollLeft();
+		const maxScroll = $viewport[0].scrollWidth - $viewport.innerWidth();
 
-	function updateNavState() {
-		var maxScrollLeft = Math.max(viewport.scrollWidth - viewport.clientWidth, 0);
-		prevButton.disabled = viewport.scrollLeft <= 4;
-		nextButton.disabled = viewport.scrollLeft >= maxScrollLeft - 4;
-	}
+		$prevButton.prop("disabled", scrollLeft <= 4);
+		$nextButton.prop("disabled", scrollLeft >= maxScroll - 4);
+	};
 
-	function scrollFeed(direction) {
-		viewport.scrollBy({
-			left: direction * getStep(),
-			behavior: "smooth",
+	const scrollFeed = (dir) => {
+		$viewport[0].scrollBy({ 
+			left: dir * Math.max($viewport.innerWidth() * 0.75, 260), 
+			behavior: "smooth" 
 		});
-	}
+	};
 
-	prevButton.addEventListener("click", function () {
-		scrollFeed(-1);
-	});
+	$prevButton.on("click", () => scrollFeed(-1));
+	$nextButton.on("click", () => scrollFeed(1));
 
-	nextButton.addEventListener("click", function () {
-		scrollFeed(1);
-	});
-
-	viewport.addEventListener("scroll", updateNavState);
-	window.addEventListener("resize", updateNavState);
+	$viewport.on("scroll", updateNavState);
+	$(window).on("resize", updateNavState);
 	updateNavState();
-}
+};
 

@@ -4,54 +4,28 @@
   padding: clamp(36px, 4.8vw, 72px) 0 clamp(42px, 5.2vw, 82px);
 }
 
-.s4-layout {
-  display: flex;
-  align-items: start;
-}
-
 .s4-feature-wrap {
-  position: sticky;
-  top: max(20px, 3vh);
-  flex: 2 1 0;
+  top: max(20px, 3.5vh);
 }
 
 .s4-feature-link {
-  position: relative;
-  display: block;
   height: clamp(220px, 95vh, 760px);
-  border-radius: 14px;
-  overflow: hidden;
-  text-decoration: none;
-  color: var(--news-white);
-  isolation: isolate;
-  box-shadow: 0 24px 46px rgba(8, 10, 16, 0.2);
-}
-
-.s4-feature-link img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
 }
 
 .s4-feature-link::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(12, 13, 16, 0.05) 0%,
-    rgba(12, 13, 16, 0.8) 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(12, 13, 16, 0.05) 0%,
+      rgba(12, 13, 16, 0.8) 100%);
   z-index: 1;
 }
 
 .s4-feature-overlay {
-  position: absolute;
   left: clamp(18px, 2.4vw, 34px);
   right: clamp(18px, 2.4vw, 34px);
   bottom: clamp(16px, 3.6vw, 34px);
-  z-index: 2;
 }
 
 .s4-feature-tag {
@@ -91,22 +65,18 @@
   letter-spacing: -0.01em;
 }
 
-.s4-feature-meta span + span::before {
+.s4-feature-meta span+span::before {
   content: "\2022";
   margin-right: 0.7rem;
 }
 
-.s4-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1 1 50px;
+.s4-item {
+  transition:
+    box-shadow 0.26s ease,
+    border-color 0.26s ease;
 }
 
-.s4-item {
-  border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  background: rgba(255, 255, 255, 0.9);
+.s4-item.hover-ready {
   transition:
     transform 0.26s ease,
     box-shadow 0.26s ease,
@@ -119,35 +89,9 @@
   border-color: rgba(0, 0, 0, 0.26);
 }
 
-.s4-item-link {
-  display: flex;
-  gap: 12px;
-  align-items: start;
-  text-decoration: none;
-  color: var(--nw-text);
-  padding: 10px;
-}
-
 .s4-item-media {
-  display: block;
   width: 100px;
-  flex-shrink: 0;
   aspect-ratio: 4 / 3;
-  border-radius: var(--nw-radius-md);
-  overflow: hidden;
-  background: #cacaca;
-}
-
-.s4-item-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.s4-item-body {
-  min-width: 0;
-  display: block;
 }
 
 .s4-item-author {
@@ -193,20 +137,8 @@
 
 /* ===== RESPONSIVE: Tablet / Mobile ===== */
 @media (max-width: 991.98px) {
-  .s4-layout {
-    flex-direction: column;
-  }
-
   .s4-feature-wrap {
     position: static;
-    flex: none;
-    width: 100%;
-  }
-
-  .s4-list {
-    flex: none;
-    min-width: 0;
-    width: 100%;
   }
 
   .s4-feature-link {
@@ -218,10 +150,6 @@
 @media (min-width: 768px) and (max-width: 991.98px) {
   .s4-section {
     padding: 32px 0 48px;
-  }
-
-  .s4-layout {
-    display: block;
   }
 
   .s4-feature-link {
@@ -236,16 +164,6 @@
 
   .s4-feature-excerpt {
     font-size: clamp(1rem, 1.8vw, 1.2rem);
-  }
-
-  .s4-list {
-    gap: clamp(12px, 1.5vw, 16px);
-  }
-
-  .s4-item-link {
-    grid-template-columns: clamp(80px, 10vw, 110px) minmax(0, 1fr);
-    gap: 10px;
-    padding: 10px;
   }
 
   .s4-item-title {
@@ -280,12 +198,6 @@
     gap: clamp(10px, 1.2vw, 14px);
   }
 
-  .s4-item-link {
-    grid-template-columns: 78px minmax(0, 1fr);
-    gap: 9px;
-    padding: 9px;
-  }
-
   .s4-item-title {
     font-size: clamp(1rem, 2.2vw, 1.2rem);
   }
@@ -295,7 +207,8 @@
   }
 }
 
-/* ===== RESPONSIVE: Medium Tablet (max-width: 991px) ===== */ /* ===== RESPONSIVE: Mobile (max-width: 575px) ===== */
+/* ===== RESPONSIVE: Medium Tablet (max-width: 991px) ===== */
+/* ===== RESPONSIVE: Mobile (max-width: 575px) ===== */
 @media (max-width: 575.98px) {
   .s4-section {
     padding: 24px 0 32px;
@@ -318,16 +231,6 @@
     left: 12px;
     right: 12px;
     bottom: 12px;
-  }
-
-  .s4-list {
-    gap: 8px;
-  }
-
-  .s4-item-link {
-    grid-template-columns: 86px minmax(0, 1fr);
-    gap: 10px;
-    padding: 8px;
   }
 
   .s4-item-title {
@@ -367,12 +270,6 @@
     gap: 0.5rem;
   }
 
-  .s4-item-link {
-    grid-template-columns: 76px minmax(0, 1fr);
-    gap: 8px;
-    padding: 6px;
-  }
-
   .s4-item-media {
     aspect-ratio: 3 / 2;
   }
@@ -395,9 +292,5 @@
 
   .s4-feature-excerpt {
     display: none;
-  }
-
-  .s4-list {
-    gap: 8px;
   }
 }

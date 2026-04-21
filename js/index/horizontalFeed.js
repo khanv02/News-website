@@ -1,149 +1,140 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var containers = [].slice.call(document.querySelectorAll(".feed-container"));
-  if (!containers.length) return;
+$(() => {
+  $(".feed-container, .s5-nature-feed").each(function() {
+    const $container = $(this);
+    const $track = $container.find(".feed-track, .s5-feed-track");
+    if (!$track.length) return;
 
-  containers.forEach(function (container) {
-    var track = container.querySelector(".feed-track");
-    if (!track) return;
-
-    var centerCard = track.querySelector(".center-card");
-
-    var isDragging = false;
-    var hasDragged = false;
-    var isReady = false;
-    var startX = 0;
-    var dragStartTranslateX = 0;
-    var currentTranslateX = 0;
-
-    function markReady() {
-      if (isReady) return;
-      isReady = true;
-      container.classList.add("feed-ready");
+    if ($container.hasClass("s5-nature-feed")) {
+      $container.css({ overflow: "hidden", cursor: "grab", "touch-action": "pan-y" });
+      $track.removeClass("overflow-x-auto").css("width", "max-content");
     }
 
-    function getMinTranslateX() {
-      return Math.min(0, container.clientWidth - track.scrollWidth);
-    }
+    const $centerCard = $track.find(".center-card");
+    const $children = $track.children();
+    
+    // --- Thiết lập Vòng lặp Vô Tận (Infinite Loop) ---
+    // Nhân bản nội dung thành 3 phần: [Left Clone] - [Original] - [Right Clone]
+    const $cloneLeft = $children.clone(true).addClass("is-clone").removeAttr("id");
+    const $cloneRight = $children.clone(true).addClass("is-clone").removeAttr("id");
+    $track.prepend($cloneLeft).append($cloneRight);
+    
+    const $origFirst = $children.eq(0); 
+    const $cloneRightFirst = $cloneRight.eq(0);
+    
+    let wrapWidth = 0;
+    const calculateWrap = () => {
+       if (!$cloneRightFirst.length || !$origFirst.length) return;
+       // wrapWidth = khoảng cách chính xác từ mảng gốc tới mảng bên phải
+       wrapWidth = $cloneRightFirst[0].offsetLeft - $origFirst[0].offsetLeft;
+    };
 
-    function clampTranslateX(nextX) {
-      var minX = getMinTranslateX();
-      if (nextX < minX) return minX;
-      if (nextX > 0) return 0;
-      return nextX;
-    }
+    let isDragging = false, hasDragged = false, isRealDrag = false;
+    let startX = 0, currentX = 0, velocity = 0;
 
-    function applyTranslate(x) {
-      track.style.transform = "translate3d(" + x + "px, 0, 0)";
-    }
+    const refreshBounds = (shouldCenter = false) => {
+      calculateWrap();
+      if (!wrapWidth) return; 
 
-    function getCenterCardTranslateX() {
-      if (!centerCard) return 0;
-
-      var containerCenterX = container.clientWidth / 2;
-      var cardCenterX = centerCard.offsetLeft + centerCard.offsetWidth / 2;
-      return containerCenterX - cardCenterX;
-    }
-
-    function refreshBounds(shouldCenter) {
-      if (shouldCenter && !hasDragged) {
-        currentTranslateX = getCenterCardTranslateX();
+      let startPos = currentX || -wrapWidth; // Mặc định ở phần Original
+      
+      if (shouldCenter && !hasDragged && $centerCard.length) {
+         startPos = ($container.innerWidth() / 2) - ($centerCard[0].offsetLeft + $centerCard.outerWidth() / 2);
       }
+      
+      // Ghìm vị trí bắt buộc vào "vùng an toàn" hiển thị mượt mà [-2*wrapWidth, -wrapWidth)
+      let temp = ((startPos % wrapWidth) + wrapWidth) % wrapWidth;
+      currentX = temp - wrapWidth * 2;
+      
+      gsap.set($track[0], { x: currentX });
+    };
 
-      currentTranslateX = clampTranslateX(currentTranslateX);
-      applyTranslate(currentTranslateX);
-    }
+    const dragStart = x => {
+      isDragging = hasDragged = true;
+      isRealDrag = false;
+      startX = x;
+      velocity = 0;
+      $container.addClass("is-dragging").css("cursor", "grabbing");
+      gsap.killTweensOf($track[0]);
+    };
 
-    function startDrag(pointerX) {
-      isDragging = true;
-      hasDragged = true;
-      startX = pointerX;
-      dragStartTranslateX = currentTranslateX;
-      container.classList.add("is-dragging");
-    }
-
-    function moveDrag(pointerX) {
+    const doDrag = x => {
       if (!isDragging) return;
+      if (Math.abs(x - startX) > 5) isRealDrag = true; // Chống lỡ click khi kéo
+      
+      // Lấy X hiện tại của DOM (phòng khi tween cũ chưa dừng hẳn do click nhanh)
+      let domX = parseFloat(gsap.getProperty($track[0], "x")) || currentX;
+      const deltaX = (x - startX) * 1.5; // Hệ số nhân lướt
+      startX = x; // Consume X
+      
+      let targetX = domX + deltaX;
+      velocity = deltaX; 
+      
+      // Wrap tức thời, âm thầm bẻ lái DOM mà không gây giật
+      if (targetX > -wrapWidth) {
+         targetX -= wrapWidth;
+         domX -= wrapWidth;
+         gsap.set($track[0], { x: domX }); 
+      } else if (targetX < -wrapWidth * 2) {
+         targetX += wrapWidth;
+         domX += wrapWidth;
+         gsap.set($track[0], { x: domX });
+      }
+      
+      currentX = targetX;
+      gsap.to($track[0], { x: currentX, duration: 0.15, ease: "power2.out", overwrite: true });
+    };
 
-      var delta = (pointerX - startX) * 1.2;
-      currentTranslateX = clampTranslateX(dragStartTranslateX + delta);
-      applyTranslate(currentTranslateX);
-    }
-
-    function endDrag() {
+    const dragEnd = () => {
       if (!isDragging) return;
       isDragging = false;
-      container.classList.remove("is-dragging");
-    }
-
-    container.addEventListener("mousedown", function (event) {
-      if (event.button !== 0) return;
-      startDrag(event.pageX);
-      event.preventDefault();
-    });
-
-    window.addEventListener("mousemove", function (event) {
-      moveDrag(event.pageX);
-    });
-
-    window.addEventListener("mouseup", endDrag);
-    container.addEventListener("mouseleave", endDrag);
-
-    container.addEventListener(
-      "touchstart",
-      function (event) {
-        if (!event.touches.length) return;
-        startDrag(event.touches[0].pageX);
-      },
-      { passive: true }
-    );
-
-    container.addEventListener(
-      "touchmove",
-      function (event) {
-        if (!event.touches.length) return;
-        moveDrag(event.touches[0].pageX);
-      },
-      { passive: true }
-    );
-
-    container.addEventListener("touchend", endDrag, { passive: true });
-    container.addEventListener("touchcancel", endDrag, { passive: true });
-
-    [].slice.call(track.querySelectorAll("img")).forEach(function (img) {
-      img.addEventListener("dragstart", function (event) {
-        event.preventDefault();
-      });
-    });
-
-    window.addEventListener("resize", function () {
-      refreshBounds(true);
-    });
-
-    // Compute centered anchor before reveal to avoid first-paint jump from x=0.
-    refreshBounds(true);
-
-    requestAnimationFrame(function () {
-      refreshBounds(true);
-      markReady();
-    });
-
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(function () {
-        refreshBounds(true);
-      });
-    }
-
-    if (document.readyState === "complete") {
-      markReady();
-    } else {
-      window.addEventListener(
-        "load",
-        function () {
-          refreshBounds(true);
-          markReady();
+      $container.removeClass("is-dragging").css("cursor", "grab");
+      
+      let finalX = currentX + velocity * 15;
+      
+      // Vung tay theo quán tính, dùng Modifiers để wrap mượt chạy liên tục không điểm viền
+      gsap.to($track[0], { 
+        x: finalX, 
+        duration: 0.8, 
+        ease: "power2.out", 
+        overwrite: true,
+        modifiers: {
+          x: function(x_val) {
+             if (!wrapWidth) return x_val;
+             let val = parseFloat(x_val);
+             let temp = ((val % wrapWidth) + wrapWidth) % wrapWidth;
+             return (temp - wrapWidth * 2) + "px";
+          }
         },
-        { once: true }
-      );
-    }
+        onUpdate: function() {
+           currentX = parseFloat(gsap.getProperty($track[0], "x"));
+        }
+      });
+    };
+
+    // Chuột tại container & Touch (Mobile)
+    $container.on({
+      mousedown: e => { if (e.button === 0) { dragStart(e.pageX); e.preventDefault(); } },
+      mouseleave: dragEnd,
+      touchstart: e => dragStart(e.originalEvent.touches[0].pageX),
+      touchmove: e => doDrag(e.originalEvent.touches[0].pageX),
+      "touchend touchcancel": dragEnd
+    });
+    
+    // Bắt sự kiện chuột di chuyển toàn màn hình
+    $(window).on({
+      mousemove: e => doDrag(e.pageX),
+      mouseup: dragEnd,
+      resize: () => refreshBounds(false) 
+    });
+
+    // Vô hiệu mặc định trình duyệt để UX sạch sẽ
+    $track.find("img").on("dragstart", e => e.preventDefault());
+    $track.find("a").on("click", e => { if (isRealDrag) { e.preventDefault(); e.stopImmediatePropagation(); } });
+
+    // Init khởi động
+    setTimeout(() => refreshBounds(true), 100);
+    $container.addClass("feed-ready");
+    if (document.fonts?.ready) document.fonts.ready.then(() => refreshBounds(true));
   });
 });
+
