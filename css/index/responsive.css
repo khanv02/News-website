@@ -4,6 +4,10 @@
     display: none !important;
   }
 
+  .hero {
+    min-height: auto !important;
+  }
+
   /* Ensure Navbar is fully visible and clickable */
   .header {
     position: sticky !important;
