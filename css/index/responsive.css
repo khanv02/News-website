@@ -1,0 +1,98 @@
+/* TIN TỨC ONLINE */
+@media (max-width: 768px) {
+  .title-wrap {
+    display: none !important;
+  }
+}
+
+/* SECTION 2 */
+@media (max-width: 991.98px) {
+  .section-two {
+    padding: 0;
+  }
+
+  .s2-viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #3d3d3d var(--news-text);
+  }
+
+  /* Tắt GSAP transform trên mobile */
+  .s2-track {
+    transform: none !important;
+  }
+
+  .s2-title-block {
+    width: 280px;
+    min-height: 56vh;
+  }
+
+  .s2-first {
+    min-width: auto;
+  }
+
+  .s2-mark {
+    font-size: clamp(2rem, 6vw, 2.7rem);
+  }
+
+  .s2-editorial-text {
+    font-size: 1.15rem;
+  }
+
+  .s2-lead-panel {
+    width: 440px;
+    min-height: 56vh;
+  }
+
+  .s2-data-panel {
+    width: 280px;
+    min-height: 56vh;
+  }
+
+  .s2-lead-image-wrap {
+    height: 220px;
+  }
+}
+
+/* =============================================================
+   RESPONSIVE — MOBILE (< 576px)
+   ============================================================= */
+@media (max-width: 575.98px) {
+  .s2-title-block {
+    width: 240px;
+  }
+
+  .s2-mark {
+    font-size: 1.9rem;
+  }
+
+  .s2-editorial-text {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .s2-editorial-text--dropcap .initial-block {
+    font-size: clamp(1.95rem, 9vw, 3.2rem);
+  }
+
+  .s2-lead-panel {
+    width: 340px;
+  }
+
+  .s2-lead-headline {
+    font-size: 1.6rem;
+  }
+
+  .s2-data-panel {
+    width: 240px;
+  }
+
+  .s2-lead-desc {
+    max-width: 100%;
+  }
+
+  .s2-lead-cta {
+    max-width: 100%;
+  }
+}

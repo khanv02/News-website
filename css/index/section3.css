@@ -178,7 +178,6 @@
   display: block;
 }
 
-
 .box-horizontal {
   margin-top: 0.5vw;
   background: var(--nw-text);
@@ -269,6 +268,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.35s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.sports-feed-card:hover img {
+  transform: scale(1.08);
+  z-index: 2;
 }
 
 .sports-feed-card::after {
@@ -343,7 +348,6 @@
   .s3-kicker {
     font-size: clamp(1.05rem, 2.3vw, 1.75rem);
   }
-
 }
 
 /* ===== RESPONSIVE: Tablet ===== */
@@ -387,7 +391,6 @@
     max-width: 30ch;
     font-size: clamp(1rem, 3vw, 1.5rem);
   }
-
 }
 
 /* ===== RESPONSIVE: Mobile ===== */
@@ -437,5 +440,4 @@
     height: 1.12rem;
     flex-basis: 1.12rem;
   }
-
 }
