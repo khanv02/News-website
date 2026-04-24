@@ -1,7 +1,6 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/", "destination": "/html/index.html" },
-    { "source": "/((?!css|js|images|fonts|html).+)", "destination": "/html/$1" }
+  "redirects": [
+    { "source": "/", "destination": "/html/index.html", "permanent": false }
   ]
 }
