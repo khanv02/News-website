@@ -24,6 +24,7 @@ $(() => {
         end: () => `+=${getScrollOffset()}`,
         pin: true,
         scrub: 1,
+        anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           if ($progressBar.length) {

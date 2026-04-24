@@ -1,0 +1,186 @@
+/* ===== ACCOUNT OVERLAY BACKDROP ===== */
+.ao-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  z-index: 2040;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ao-backdrop.is-visible {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== ACCOUNT OVERLAY PANEL ===== */
+.account-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 420px;
+  max-width: 95vw;
+  height: 100vh;
+  background: #fff;
+  z-index: 2050;
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.12);
+  font-family: "Georgia", serif;
+  color: #121212;
+  padding: 0;
+}
+
+.account-overlay.is-open {
+  transform: translateX(0);
+}
+
+/* Top bar: email + close */
+.ao-email {
+  padding: 20px 28px 18px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 13px;
+  color: #333;
+  border-bottom: 1px solid #e6e6e6;
+  padding-right: 60px;
+}
+
+.ao-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+  line-height: 1;
+  padding: 4px;
+  z-index: 2;
+}
+
+.ao-close:hover {
+  color: #000;
+}
+
+/* Body content */
+.ao-body {
+  padding: 28px 28px 40px;
+}
+
+.ao-greeting {
+  font-family: "Georgia", serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: #121212;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.ao-sub-note {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #333;
+  margin: 0 0 20px;
+}
+
+.ao-subscribe-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;
+  background: #121212;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  transition: background 0.2s ease;
+}
+
+.ao-subscribe-btn:hover {
+  background: #333;
+  color: #fff;
+}
+
+.ao-already {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.ao-try-email {
+  color: #121212;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.ao-try-email:hover {
+  color: #555;
+}
+
+.ao-divider {
+  height: 1px;
+  background: #e6e6e6;
+  margin: 4px 0;
+}
+
+.ao-menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  color: #121212;
+  text-decoration: none;
+}
+
+.ao-menu-item:hover {
+  color: #333;
+}
+
+.ao-arrow {
+  font-size: 20px;
+  color: #888;
+  line-height: 1;
+}
+
+.ao-section-label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #121212;
+  margin: 20px 0 4px;
+}
+
+.ao-logout {
+  display: inline-block;
+  margin-top: 24px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  color: #121212;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ao-logout:hover {
+  color: #555;
+}
+
+/* Prevent body scroll when overlay open */
+body.ao-no-scroll {
+  overflow: hidden;
+}

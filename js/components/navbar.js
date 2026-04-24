@@ -15,17 +15,34 @@ $(() => {
   const $slot = $("#site-header");
   if (!$slot.length) return;
 
-  const BASE = ($slot.data("base") || "./").replace(/\/?$/, "/");
-  const r = (h) => BASE + h.replace(/^\.?\//, "");
+  // Dynamic path resolution
+  const pathParts = window.location.pathname.split('/');
+  const htmlIndex = pathParts.lastIndexOf('html');
+  
+  let depthFromHtml = 0;
+  if (htmlIndex !== -1) {
+    depthFromHtml = pathParts.length - htmlIndex - 2; 
+  } else {
+    // Fallback if 'html' folder isn't in URL, use data-base or default
+    const fallbackBase = ($slot.data("base") || "./").replace(/\/?$/, "/");
+    depthFromHtml = fallbackBase.split('../').length - 1;
+    if (fallbackBase === "./") depthFromHtml = 0;
+  }
 
-  const file = window.location.pathname.split("/").pop() || "Index.html";
-  const activeKey = file === "Index.html" ? "home" : 
-                    file.match(/the-thao|suc-khoe/) ? "sports" : 
-                    file.match(/vu-tru/) ? "cosmos" : 
+  let htmlBase = depthFromHtml <= 0 ? "./" : "../".repeat(depthFromHtml);
+  let rootBase = htmlBase + "../";
+
+  const rHtml = (h) => htmlBase + h.replace(/^\.?\//, "");
+  const rRoot = (h) => rootBase + h.replace(/^\.?\//, "");
+
+  const file = pathParts[pathParts.length - 1] || "Index.html";
+  const activeKey = file === "Index.html" ? "home" :
+                    file.match(/the-thao|suc-khoe/) ? "sports" :
+                    file.match(/vu-tru/) ? "cosmos" :
                     file.match(/giai-tri|homeGTDS/) ? "lifestyle" : "";
 
-  const buildNav = (links, cls) => `<ul class="navbar-nav mb-0 main-menu ${cls}">${links.map(({h, l, k}) => 
-    `<li class="nav-item menu-item${k === activeKey ? " active" : ""}"><a class="nav-link menu-link" href="${r(h)}" ${k === activeKey ? 'aria-current="page"' : ''}>${l}</a></li>`
+  const buildNav = (links, cls) => `<ul class="navbar-nav mb-0 main-menu ${cls}">${links.map(({ h, l, k }) => 
+    `<li class="nav-item menu-item${k === activeKey ? " active" : ""}"><a class="nav-link menu-link" href="${rHtml(h)}" ${k === activeKey ? 'aria-current="page"' : ''}>${l}</a></li>`
   ).join("")}</ul>`;
 
   $slot.html(`
@@ -33,12 +50,15 @@ $(() => {
       <nav class="navbar navbar-dark py-0">
         <div class="container-fluid px-3 px-xl-4">
           <div class="navbar-shell w-100">
-            <span class="team-tag">Nhóm 7</span>
-            ${buildNav(L_NAV, "main-menu-left")}
-            <a class="logo py-3 mb-0" href="${r("Index.html")}"><span>BÁO CHÍ <span aria-label="DESIGN">${LOGO.map(x => `<span style="color:${x.hex}">${x.c}</span>`).join("")}</span></span></a>
-            ${buildNav(R_NAV, "main-menu-right")}
             <button class="navbar-toggler border-0 shadow-none hamburger-btn" type="button">
               <span class="hamburger" aria-hidden="true"><span class="ham-line ham-top"></span><span class="ham-line ham-bottom"></span></span>
+            </button>
+            ${buildNav(L_NAV, "main-menu-left")}
+            <a class="logo py-3 mb-0" href="${rHtml("Index.html")}"><span>BÁO CHÍ <span aria-label="DESIGN">${LOGO.map(x => `<span style="color:${x.hex}">${x.c}</span>`).join("")}</span></span></a>
+            ${buildNav(R_NAV, "main-menu-right")}
+            <button class="account-btn" type="button" aria-label="Tài khoản" id="account-btn">
+              <img src="${rRoot("images/account.svg")}" alt="account" width="20px">
+              Tài khoản
             </button>
           </div>
           <div class="collapse navbar-collapse justify-content-end" id="nwMenu">
@@ -49,8 +69,8 @@ $(() => {
     </header>
   `);
 
-  const $header = $slot.find(".header");
-  const $mobileMenu = $slot.find("#nwMenu"); // Note: BS5 might need global select if outside, but it's inside $slot
+  const $header   = $slot.find(".header");
+  const $mobileMenu = $slot.find("#nwMenu");
 
   // --- 1. Scroll Hide/Show ---
   let lastY = window.scrollY || 0;
@@ -71,7 +91,7 @@ $(() => {
   // --- 2. GSAP Hovers ---
   if (typeof gsap !== "undefined") {
     $slot.find(".menu-item").hover(
-      function() { gsap.to($(this).find(".menu-link"), { y: -2, duration: 0.25, ease: "power2.out", overwrite: "auto" }); },
+      function() { gsap.to($(this).find(".menu-link"), { y: -3, duration: 0.25, ease: "power2.out", overwrite: "auto" }); },
       function() { gsap.to($(this).find(".menu-link"), { y: 0, duration: 0.3, ease: "power2.out", overwrite: "auto" }); }
     );
     const $top = $slot.find(".ham-top"), $bot = $slot.find(".ham-bottom");

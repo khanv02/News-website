@@ -28,7 +28,6 @@
         <header class="om-header">
           <a class="om-logo" href="${BASE}html/Index.html" id="om-logo">BÁO CHÍ <span>DESIGN</span></a>
           <div class="om-header-actions">
-            <a href="${BASE}dang-nhap.html" class="om-login-btn">Đăng Nhập</a>
             <button class="om-close-btn" id="om-close-btn" aria-label="Close menu" type="button">
               <span class="om-close-icon" aria-hidden="true"></span>
             </button>

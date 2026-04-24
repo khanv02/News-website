@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artemis II — Chương Trình Thám Hiểm Mặt Trăng</title>
+
+    <link rel="stylesheet" href="../../css/local-fonts.css" />
+    <link rel="stylesheet" href="../../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../css/components/root.css" />
+    <link rel="stylesheet" href="../../css/components/navbar.css" />
+    <link rel="stylesheet" href="../../css/components/account-overlay.css" />
+    <link rel="stylesheet" href="../../css/components/overlay-menu.css" />
+    <link rel="stylesheet" href="../../css/components/footer.css" />
+    <link rel="stylesheet" href="../../css/chudetintuc/artemisII.css" />
+
+    <script src="../../js/lib/jquery/jquery-4.0.0.js" defer></script>
+    <script src="../../js/lib/bootstrap/bootstrap.bundle.min.js" defer></script>
+    <script src="../../js/components/navbar.js" defer></script>
+    <script src="../../js/components/account-overlay.js" defer></script>
+    <script src="../../js/components/overlay-menu.js" defer></script>
+    <script src="../../js/components/footer.js" defer></script>
+    <script src="../../js/lib/gsap/gsap.min.js" defer></script>
+    <script src="../../js/lib/gsap/ScrollTrigger.min.js" defer></script>
+    <script src="../../js/index/sectionTwo.js" defer></script>
+</head>
+
+<body class="a2-body">
+
+    <!-- Navbar -->
+    <div id="site-header" data-base="../../"></div>
+
+    <!-- ── Page Hero Title (outside scroll section) ───────────────── -->
+    <div class="a2-page-hero">
+        <div class="a2-page-hero-inner">
+            <p class="a2-page-kicker">SPECIAL EDITION · VŨ TRỤ &amp; THIÊN NHIÊN</p>
+            <h1 class="a2-page-title">Artemis II: Nhân loại trở lại Mặt Trăng sau hơn nửa thế kỷ</h1>
+            <p class="a2-subtitle">Vũ Thanh Bình • 02/04/2026</p>
+        </div>
+    </div>
+
+    <!-- ── Horizontal Scroll Section (powered by sectionTwo.js) ───── -->
+    <section class="news-section-two">
+        <div class="news-s2-viewport">
+            <div class="news-s2-track">
+
+                <!-- ══ Panel 1 ══════════════════════════════════════════════ -->
+                <div class="a2-panel">
+                    <div class="a2-panel-grid">
+
+                        <!-- Left sidebar -->
+                        <div class="a2-sidebar">
+                            <div class="a2-sidebar-featured">
+                                <img src="../../images/vu-tru-thien-nhien/astronauts.png" alt="Phi hành đoàn"
+                                    class="a2-sb-img">
+                                <h3 class="a2-sb-title">Sau hơn 50 năm</h3>
+                                <p class="a2-sb-desc">Kể từ thời kỳ Apollo, nhân loại một lần nữa hướng ánh nhìn về Mặt
+                                    Trăng. Sứ mệnh Artemis II không chỉ là một chuyến bay không gian, mà còn là bước
+                                    chuyển mình của cả nền văn minh – từ “đặt chân lên” sang “ở lại lâu dài” ngoài Trái
+                                    Đất.</p>
+                            </div>
+                            <div class="a2-sidebar-divider"></div>
+                            <div class="a2-sidebar-category">
+                                <h4 class="a2-sb-cat-label">Nhiếp ảnh</h4>
+                                <p class="a2-sb-cat-text">Bộ ảnh độc quyền bên trong buồng lái tàu Orion — không gian
+                                    sống của phi hành đoàn trong 10 ngày trên quỹ đạo. <span class="a2-sb-time">2 giờ
+                                        trước</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Center main -->
+                        <div class="a2-center">
+                            <div class="a2-center-img-wrap">
+                                <img src="../../images/vu-tru-thien-nhien/artemisRocket.png" alt="Tên lửa Artemis"
+                                    class="a2-center-img">
+                            </div>
+                            <h2 class="a2-center-title">Dấu mốc lịch sử sau 54 năm</h2>
+                            <p class="a2-center-desc">Ngày 1/4/2026, tàu vũ trụ Orion mang theo 4 phi hành gia đã rời bệ
+                                phóng tại Trung tâm Vũ trụ Kennedy, đánh dấu chuyến bay có người lái đầu tiên hướng tới
+                                vùng lân cận Mặt Trăng kể từ năm 1972.
+
+                                Báo chí Việt Nam đồng loạt gọi đây là “sứ mệnh lịch sử”, bởi hơn nửa thế kỷ qua, con
+                                người chưa từng quay lại không gian sâu theo cách này.
+
+                                Theo một bài viết, hành trình này “khép lại nửa thế kỷ độc quyền” của một số nhóm trong
+                                thám hiểm vũ trụ, khi phi hành đoàn gồm cả phụ nữ, người da màu và một phi hành gia
+                                Canada.</p>
+                        </div>
+
+                        <!-- Right column -->
+                        <div class="a2-rightcol">
+                            <div class="a2-number-card">
+                                <p class="a2-nc-label">NGÂN SÁCH ĐẦU TƯ</p>
+                                <div class="a2-nc-divider"></div>
+                                <p class="a2-nc-number">$93B</p>
+                                <p class="a2-nc-desc">là ngân sách NASA đầu tư vào chương trình Artemis từ 2017 đến
+                                    2026, biến đây thành chương trình vũ trụ tốn kém nhất lịch sử.</p>
+                            </div>
+                            <div class="a2-secondary-card">
+                                <img src="../../images/vu-tru-thien-nhien/artemisRocket1.png" alt="SLS Block 1"
+                                    class="a2-sc-img">
+                                <h4 class="a2-sc-title">Tên Lửa SLS Block 1</h4>
+                                <p class="a2-sc-desc">
+                                    Kết hợp giữa sức mạnh và năng lực vượt trội, tên lửa Space Launch System của NASA là
+                                    trụ cột trong hệ thống thám hiểm không gian sâu và chương trình Artemis Program.
+
+                                    SLS là tên lửa duy nhất hiện nay có thể đưa tàu Orion, phi hành gia và hàng hóa bay
+                                    thẳng tới Mặt Trăng chỉ trong một lần phóng duy nhất.</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- ══ Panel 2 ══════════════════════════════════════════════ -->
+                <div class="a2-panel">
+                    <div class="a2-panel-grid">
+
+                        <!-- Left sidebar -->
+                        <div class="a2-sidebar">
+                            <div class="a2-sidebar-featured">
+                                <img src="../../images/vu-tru-thien-nhien/Artemis-I-launch.png" alt="Vệ tinh"
+                                    class="a2-sb-img">
+                                <h3 class="a2-sb-title">Hành trình 400.000 km và những thách thức</h3>
+                                <p class="a2-sb-desc">Trong chuyến bay, tàu Orion bay xa Trái Đất hơn 400.000 km, vượt
+                                    qua kỷ lục trước đó của Apollo 13. Phi hành đoàn phải đối mặt với: </p>
+                                <ul class="a2-sb-list">
+                                    <li>Mức bức xạ cao</li>
+                                    <li>Khả năng mất liên lạc tạm thời</li>
+                                    <li>Áp lực cực lớn khi tái nhập khí quyển</li>
+                                </ul>
+                                <p class="a2-sb-desc">
+                                    Một số thời điểm, Phi hành gia thậm chí trải qua “40 phút mất liên lạc với Trái đất”
+                                    - một khoảng
+                                    lặng hiếm hoi giữa không gian sâu.</p>
+                            </div>
+                        </div>
+
+                        <!-- Center main -->
+                        <div class="a2-center">
+                            <div class="a2-center-img-wrap">
+                                <img src="../../images/vu-tru-thien-nhien/artemisII_austronaut.png" alt="Mặt Trăng"
+                                    class="a2-center-img">
+                            </div>
+                            <h2 class="a2-center-title">“Bộ tứ tiên phong” của kỷ nguyên mới</h2>
+                            <p class="a2-center-desc">Trong chuyến bay, tàu Orion bay xa Trái Đất hơn 400.000 km, vượt
+                                qua kỷ lục trước đó của Apollo 13. Phi hành đoàn phải đối mặt với: </p>
+                            <ul class="a2-sb-list">
+                                <li>Reid Wiseman (chỉ huy)</li>
+                                <li>Victor Glover (phi công)</li>
+                                <li>Christina Koch (chuyên gia nhiệm vụ)</li>
+                                <li>Jeremy Hansen (Canada)</li>
+                            </ul>
+                            <p class="a2-center-desc">Họ không hạ cánh xuống Mặt Trăng, nhưng sẽ bay vòng quanh vệ tinh
+                                này trong hành trình kéo dài khoảng 10 ngày.</p>
+                        </div>
+
+                        <!-- Right column -->
+                        <div class="a2-rightcol">
+                            <div class="a2-number-card" style="background: #8D1A0D;">
+                                <p class="a2-nc-label">CÔNG NGHỆ</p>
+                                <div class="a2-nc-divider"></div>
+                                <p class="a2-nc-number">kilobyte</p>
+                                <p class="a2-nc-desc">Nếu Apollo từng sử dụng máy tính chỉ vài chục kilobyte, thì Orion
+                                    là một “cỗ não số” mạnh gấp hàng trăm nghìn lần, có thể tự chẩn đoán sự cố.
+                                </p>
+                            </div>
+                            <div class="a2-secondary-card">
+                                <img src="../../images/vu-tru-thien-nhien/moon.png" alt="Gateway" class="a2-sc-img">
+                                <h4 class="a2-sc-title">Ý nghĩa lớn hơn Mặt Trăng</h4>
+                                <p class="a2-sc-desc">Artemis II không nhằm hạ cánh, mà là bước thử nghiệm quan trọng
+                                    cho Artemis III - sứ mệnh dự kiến đưa con người trở lại bề mặt Mặt Trăng trong những
+                                    năm tới. Theo NASA, mục tiêu cuối cùng không dừng ở Mặt Trăng:
+                                    <br /> <span style="font-style: italic;">"Chúng tôi muốn thấy con người lên sao
+                                        Hỏa."</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ══ Panel 3 ══════════════════════════════════════════════ -->
+                <div class="a2-panel">
+                    <div class="a2-panel-grid">
+
+                        <!-- Left sidebar -->
+                        <div class="a2-sidebar">
+                            <div class="a2-sidebar-featured">
+                                <img src="../../images/vu-tru-thien-nhien/station.png" alt="Nghiên cứu khoa học"
+                                    class="a2-sb-img">
+                                <h3 class="a2-sb-title">Thành tựu của toàn nhân loại</h3>
+                                <p class="a2-sb-desc">Ngày 11/4/2026, tàu Orion hạ cánh an toàn xuống Thái Bình Dương, khép lại hành trình gần 10 ngày.
+Giám đốc NASA gọi đây là:
+“thành tựu của toàn nhân loại”
+Một câu nói ngắn, nhưng chứa cả chiều dài lịch sử - từ Apollo đến Artemis, từ bước chân đầu tiên đến tham vọng xây dựng căn cứ ngoài Trái Đất.</p>
+                            </div>
+                        </div>
+
+                        <!-- Center main -->
+                        <div class="a2-center">
+                            <div class="a2-center-img-wrap">
+                                <img src="../../images/vu-tru-thien-nhien/process.png" alt="Tương lai không gian"
+                                    class="a2-center-img">
+                            </div>
+                            <h2 class="a2-center-title">Artemis II lập kỷ lục mới về khoảng cách với Trái đất</h2>
+                            <p class="a2-center-desc">Ngày 6-4, bốn phi hành gia của sứ mệnh Artemis II thuộc NASA đã
+                                đạt tới điểm xa nhất trong không gian mà con người từng bay tới, theo Reuters.
+
+                                Phi hành đoàn gồm Reid Wiseman, Victor Glover, Christina Koch và Jeremy Hansen đã vượt
+                                kỷ lục của Apollo 13, nâng khoảng cách tối đa từ Trái Đất lên gần 407.000 km, xa hơn kỷ
+                                lục cũ khoảng 6.400 km.
+
+                                Cột mốc này đánh dấu bước tiến quan trọng trong hành trình đưa con người trở lại Mặt
+                                Trăng và hướng tới sao Hỏa.</span></p>
+                        </div>
+
+                        <!-- Right column - End CTA -->
+                        <div class="a2-rightcol a2-rightcol--end">
+                            <div class="a2-end-cta">
+                                <p class="a2-end-kicker">ĐỌC THÊM</p>
+                                <h3 class="a2-end-heading">Khám phá thêm các câu chuyện vũ trụ thú vị khác</h3>
+                                <p class="a2-end-body">Những bí ẩn vũ trụ qua các bài viết chuyên đề
+                                    đặc biệt của chúng tôi.</p>
+                                <a href="vu-tru-va-thien-nhien.html" class="a2-end-btn">Xem tất cả bài viết →</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div><!-- .news-s2-track -->
+        </div><!-- .news-s2-viewport -->
+    </section>
+
+    <!-- Footer -->
+    <div id="site-footer" data-base="../../"></div>
+
+</body>
+
+</html>

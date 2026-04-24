@@ -1,7 +1,6 @@
 
 /* ===== HERO SECTION ===== */
 .hero {
-  margin-top: -25px;
   min-height: calc(100vh - 63px);
   background: var(--nw-white);
   border-top: 1px solid var(--nw-border-light);

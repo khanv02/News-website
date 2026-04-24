@@ -6,8 +6,25 @@ $(() => {
   const $slot = $("#site-footer");
   if (!$slot.length) return;
 
-  const BASE = ($slot.data("base") || "./").replace(/\/?$/, "/");
-  const r = (h) => BASE + h.replace(/^\.?\//, "");
+  // Dynamic path resolution
+  const pathParts = window.location.pathname.split('/');
+  const htmlIndex = pathParts.lastIndexOf('html');
+  
+  let depthFromHtml = 0;
+  if (htmlIndex !== -1) {
+    depthFromHtml = pathParts.length - htmlIndex - 2; 
+  } else {
+    // Fallback if 'html' folder isn't in URL, use data-base or default
+    const fallbackBase = ($slot.data("base") || "./").replace(/\/?$/, "/");
+    depthFromHtml = fallbackBase.split('../').length - 1;
+    if (fallbackBase === "./") depthFromHtml = 0;
+  }
+
+  let htmlBase = depthFromHtml <= 0 ? "./" : "../".repeat(depthFromHtml);
+  let rootBase = htmlBase + "../";
+
+  const rHtml = (h) => htmlBase + h.replace(/^\.?\//, "");
+  const rRoot = (h) => rootBase + h.replace(/^\.?\//, "");
 
   $slot.html(`
     <footer class="site-footer">
@@ -22,15 +39,15 @@ $(() => {
             <div class="d-flex gap-3">
               <!-- youtube -->
               <a href="https://www.youtube.com/@nghia_game_dev" class="social-circle">
-                <img src="${r('images/footer/ytb.png')}" alt="YouTube" width="22" height="22">
+                <img src="${rRoot('images/footer/ytb.png')}" alt="YouTube" width="22" height="22">
               </a>
               <!-- github -->
               <a href="https://github.com/nghiaiuh/News-website" class="social-circle">
-                <img src="${r('images/footer/github.png')}" alt="GitHub" width="22" height="22">
+                <img src="${rRoot('images/footer/github.png')}" alt="GitHub" width="22" height="22">
               </a>
               <!-- linkedin -->
               <a href="https://www.linkedin.com/in/ngh%C4%A9a-phan-np061010/" class="social-circle">
-                <img src="${r('images/footer/lki.png')}" alt="LinkedIn" width="22" height="22">
+                <img src="${rRoot('images/footer/lki.png')}" alt="LinkedIn" width="22" height="22">
               </a>
             </div>
           </div>
@@ -38,9 +55,9 @@ $(() => {
           <!-- Login CTA -->
           <div class="d-flex flex-column align-items-md-end gap-3 w-100 newsletter-wrapper ms-md-auto">
             <span class="fs-6">Đăng nhập để trở thành người đóng góp</span>
-            <a href="${r('html/dang-nhap.html')}" class="newsletter-input w-100 d-flex justify-content-between align-items-center text-decoration-none">
+            <a href="${rHtml('dang-nhap.html')}" class="newsletter-input w-100 d-flex justify-content-between align-items-center text-decoration-none">
               <span class="text-white-50">Đăng nhập / Đăng ký...</span>
-              <img src="${r('images/footer/paper-plane.png')}" alt="paper-plane" class="send-icon" width="20" height="20">
+              <img src="${rRoot('images/footer/paper-plane.png')}" alt="paper-plane" class="send-icon" width="20" height="20">
             </a>
           </div>
 

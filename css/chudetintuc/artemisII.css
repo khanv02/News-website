@@ -1,0 +1,464 @@
+/* =============================================================
+   artemisII.css  –  Editorial horizontal-scroll magazine page
+   ============================================================= */
+
+/* ── Google Fonts ─────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Tokens ───────────────────────────────────────────────── */
+:root {
+  --a2-white:   #ffffff;
+  --a2-beige:   #f5f0e8;
+  --a2-ink:     #1a1a1a;
+  --a2-mid:     #555;
+  --a2-muted:   #999;
+  --a2-rule:    #e0e0e0;
+  --a2-accent:  #b07c5b;   /* earthy terracotta */
+  --a2-nc-bg:   #c4877d;   /* number-card red-brown */
+  --a2-serif:   'Playfair Display', Georgia, serif;
+  --a2-sans:    'Inter', system-ui, sans-serif;
+}
+
+/* ── Base ─────────────────────────────────────────────────── */
+.a2-body {
+  margin: 0;
+  background: var(--a2-white);
+  color: var(--a2-ink);
+  font-family: var(--a2-sans);
+  overflow-x: hidden;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PAGE HERO  (large title ABOVE the scroll section)
+   ══════════════════════════════════════════════════════════ */
+.a2-page-hero {
+  padding: 5px 6vw 10px;
+  background: var(--a2-white);
+  max-width: 1400px;
+  margin: 10px auto;
+  border-bottom: 1px solid var(--a2-rule);
+}
+
+.a2-page-kicker {
+  font-family: var(--a2-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--a2-accent);
+  margin: 0 0 16px;
+}
+
+.a2-page-title {
+  font-family: var(--a2-serif);
+  font-size: clamp(56px, 5vw, 128px);
+  font-weight: 700;
+  line-height: 1.33;
+  letter-spacing: -3px;
+  margin: 0 0 20px;
+  color: var(--a2-ink);
+}
+
+.a2-page-subtitle {
+  font-size: 18px;
+  color: var(--a2-mid);
+  max-width: 520px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.a2-page-hero-rule {
+  height: 1px;
+  background: var(--a2-rule);
+  margin: 32px 0 16px;
+}
+
+.a2-scroll-hint {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--a2-muted);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   HORIZONTAL SCROLL WRAPPER
+   These selectors are used by sectionTwo.js
+   ══════════════════════════════════════════════════════════ */
+.news-section-two {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: var(--a2-white);
+}
+
+.news-s2-viewport {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.news-s2-track {
+  display: flex;
+  height: 100%;
+  width: fit-content;
+  will-change: transform;
+}
+
+/* ══════════════════════════════════════════════════════════
+   PANEL  (each "screen" / viewport-width slide)
+   ══════════════════════════════════════════════════════════ */
+.a2-panel {
+  width: 100vw;
+  height: 100%;
+  padding: 40px 5vw;
+  flex-shrink: 0;
+  display: flex;
+  align-items: stretch;
+  border-right: 1px solid var(--a2-rule);
+  background: var(--a2-white);
+}
+
+.a2-panel-grid {
+  display: grid;
+  grid-template-columns: 22% 1fr 26%;
+  gap: 3vw;
+  width: 100%;
+  align-items: start;
+}
+
+/* ══════════════════════════════════════════════════════════
+   LEFT SIDEBAR
+   ══════════════════════════════════════════════════════════ */
+.a2-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.a2-sidebar-featured {
+  flex: 1;
+}
+
+.a2-sb-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.a2-sb-title {
+  font-family: var(--a2-serif);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 10px;
+  color: var(--a2-ink);
+}
+
+.a2-sb-desc {
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--a2-mid);
+  margin: 0 0 16px;
+}
+
+.a2-sb-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0px 0 2px 0;
+  color: var(--a2-mid);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.a2-sb-list li {
+  margin-bottom: 8px;
+}
+
+.a2-sb-author {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.a2-sb-author-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--a2-beige);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--a2-accent);
+  flex-shrink: 0;
+  border: 1px solid var(--a2-rule);
+}
+
+.a2-sb-author-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--a2-ink);
+}
+
+.a2-sb-author-role {
+  font-size: 11px;
+  color: var(--a2-muted);
+}
+
+.a2-sidebar-divider {
+  height: 1px;
+  background: var(--a2-rule);
+  margin: 20px 0;
+}
+
+.a2-sidebar-category {
+  padding-bottom: 8px;
+}
+
+.a2-sb-cat-label {
+  font-family: var(--a2-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--a2-ink);
+  margin: 0 0 8px;
+}
+
+.a2-sb-cat-text {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--a2-mid);
+  margin: 0;
+}
+
+.a2-sb-time {
+  font-size: 12px;
+  color: var(--a2-muted);
+  white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CENTER MAIN ARTICLE
+   ══════════════════════════════════════════════════════════ */
+.a2-center {
+  display: flex;
+  flex-direction: column;
+}
+
+.a2-center-img-wrap {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+  max-height: 55vh;
+}
+
+.a2-center-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.a2-center-title {
+  font-family: var(--a2-serif);
+  font-size: clamp(22px, 2.4vw, 34px);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 14px;
+  color: var(--a2-ink);
+}
+
+.a2-center-desc {
+  text-align: justify;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--a2-mid);
+}
+
+.a2-center-time {
+  font-size: 12px;
+  color: var(--a2-muted);
+}
+
+/* ══════════════════════════════════════════════════════════
+   RIGHT COLUMN
+   ══════════════════════════════════════════════════════════ */
+.a2-rightcol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: 100%;
+}
+
+/* Number-of-the-day card */
+.a2-number-card {
+  background: black;
+  color: #fff;
+  padding: 24px 22px;
+  flex-shrink: 0;
+}
+
+.a2-nc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0 0 10px;
+  opacity: 0.85;
+}
+
+.a2-nc-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.35);
+  margin-bottom: 14px;
+}
+
+.a2-nc-number {
+  font-family: var(--a2-serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 0 12px;
+}
+
+.a2-nc-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Secondary card */
+.a2-secondary-card {
+  flex: 1;
+  min-height: 0;
+}
+
+.a2-sc-img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.a2-sc-title {
+  font-family: var(--a2-serif);
+  font-size: 19px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--a2-ink);
+  line-height: 1.25;
+}
+
+.a2-sc-desc {
+  font-size: 16px;
+  text-align: justify;
+  line-height: 1.6;
+  color: var(--a2-mid);
+  margin: 0;
+}
+
+/* End CTA panel (panel 3 right) */
+.a2-rightcol--end {
+  justify-content: center;
+}
+
+.a2-end-cta {
+  padding: 32px 24px;
+  border: 1px solid var(--a2-rule);
+  border-radius: 2px;
+}
+
+.a2-end-kicker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--a2-accent);
+  margin: 0 0 12px;
+}
+
+.a2-end-heading {
+  font-family: var(--a2-serif);
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  color: var(--a2-ink);
+}
+
+.a2-end-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--a2-mid);
+  margin: 0 0 24px;
+}
+
+.a2-end-btn {
+  display: inline-block;
+  padding: 11px 24px;
+  background: var(--a2-ink);
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: background 0.25s;
+}
+
+.a2-end-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE  (stack panels on mobile)
+   ══════════════════════════════════════════════════════════ */
+@media (max-width: 991px) {
+  .news-section-two {
+    height: auto;
+  }
+
+  .news-s2-viewport {
+    overflow: visible;
+    height: auto;
+  }
+
+  .news-s2-track {
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    transform: none !important; /* disable GSAP on mobile */
+  }
+
+  .a2-panel {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--a2-rule);
+    padding: 40px 5vw;
+  }
+
+  .a2-panel-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .a2-center-img-wrap {
+    max-height: none;
+    aspect-ratio: 16/9;
+  }
+
+  .a2-page-title {
+    letter-spacing: -1px;
+  }
+}
