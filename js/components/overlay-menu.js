@@ -49,7 +49,7 @@
     $('body').append(`
       <div class="om-overlay" id="om-overlay" role="dialog" aria-modal="true">
         <header class="om-header">
-          <a class="om-logo" href="${r('Index.html')}" id="om-logo">BÁO CHÍ <span>DESIGN</span></a>
+          <a class="om-logo" href="${r('index.html')}" id="om-logo">BÁO CHÍ <span>DESIGN</span></a>
           <div class="om-header-actions">
             <button class="om-close-btn" id="om-close-btn" aria-label="Close menu" type="button">
               <span class="om-close-icon" aria-hidden="true"></span>
