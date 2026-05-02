@@ -34,7 +34,6 @@
   width: 36%;
   padding: 0 4vw;
 }
-
 .s1-feed-card img {
   width: 100%;
   height: clamp(140px, 18vw, 210px);
@@ -43,9 +42,11 @@
   border: 1px solid var(--news-black);
   -webkit-user-drag: none;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 .s1-feed-card img:hover {
   transform: scale(1.05);
+
 }
 .s1-feed-content {
   padding: 1rem 1.25rem;

@@ -17,6 +17,7 @@
  * ─────────────────────────────────────────────────────
  */
 $(() => {
+
   $(".s1-feed-container, .s5-nature-feed, .news-feed").each(function() {
     const $container = $(this);
     const $track = $container.find(".s1-feed-track, .s5-feed-track, .feed-track");
@@ -25,7 +26,6 @@ $(() => {
       $container.css({ overflow: "hidden", cursor: "grab", "touch-action": "pan-y" });
       $track.css("width", "max-content");
     }
-
     const $centerCard = $track.find(".center-card");
     const $children = $track.children();
     

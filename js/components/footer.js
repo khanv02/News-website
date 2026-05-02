@@ -69,74 +69,74 @@ $(() => {
         <div class="row g-4 mb-5">
           <!-- Col 1 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Space and Universe</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Giải trí Showbiz</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">NASA Missions</a></li>
-              <li><a href="#" class="footer-link">Extraterrestrials</a></li>
-              <li><a href="#" class="footer-link">New Planet Discovery</a></li>
-              <li><a href="#" class="footer-link">Neighborhood Planets</a></li>
-              <li><a href="#" class="footer-link">Satellite News</a></li>
-              <li><a href="#" class="footer-link">Astronaut Insights</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/Dune_PartTwo.html')}" class="footer-link">Dune: Part Two - Kiệt tác thị giác</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/nghesi_tre.html')}" class="footer-link">Văn hóa ứng xử của nghệ sĩ</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/top_phim.html')}" class="footer-link">Cuộc đua 5 phim Việt mùa nghỉ lễ</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/concern_chayVE.html')}" class="footer-link">Nam ca sĩ cháy vé trong 12 phút</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/le-hoi-he.html')}" class="footer-link">Lễ hội âm nhạc mùa hè 2026</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/worldcup.html')}" class="footer-link">Bản quyền FIFA World Cup 2026</a></li>
             </ul>
           </div>
           <!-- Col 2 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Our Planet</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Kinh tế Thị trường</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">Earth</a></li>
-              <li><a href="#" class="footer-link">Discover Animals</a></li>
-              <li><a href="#" class="footer-link">Plants and the Life</a></li>
-              <li><a href="#" class="footer-link">Human &amp; Civilization</a></li>
-              <li><a href="#" class="footer-link">History &amp; Future</a></li>
-              <li><a href="#" class="footer-link">Predict the Future</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/viet-nam-binh-on-thi-truong-nang-luong-truoc-bien-dong-gia-dau.html')}" class="footer-link">Bình ổn thị trường năng lượng</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/bo-cong-thuong-khuyen-nghi-doanh-nghiep-giam-rui-ro-trung-dong.html')}" class="footer-link">Giảm rủi ro từ xung đột Trung Đông</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/tong-thong-han-quoc-lee-jae-myung-tham-viet-nam.html')}" class="footer-link">Hàn Quốc thăm Việt Nam</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/to-lam-nang-tam-ket-noi-viet-trung.html')}" class="footer-link">Nâng tầm Việt Nam - Trung Quốc</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/quoc-hoi-rut-ngan-nhiem-ky-khoa-xv.html')}" class="footer-link">Rút ngắn nhiệm kỳ QH khóa XV</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/to-lam-du-le-ky-niem-120-nam-ha-huy-tap.html')}" class="footer-link">Kỷ niệm 120 năm sinh Hà Huy Tập</a></li>
             </ul>
           </div>
           <!-- Col 3 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Health and Science</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Chính trị Thế giới</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">Newest Science</a></li>
-              <li><a href="#" class="footer-link">Science Projects</a></li>
-              <li><a href="#" class="footer-link">Science for Humanity</a></li>
-              <li><a href="#" class="footer-link">The Reality of Science</a></li>
-              <li><a href="#" class="footer-link">Human Health</a></li>
-              <li><a href="#" class="footer-link">Animals &amp; Plants Health</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/israel-iran-an-mieng-tra-mieng-thuong-vong-tang.html')}" class="footer-link">Israel - Iran ăn miếng trả miếng</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/my-tuyen-bo-thang-loi-iran-oman-thu-phi-hormuz.html')}" class="footer-link">Mỹ tuyên bố thắng lợi với Iran</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/uav-iran-danh-trung-co-so-cia-arab-saudi.html')}" class="footer-link">UAV Iran đánh trúng cơ sở CIA</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/tuong-lai-bat-dinh-cua-tau-hang-iran-bi-my-bat.html')}" class="footer-link">Tàu hàng Iran bị Mỹ bắt giữ</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/my-cong-bo-300-nguoi-noi-tieng-trong-ho-so-epstein.html')}" class="footer-link">Công bố hồ sơ Epstein chấn động</a></li>
+              <li><a href="${rHtml('kinh-te-chinh-tri/chu-tich-quoc-hoi-toa-dam-viet-nam-tho-nhi-ky.html')}" class="footer-link">Hợp tác Việt Nam - Thổ Nhĩ Kỳ</a></li>
             </ul>
           </div>
           <!-- Col 4 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Technology</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Thể thao & Điện tử</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">Newest Technology</a></li>
-              <li><a href="#" class="footer-link">Technology for Humanity</a></li>
-              <li><a href="#" class="footer-link">Technology for Animals</a></li>
-              <li><a href="#" class="footer-link">Technology for Plants</a></li>
-              <li><a href="#" class="footer-link">Technology for the Planet</a></li>
-              <li><a href="#" class="footer-link">Technology for the Future</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-football-detail.html')}" class="footer-link">Kịch tính vòng loại World Cup</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-nba-detail.html')}" class="footer-link">Nhịp đập NBA Playoffs 2026</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-tennis-detail.html')}" class="footer-link">Bất ngờ tại Grand Slam 2024</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-messi-vo-dich.html')}" class="footer-link">Messi và giấc mơ World Cup</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-f1-detail.html')}" class="footer-link">Tốc độ F1: Rượt đuổi nghẹt thở</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-max.html')}" class="footer-link">Max Verstappen - Thiên tài đua xe</a></li>
             </ul>
           </div>
           <!-- Col 5 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Our Community</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Sức khoẻ Đời sống</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">About Us</a></li>
-              <li><a href="#" class="footer-link">Advertise</a></li>
-              <li><a href="#" class="footer-link">Events</a></li>
-              <li><a href="#" class="footer-link">People Insights</a></li>
-              <li><a href="#" class="footer-link">Satellite News</a></li>
-              <li><a href="#" class="footer-link">Astronaut Insights</a></li>
+              <li><a href="${rHtml('the-thao/suc-khoe-cardio-detail.html')}" class="footer-link">Khởi động an toàn khi tập cardio</a></li>
+              <li><a href="${rHtml('the-thao/suc-khoe-tamly-detail.html')}" class="footer-link">Sức khỏe tinh thần thời đại số</a></li>
+              <li><a href="${rHtml('the-thao/suc-khoe-yoga-detail.html')}" class="footer-link">Yoga - Chìa khóa của tĩnh lặng</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/an_uong.html')}" class="footer-link">Chế độ ăn xanh và sức khỏe</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/loi-song.html')}" class="footer-link">Sức mạnh của việc dậy sớm</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/song-toi-gian.html')}" class="footer-link">Nghệ thuật sống tối giản</a></li>
             </ul>
           </div>
           <!-- Col 6 -->
           <div class="col-6 col-md-4 col-lg-2">
-            <h5 class="footer-col-title mb-4 fs-6">Our Podcasts</h5>
+            <h5 class="footer-col-title mb-4 fs-6">Vũ trụ & Thiên nhiên</h5>
             <ul class="list-unstyled d-flex flex-column gap-3 mb-0">
-              <li><a href="#" class="footer-link">It's All About Earth!</a></li>
-              <li><a href="#" class="footer-link">Become an Astronauts</a></li>
-              <li><a href="#" class="footer-link">Discover Other Life?</a></li>
-              <li><a href="#" class="footer-link">Our Neighborhoods</a></li>
-              <li><a href="#" class="footer-link">Earth From Space</a></li>
-              <li><a href="#" class="footer-link">The Future of Human</a></li>
+              <li><a href="${rHtml('vu-tru-thien-nhien/artemisII.html')}" class="footer-link">Artemis II: Trở lại Mặt Trăng</a></li>
+              <li><a href="${rHtml('vu-tru-thien-nhien/vu-tru-thien-nhien.html')}" class="footer-link">Khám phá bí ẩn Vũ trụ</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/phuquoc.html')}" class="footer-link">Phú Quốc: Hòn Đảo Quý Giá</a></li>
+              <li><a href="${rHtml('giai-tri-doi-song/loiich-thethao.html')}" class="footer-link">Lợi ích hoạt động ngoài trời</a></li>
+              <li><a href="${rHtml('the-thao/the-thao-suc-khoe.html')}" class="footer-link">Thể thao & Sức khỏe đời sống</a></li>
+              <li><a href="${rHtml('giaitri-doisong.html')}" class="footer-link">Giải trí & Đời sống hiện đại</a></li>
             </ul>
           </div>
         </div>
